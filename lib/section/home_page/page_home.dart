@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:personalwebsite/core/responsive/screen.dart';
 import 'package:personalwebsite/section/home_page/home_page_dummy/home_page_dummy.dart';
 import 'package:personalwebsite/section/home_page/home_page_dummy/home_page_real/home_page_real.dart';
+import 'package:personalwebsite/section/home_page/home_page_gridview/homepage_gridview.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 
 enum Devices {
@@ -45,8 +46,9 @@ class TransparentInfoScreen extends StatelessWidget {
       return Stack(
         children: 
         // homePageDummy() +
-            [
-              const HomePageReal(),
+            const [
+              HomepageGridview(),
+              HomePageReal(),
               // deviceIndeatorColor(),
             ],
       );

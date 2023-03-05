@@ -1,7 +1,20 @@
 import 'package:flutter/material.dart';
-import 'package:personalwebsite/core/responsive/functions.dart';
 import 'package:personalwebsite/core/responsive/screen.dart';
+import 'package:personalwebsite/section/home_page/home_page_dummy/home_page_real/image_area.dart';
+import 'package:personalwebsite/section/home_page/home_page_dummy/home_page_real/label_area.dart';
 import 'package:responsive_builder/responsive_builder.dart';
+
+List<String> imageList = [
+  "assets/dio.png",
+  // "assets/emoji.png",
+  "assets/fluttera.png",
+  "assets/freezed.png",
+  "assets/injectable.png",
+  "assets/json.png",
+  "assets/pubspec.png",
+  "assets/share.png",
+  "assets/video.png",
+];
 
 enum SpecifyWidget {
   label,
@@ -21,7 +34,7 @@ class HomePageReal extends StatelessWidget {
       // var isPortrait = Screen.internal.isLandscape == true;
 
       return Container(
-        color: Colors.red,
+        color: Colors.red.withOpacity(0.0),
         child: rowOrColumn(isLandscape: isLandscape),
       );
     });
@@ -40,13 +53,13 @@ class HomePageReal extends StatelessWidget {
           isLandscape: isLandscape,
           landScapeFlex: 1,
           nonLandSapeFlex: 1,
-          color: const Color.fromARGB(255, 26, 26, 26)),
+          color: const Color.fromARGB(255, 26, 26, 26).withOpacity(0.97)),
       expanded(
           specifyWidget: SpecifyWidget.image,
           isLandscape: isLandscape,
           landScapeFlex: 1,
           nonLandSapeFlex: 2,
-          color: const Color.fromARGB(255, 18, 18, 18)),
+          color: const Color.fromARGB(255, 18, 18, 18).withOpacity(0.94)),
     ];
   }
 
@@ -73,96 +86,6 @@ class HomePageReal extends StatelessWidget {
         ));
   }
 }
-
-class LabelArea extends StatelessWidget {
-  const LabelArea({
-    super.key,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    Orientationed orientationed() => Screen.internal.orientationed;
-    return ResponsiveBuilder(builder: (context, sizingInfo) {
-      return Align(
-        alignment: orientationed() == Orientationed.landscape
-            ? Alignment.center
-            : orientationed() == Orientationed.square
-                ? Alignment.centerLeft
-                : Alignment.center,
-        child: Container(
-          height: shortSize100(33),
-          width: shortSize100(64),
-          color: const Color.fromARGB(255, 26, 26, 26),
-          padding: EdgeInsets.only(left: shortSize100(3)),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-               Text(
-                " Yes, Your Own",
-                style: TextStyle(
-                  letterSpacing: shortSize100(1),
-                  fontSize: shortSize100(3),
-                  fontWeight: FontWeight.w900,
-                  color: Colors.white.withOpacity(0.3)
-                ),
-              ),
-              Text(
-                "Abdulla",
-                style: TextStyle(
-                    letterSpacing: shortSize100(3.2),
-                    fontSize: shortSize100(10),
-                    fontWeight: FontWeight.w900,
-                  color: Colors.white),
-              ),
-               Text("Flutter Developer",
-              style: TextStyle(
-                letterSpacing: shortSize100(0.66),
-                fontSize: shortSize100(5.7),
-                fontWeight: FontWeight.w500,
-                  color: Color.fromARGB(255, 255, 23, 46)
-                
-              ),),
-            ],
-          ),
-        ),
-      );
-    });
-  }
-}
-
-class ImageArea extends StatelessWidget {
-  const ImageArea({
-    super.key,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    Orientationed orientationed() => Screen.internal.orientationed;
-    return ResponsiveBuilder(builder: (context, sizingInfo) {
-      print(Screen.internal.sizeInfo.screenSize);
-      return Align(
-        alignment: orientationed() == Orientationed.landscape
-            ? Alignment.bottomCenter
-            : orientationed() == Orientationed.square
-                ? Alignment.topRight
-                : Alignment.topCenter,
-        child: Container(
-          height: longSize100(66),
-          width: longSize100(55),
-          // color: Colors.amber,
-          decoration: const BoxDecoration(
-            // image: DecorationImage(
-            //     image: AssetImage("assets/sample_person.png"),
-            //     fit: BoxFit.fitHeight),
-            color: Color.fromARGB(255, 18, 18, 18),
-          ),
-        ),
-      );
-    });
-  }
-}
-
 
 
 //  Row(
