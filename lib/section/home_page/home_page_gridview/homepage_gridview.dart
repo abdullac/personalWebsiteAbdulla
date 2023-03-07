@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:personalwebsite/core/responsive/functions.dart';
 import 'package:personalwebsite/core/responsive/screen.dart';
-import 'package:personalwebsite/section/home_page/home_page_dummy/home_page_real/home_page_real.dart';
+import 'package:personalwebsite/section/home_page/home_page_real/home_page_real.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 
 class HomepageGridview extends StatelessWidget {

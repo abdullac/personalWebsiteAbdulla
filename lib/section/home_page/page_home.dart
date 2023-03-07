@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:personalwebsite/core/responsive/functions.dart';
 import 'package:personalwebsite/core/responsive/screen.dart';
 import 'package:personalwebsite/section/home_page/home_page_dummy/home_page_dummy.dart';
-import 'package:personalwebsite/section/home_page/home_page_dummy/home_page_real/home_page_real.dart';
+import 'package:personalwebsite/section/home_page/home_page_real/home_page_real.dart';
 import 'package:personalwebsite/section/home_page/home_page_gridview/homepage_gridview.dart';
 import 'package:responsive_builder/responsive_builder.dart';
+import 'dart:math' as math;
 
 enum Devices {
   mobile,
@@ -44,13 +46,29 @@ class TransparentInfoScreen extends StatelessWidget {
       Screen(sizingInfo: sizeinfo);
       // double position = Screen(sizingInfo: sizeinfo).shortSize * 1 / 100;
       return Stack(
-        children: 
-        // homePageDummy() +
-            const [
-              HomepageGridview(),
-              HomePageReal(),
-              // deviceIndeatorColor(),
-            ],
+        children:
+            // homePageDummy() +
+            [
+          const HomepageGridview(),
+          const HomePageReal(),
+          Align(
+            alignment: Alignment.bottomCenter,
+            child: IconButton(
+              onPressed: () {
+                //
+              },
+              color: Colors.white.withOpacity(0.2),
+              hoverColor: Colors.red,
+              highlightColor: Colors.blue,
+              focusColor: Colors.amber,
+              splashColor: Colors.green,
+              iconSize: shortSize100(10),
+              icon: Transform.rotate(angle: math.pi *180/360,
+                child: const Icon(Icons.double_arrow_rounded)),
+            ),
+          ),
+          // deviceIndeatorColor(),
+        ],
       );
     });
   }

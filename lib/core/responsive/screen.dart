@@ -110,7 +110,9 @@ class Device {
 }
 
 class ScreenType {
+  /// screenTypes
   late ScreenTypes screenTypes;
+  /// multyScreenTypes
   late bool isLandscapeMobTab = false;
   late bool isPortraitMobTab = false;
   late bool isSquareMobTab = false;

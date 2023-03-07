@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:personalwebsite/scrn_main/scrn_main.dart';
+import 'package:personalwebsite/section/home_page/page_home.dart';
+import 'package:personalwebsite/section/page_main/page_main.dart';
 
 void main() {
   runApp(const MyApp());
@@ -13,10 +15,9 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       theme: ThemeData.dark(),
       themeMode: ThemeMode.dark,
-      home: const Scaffold(
-        body: SafeArea(
-          child: ScrnMain(),
-        ),
+      home:  Scaffold(
+        body: PageMain(),
+        // body: PageHome(),
       ),
     );
   }
