@@ -1,6 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:personalwebsite/core/responsive/screen.dart';
 
+bool mainIsLandscapeMobile() {
+  return mainIsMobile() && mainIsLandScape() ? true : false;
+}
+
+bool mainIsPortraitMobile() {
+  return mainIsMobile() && mainIsPortrait() ? true : false;
+}
+
+bool mainIsSquareMobile() {
+  return mainIsMobile() && mainIsSquare() ? true : false;
+}
+
+
 bool mainIsLandScape() => Screen.internal.isLandscape;
 bool mainIsPortrait() => Screen.internal.isPortrait;
 bool mainIsSquare() => Screen.internal.isSquare;
@@ -62,10 +75,10 @@ TextStyle mainDescriptionDetailStyle() => mainIsSquare()
         fontWeight: FontWeight.w500,
         color: Colors.white)
     : TextStyle(
-        fontSize: mainShortSize(3.95),
+        fontSize: mainShortSize(4),
         fontWeight: FontWeight.w500,
         color: Colors.white);
 
 //////////////////////////////////////// String ////
 String loremipsom =
-    "Devlpopy joigjdg joitrtji opirotiofjgk iitroj over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source. Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of";
+    "Devlpopy joigjdg joitrtji opirotiofjgk iitroj over 2000 yihlege in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source. Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of";

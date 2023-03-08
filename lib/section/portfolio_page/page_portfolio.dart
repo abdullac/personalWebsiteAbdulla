@@ -14,23 +14,26 @@ class PortfolioPage extends StatelessWidget {
     return ResponsiveBuilder(builder: (context, sizingInfo) {
       Screen(sizingInfo: sizingInfo);
       return Container(
-        height: mainHeight(100),
-        color: Colors.purpleAccent,
+        height: mainHeight(85),
+        color: Colors.black,
         child: Column(
           children: [
             portfolioHeading(),
             Flexible(
               flex: 17,
-              child: Container(
-                color: Colors.blueGrey[900],
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    portfolioItemHeading(),
-                    portfolioImagesArea(),
-                    portfolioSubImagesArea(),
-                    portfolioAdditionalImagesArea(),
-                  ],
+              child: SingleChildScrollView(
+                child: Container(
+                  height: mainLongSize(100)-mainHeight(15),
+                  color: Colors.blueGrey[900],
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      portfolioItemHeading(),
+                      portfolioImagesArea(),
+                      portfolioSubImagesArea(),
+                      portfolioAdditionalImagesArea(),
+                    ],
+                  ),
                 ),
               ),
             ),
@@ -44,7 +47,7 @@ class PortfolioPage extends StatelessWidget {
     return Flexible(
       flex: 3,
       child: Container(
-        color: Colors.blueGrey[300],
+        color: Colors.black,
         child: Center(
           child: Text(
             "My Works",
@@ -66,36 +69,39 @@ class PortfolioPage extends StatelessWidget {
     return Flexible(
       flex: 6,
       child: Container(
-        color: Colors.blueGrey[400],
+        color: Colors.black,
         child: ScrollablePositionedList.builder(
           scrollDirection: Axis.horizontal,
           itemCount: 10,
           itemBuilder: (ctx, index) {
             return Container(
-              color: Colors.brown[500],
+              color: Colors.black,
               margin: EdgeInsets.symmetric(
-                horizontal: portfolioDimonsion(100/12.5),
+                horizontal: portfolioDimonsion(100 / 25),
                 vertical: 10,
               ),
               child: Column(
                 children: [
                   Flexible(
+                    flex: 7,
                     child: Container(
-                      width: portfolioDimonsion((100 / 6)),
+                      width: portfolioDimonsion(100 / 5),
                       height: double.infinity,
                       margin: const EdgeInsets.symmetric(
                         // horizontal: 5,
-                        vertical: 6,
+                        // vertical: 6,
                       ),
-                      decoration: BoxDecoration(
-                          color: Colors.brown[400],
-                          image: const DecorationImage(
+                      decoration: const BoxDecoration(
+                          color: Colors.black,
+                          image: DecorationImage(
                               image: AssetImage("assets/NetClipxLogo.png"))),
                     ),
                   ),
                   Flexible(
+                    flex: 3,
                     child: Container(
-                      width: portfolioDimonsion(100/4),
+                      color: Colors.black,
+                      width: portfolioDimonsion(100 / 4),
                       child: const Center(
                         child: Text(
                           "fijrige e\njt oeerojeo ije iiujiuuoiuiououueytheriutytyuiyrtiuyrtiruytteryt\nirtuoireutre",
@@ -117,44 +123,29 @@ class PortfolioPage extends StatelessWidget {
     return Flexible(
         flex: 5,
         child: Container(
-          color: Colors.blueGrey[500],
+          color: Colors.black,
+          padding: EdgeInsets.symmetric(vertical: 8,horizontal: portfolioDimonsion(4)),
           child: Stack(
             alignment: Alignment.center,
             children: [
               Align(
                 alignment: Alignment.center,
-                child: Container(
-                  height: 200,
-                  width: 200,
-                  margin: const EdgeInsets.all(10),
-                  decoration: BoxDecoration(
-                    color: Colors.pink[400],
-                    image: DecorationImage(image: AssetImage(imageList[1])),
-                  ),
+                child: Image.asset(
+                  imageList[1],
                 ),
               ),
               Align(
-                alignment: Alignment.centerRight,
-                child: Container(
-                  height: 200,
-                  width: 200,
-                  margin: const EdgeInsets.all(10),
-                  decoration: BoxDecoration(
-                    color: Colors.pink[500],
-                    image: DecorationImage(image: AssetImage(imageList[2])),
-                  ),
+                alignment: Alignment.bottomRight,
+                child: Image.asset(
+                  imageList[2],
+                  height: portfolioSubImagesSize(27),
                 ),
               ),
               Align(
-                alignment: Alignment.centerLeft,
-                child: Container(
-                  height: 200,
-                  width: 200,
-                  margin: const EdgeInsets.all(10),
-                  decoration: BoxDecoration(
-                    color: Colors.pink[300],
-                    image: DecorationImage(image: AssetImage(imageList[4])),
-                  ),
+                alignment: Alignment.bottomLeft,
+                child: Image.asset(
+                  imageList[0],
+                  height: portfolioSubImagesSize(25),
                 ),
               )
             ],
@@ -164,40 +155,56 @@ class PortfolioPage extends StatelessWidget {
 
   Flexible portfolioAdditionalImagesArea() {
     return Flexible(
-        flex: 5,
-        child: Container(
-          color: Colors.blueGrey[600],
-          child: ScrollablePositionedList.builder(
-            scrollDirection: Axis.horizontal,
-            itemCount: 7,
-            itemBuilder: (ctx, index) {
-              return Container(
-                color: Colors.brown[500],
-                margin:
-                    const EdgeInsets.symmetric(horizontal: 30, vertical: 10),
-                child: Column(
-                  children: [
-                    Container(
-                      height: 10,
-                      width: 15,
+      flex: 5,
+      child: Container(
+        padding: EdgeInsets.symmetric(horizontal: portfolioAdditionalImagesDimonsion(0)),
+        color: Colors.black,
+        child: ScrollablePositionedList.builder(
+          scrollDirection: Axis.horizontal,
+          itemCount: 10,
+          itemBuilder: (ctx, index) {
+            return Container(
+              color: Colors.black,
+              margin: EdgeInsets.symmetric(
+                horizontal: portfolioAdditionalImagesDimonsion(100 / 25),
+                vertical: 10,
+              ),
+              child: Column(
+                children: [
+                  Flexible(
+                    flex: 8,
+                    child: Container(
+                      width: portfolioAdditionalImagesDimonsion(100 / 4),
+                      height: double.infinity,
                       margin: const EdgeInsets.symmetric(
-                          horizontal: 5, vertical: 6),
-                      decoration: BoxDecoration(
-                          color: Colors.brown[400],
+                        // horizontal: 5,
+                        // vertical: 6,
+                      ),
+                      decoration: const BoxDecoration(
+                          color: Colors.black,
                           image: DecorationImage(
-                              image: AssetImage(imageList[index]))),
+                              image: AssetImage("assets/NetClipxLogo.png"))),
                     ),
-                    const Center(
-                      child: Text(
-                        "fuiyrtiuyrtiruytteryt\nirtuoireutre",
-                        textAlign: TextAlign.center,
+                  ),
+                  Flexible(
+                    flex: 2,
+                    child: Container(
+                      color: Colors.black,
+                      width: portfolioAdditionalImagesDimonsion(100 / 4),
+                      child: const Center(
+                        child: Text(
+                          "fijrige e\njt oeerojeo ije iiujiuuoiuiououueytheriutytyuiyrtiuyrtiruytteryt\nirtuoireutre",
+                          textAlign: TextAlign.center,
+                        ),
                       ),
                     ),
-                  ],
-                ),
-              );
-            },
-          ),
-        ));
+                  ),
+                ],
+              ),
+            );
+          },
+        ),
+      ),
+    );
   }
 }

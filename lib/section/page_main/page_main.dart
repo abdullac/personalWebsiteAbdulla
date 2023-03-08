@@ -7,6 +7,8 @@ import 'package:personalwebsite/core/transparent_screen/variables/colors.dart';
 import 'package:personalwebsite/section/about_page/page_about.dart';
 import 'package:personalwebsite/section/home_page/home_page_real/home_page_real.dart';
 import 'package:personalwebsite/section/home_page/page_home.dart';
+import 'package:personalwebsite/section/my_skills_page/page_my_skills.dart';
+import 'package:personalwebsite/section/my_workethics_page/page_my_work_ethics.dart';
 import 'package:personalwebsite/section/page_main/main_dimonsion/main_dimonsions.dart';
 import 'package:personalwebsite/section/portfolio_page/page_portfolio.dart';
 import 'package:responsive_builder/responsive_builder.dart';
@@ -69,8 +71,6 @@ class HomePage3 extends StatelessWidget {
   }
 }
 
-
-
 class MyServicesPage extends StatelessWidget {
   const MyServicesPage({super.key});
 
@@ -98,35 +98,6 @@ class SocialMediaIconsPosts extends StatelessWidget {
   }
 }
 
-class MyWorkEthicsPage extends StatelessWidget {
-  const MyWorkEthicsPage({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return ResponsiveBuilder(builder: (context, sizingInfo) {
-      Screen(sizingInfo: sizingInfo);
-      return Container(
-        height: mainHeight(20),
-        color: Colors.lightGreen,
-      );
-    });
-  }
-}
-
-class SkillsPage extends StatelessWidget {
-  const SkillsPage({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return ResponsiveBuilder(builder: (context, sizingInfo) {
-      Screen(sizingInfo: sizingInfo);
-      return Container(
-        height: mainHeight(100),
-        color: Colors.indigoAccent,
-      );
-    });
-  }
-}
 
 class LookingForJob extends StatelessWidget {
   const LookingForJob({super.key});
