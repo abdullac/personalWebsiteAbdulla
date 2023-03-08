@@ -5,8 +5,10 @@ import 'package:flutter/services.dart';
 import 'package:personalwebsite/core/responsive/screen.dart';
 import 'package:personalwebsite/core/transparent_screen/variables/colors.dart';
 import 'package:personalwebsite/section/about_page/page_about.dart';
+import 'package:personalwebsite/section/contact_page/page_contact.dart';
 import 'package:personalwebsite/section/home_page/home_page_real/home_page_real.dart';
 import 'package:personalwebsite/section/home_page/page_home.dart';
+import 'package:personalwebsite/section/looking_for_job_page/page_looking_for_job.dart';
 import 'package:personalwebsite/section/my_skills_page/page_my_skills.dart';
 import 'package:personalwebsite/section/my_workethics_page/page_my_work_ethics.dart';
 import 'package:personalwebsite/section/page_main/main_dimonsion/main_dimonsions.dart';
@@ -99,34 +101,8 @@ class SocialMediaIconsPosts extends StatelessWidget {
 }
 
 
-class LookingForJob extends StatelessWidget {
-  const LookingForJob({super.key});
 
-  @override
-  Widget build(BuildContext context) {
-    return ResponsiveBuilder(builder: (context, sizingInfo) {
-      Screen(sizingInfo: sizingInfo);
-      return Container(
-        height: mainHeight(40),
-        color: Colors.deepOrange,
-      );
-    });
-  }
-}
 
-class ContactPage extends StatelessWidget {
-  const ContactPage({super.key});
 
-  @override
-  Widget build(BuildContext context) {
-    return ResponsiveBuilder(builder: (context, sizingInfo) {
-      Screen(sizingInfo: sizingInfo);
-      return Container(
-        height: mainHeight(100),
-        color: Colors.cyanAccent,
-      );
-    });
-  }
-}
 
 ////// copyRight
