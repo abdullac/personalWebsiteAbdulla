@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:personalwebsite/core/responsive/screen.dart';
 import 'package:personalwebsite/section/home_page/home_page_real/home_page_real.dart';
-import 'package:personalwebsite/section/page_main/main_dimonsion/main_dimonsions.dart';
+import 'package:personalwebsite/section/page_main/main_core/main_dimonsions.dart';
+import 'package:personalwebsite/section/page_main/main_core/widgets.dart';
 import 'package:personalwebsite/section/portfolio_page/dimonsions/portfolio_dimonsion.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
@@ -18,7 +19,8 @@ class PortfolioPage extends StatelessWidget {
         color: Colors.black,
         child: Column(
           children: [
-            portfolioHeading(),
+            sectionHeading("My Works"),
+            // portfolioHeading(),
             Flexible(
               flex: 17,
               child: SingleChildScrollView(
@@ -43,20 +45,20 @@ class PortfolioPage extends StatelessWidget {
     });
   }
 
-  Flexible portfolioHeading() {
-    return Flexible(
-      flex: 3,
-      child: Container(
-        color: Colors.black,
-        child: Center(
-          child: Text(
-            "My Works",
-            style: mainHeadLineStyle(),
-          ),
-        ),
-      ),
-    );
-  }
+  // Flexible portfolioHeading() {
+  //   return Flexible(
+  //     flex: 3,
+  //     child: Container(
+  //       color: Colors.black,
+  //       child: Center(
+  //         child: Text(
+  //           "My Works",
+  //           style: mainHeadLineStyle(),
+  //         ),
+  //       ),
+  //     ),
+  //   );
+  // }
 
   Flexible portfolioItemHeading() {
     return Flexible(

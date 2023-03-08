@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:personalwebsite/core/responsive/screen.dart';
-import 'package:personalwebsite/section/page_main/main_dimonsion/main_dimonsions.dart';
+import 'package:personalwebsite/section/page_main/main_core/main_dimonsions.dart';
+import 'package:personalwebsite/section/page_main/main_core/widgets.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 
 class ContactPage extends StatelessWidget {
@@ -15,7 +16,8 @@ class ContactPage extends StatelessWidget {
         color: Colors.cyanAccent,
         child: Column(
           children: [
-            contactPageHeading(),
+            sectionHeading("Contact"),
+            // contactPageHeading(),
             contactDetailsAndFormArea(),
           ],
         ),
@@ -23,21 +25,21 @@ class ContactPage extends StatelessWidget {
     });
   }
 
-  Flexible contactPageHeading() {
-    return Flexible(
-      flex: 3,
-      child: Container(
-        // color: Colors.teal,
-        color: Colors.purple[700],
-        child: Center(
-          child: Text(
-            "Contact",
-            style: mainHeadLineStyle(),
-          ),
-        ),
-      ),
-    );
-  }
+  // Flexible contactPageHeading() {
+  //   return Flexible(
+  //     flex: 3,
+  //     child: Container(
+  //       // color: Colors.teal,
+  //       color: Colors.purple[700],
+  //       child: Center(
+  //         child: Text(
+  //           "Contact",
+  //           style: mainHeadLineStyle(),
+  //         ),
+  //       ),
+  //     ),
+  //   );
+  // }
 
   Flexible contactDetailsAndFormArea() {
     return Flexible(

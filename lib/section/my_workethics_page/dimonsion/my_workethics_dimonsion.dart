@@ -1,7 +1,7 @@
 
 
 
-import 'package:personalwebsite/section/page_main/main_dimonsion/main_dimonsions.dart';
+import 'package:personalwebsite/section/page_main/main_core/main_dimonsions.dart';
 
 int myWorkEthicsGridCrossAxisCount(){
   return mainIsDeskTop()

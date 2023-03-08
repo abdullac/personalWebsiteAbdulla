@@ -3,7 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:personalwebsite/core/responsive/screen.dart';
 import 'package:personalwebsite/core/transparent_screen/variables/colors.dart';
 import 'package:personalwebsite/section/my_workethics_page/dimonsion/my_workethics_dimonsion.dart';
-import 'package:personalwebsite/section/page_main/main_dimonsion/main_dimonsions.dart';
+import 'package:personalwebsite/section/page_main/main_core/main_dimonsions.dart';
+import 'package:personalwebsite/section/page_main/main_core/widgets.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 
 class MyWorkEthicsPage extends StatelessWidget {
@@ -19,7 +20,8 @@ class MyWorkEthicsPage extends StatelessWidget {
         color: Colors.black,
         child: Column(
           children: [
-            myWorkEthicsHeading(),
+            sectionHeading("My Work Ethics",mainHeight(15)),
+            // myWorkEthicsHeading(),
             myWorkEthicsPoints(),
           ],
         ),
@@ -27,21 +29,21 @@ class MyWorkEthicsPage extends StatelessWidget {
     });
   }
 
-  Flexible myWorkEthicsHeading() {
-    return Flexible(
-      flex: myWorkEthicsGridCrossAxisCount(),
-      child: Container(
-        height: mainHeight(15),
-        color: Colors.black,
-        child: Center(
-          child: Text(
-            "My Work Ethics",
-            style: mainHeadLineStyle(),
-          ),
-        ),
-      ),
-    );
-  }
+  // Flexible myWorkEthicsHeading() {
+  //   return Flexible(
+  //     flex: myWorkEthicsGridCrossAxisCount(),
+  //     child: Container(
+  //       height: mainHeight(15),
+  //       color: Colors.black,
+  //       child: Center(
+  //         child: Text(
+  //           "My Work Ethics",
+  //           style: mainHeadLineStyle(),
+  //         ),
+  //       ),
+  //     ),
+  //   );
+  // }
 
   Flexible myWorkEthicsPoints() {
     return Flexible(

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:personalwebsite/core/responsive/screen.dart';
-import 'package:personalwebsite/section/page_main/main_dimonsion/main_dimonsions.dart';
+import 'package:personalwebsite/section/page_main/main_core/main_dimonsions.dart';
+import 'package:personalwebsite/section/page_main/main_core/widgets.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 
 //// aboutPage - resume CV button
@@ -18,7 +19,8 @@ class AboutPage extends StatelessWidget {
           color: Colors.black,
           child: Column(
             children: [
-              AboutHeading(),
+              sectionHeading("About",mainHeight(20)),
+              // aboutHeading(),
               mainIsLandScape()
                   ? Row(
                       mainAxisAlignment: MainAxisAlignment.center,
@@ -35,17 +37,24 @@ class AboutPage extends StatelessWidget {
     );
   }
 
-  Widget AboutHeading() {
-    return Container(
-        color: Colors.black,
-      height: mainHeight(20),
-      child: Center(
-          child: Text(
-        "About",
-        style: mainHeadLineStyle(),
-      )),
-    );
-  }
+  // Widget aboutHeading() {
+  //   return Container(
+  //     color: Colors.black,
+  //     height: mainHeight(20),
+  //     child: Center(
+  //         child: Container(
+  //           padding: EdgeInsets.only(left: 30,right: 30,bottom: 20),
+  //       decoration: const BoxDecoration(
+  //           image: DecorationImage(
+  //         image: AssetImage("assets/headlinebackground.png"),fit: BoxFit.fill
+  //       )),
+  //       child: Text(
+  //         "About",
+  //         style: mainHeadLineStyle(),
+  //       ),
+  //     )),
+  //   );
+  // }
 
   List<Widget> aboutPortions() {
     return [
@@ -62,8 +71,9 @@ class AboutPage extends StatelessWidget {
       child: Center(
         child: Transform.scale(
           scaleX: -1.05,
-          child: CircleAvatar(//17
-          backgroundColor: Colors.black,
+          child: CircleAvatar(
+              //17
+              backgroundColor: Colors.black,
               radius: mainHeight(15),
               backgroundImage: const AssetImage("assets/abdulla_photo35.png")),
         ),

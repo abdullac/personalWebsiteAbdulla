@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:personalwebsite/core/responsive/screen.dart';
 import 'package:personalwebsite/section/home_page/home_page_real/home_page_real.dart';
 import 'package:personalwebsite/section/my_skills_page/myskills_dimonsion/myskills_dimonsions.dart';
-import 'package:personalwebsite/section/page_main/main_dimonsion/main_dimonsions.dart';
+import 'package:personalwebsite/section/page_main/main_core/main_dimonsions.dart';
+import 'package:personalwebsite/section/page_main/main_core/widgets.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 
 class SkillsPage extends StatelessWidget {
@@ -17,7 +18,8 @@ class SkillsPage extends StatelessWidget {
         color: Colors.black,
         child: Column(
           children: [
-            mySkillsHeading(),
+            sectionHeading("My Skills"),
+            // mySkillsHeading(),
             mySkillsGridview(),
           ],
         ),
@@ -25,21 +27,21 @@ class SkillsPage extends StatelessWidget {
     });
   }
 
-  Flexible mySkillsHeading() {
-    return Flexible(
-      flex: 3,
-      child: Container(
-        // color: Colors.cyan[700],
-        color: Colors.black,
-        child: Center(
-          child: Text(
-            "My Skills",
-            style: mainHeadLineStyle(),
-          ),
-        ),
-      ),
-    );
-  }
+  // Flexible mySkillsHeading() {
+  //   return Flexible(
+  //     flex: 3,
+  //     child: Container(
+  //       // color: Colors.cyan[700],
+  //       color: Colors.black,
+  //       child: Center(
+  //         child: Text(
+  //           "My Skills",
+  //           style: mainHeadLineStyle(),
+  //         ),
+  //       ),
+  //     ),
+  //   );
+  // }
 
   Flexible mySkillsGridview() {
     return Flexible(
@@ -53,7 +55,7 @@ class SkillsPage extends StatelessWidget {
             shrinkWrap: true,
             scrollDirection: Axis.horizontal,
             gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-              crossAxisCount: mySkilsGridroosAxisCount(),
+              crossAxisCount: mySkilsGridcrosAxisCount(),
             ),
             children: [
               mySkillsItem(imageList[0],"hjfhgdsjf"),
@@ -82,7 +84,7 @@ class SkillsPage extends StatelessWidget {
       children: [
         Image.asset(
           assetImage,
-          height: 130,
+          height: mySkilsGridItemImageHeight(),
         ),
         Text(title)
       ],

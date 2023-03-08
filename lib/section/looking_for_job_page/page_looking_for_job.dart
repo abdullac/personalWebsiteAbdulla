@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:personalwebsite/core/responsive/screen.dart';
-import 'package:personalwebsite/section/page_main/main_dimonsion/main_dimonsions.dart';
+import 'package:personalwebsite/section/page_main/main_core/main_dimonsions.dart';
+import 'package:personalwebsite/section/page_main/main_core/widgets.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 
 class LookingForJob extends StatelessWidget {
@@ -15,7 +16,8 @@ class LookingForJob extends StatelessWidget {
         color: Colors.black,
         child: Column(
           children: [
-            lookingForJobHeading(),
+            sectionHeading("Hire Me"),
+            // lookingForJobHeading(),
             lookingForJobContent(),
           ],
         ),
@@ -23,21 +25,21 @@ class LookingForJob extends StatelessWidget {
     });
   }
 
-    Flexible lookingForJobHeading() {
-    return Flexible(
-      flex: 15,
-      child: Container(
-        // color: Colors.teal,
-        color: Colors.black,
-        child: Center(
-          child: Text(
-            "Hire Me",
-            style: mainHeadLineStyle(),
-          ),
-        ),
-      ),
-    );
-  }
+  //   Flexible lookingForJobHeading() {
+  //   return Flexible(
+  //     flex: 15,
+  //     child: Container(
+  //       // color: Colors.teal,
+  //       color: Colors.black,
+  //       child: Center(
+  //         child: Text(
+  //           "Hire Me",
+  //           style: mainHeadLineStyle(),
+  //         ),
+  //       ),
+  //     ),
+  //   );
+  // }
 
   Flexible lookingForJobContent() {
     return Flexible(

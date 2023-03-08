@@ -2,19 +2,12 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:personalwebsite/core/responsive/screen.dart';
-import 'package:personalwebsite/core/transparent_screen/variables/colors.dart';
 import 'package:personalwebsite/section/about_page/page_about.dart';
 import 'package:personalwebsite/section/contact_page/page_contact.dart';
-import 'package:personalwebsite/section/home_page/home_page_real/home_page_real.dart';
-import 'package:personalwebsite/section/home_page/page_home.dart';
 import 'package:personalwebsite/section/looking_for_job_page/page_looking_for_job.dart';
 import 'package:personalwebsite/section/my_skills_page/page_my_skills.dart';
 import 'package:personalwebsite/section/my_workethics_page/page_my_work_ethics.dart';
-import 'package:personalwebsite/section/page_main/main_dimonsion/main_dimonsions.dart';
 import 'package:personalwebsite/section/portfolio_page/page_portfolio.dart';
-import 'package:responsive_builder/responsive_builder.dart';
-import 'dart:math' as math;
 import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
 
 List<Widget> pagesList = const [
@@ -99,8 +92,6 @@ class SocialMediaIconsPosts extends StatelessWidget {
     return const Placeholder();
   }
 }
-
-
 
 
 
