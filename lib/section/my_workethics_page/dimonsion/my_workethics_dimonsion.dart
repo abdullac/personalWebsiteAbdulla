@@ -6,7 +6,7 @@ import 'package:personalwebsite/section/page_main/main_core/main_dimonsions.dart
 int myWorkEthicsGridCrossAxisCount(){
   return mainIsDeskTop()
   ? 3
-  : mainIsTablet() 
+  : mainIsTablet() || mainIsLandscapeMobile()
   // || mainIsLandscapeMobile()
   ? 2
   : 1;

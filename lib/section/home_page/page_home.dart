@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:personalwebsite/core/responsive/functions.dart';
 import 'package:personalwebsite/core/responsive/screen.dart';
+import 'package:personalwebsite/main.dart';
 import 'package:personalwebsite/section/home_page/home_page_dummy/home_page_dummy.dart';
 import 'package:personalwebsite/section/home_page/home_page_real/home_page_real.dart';
 import 'package:personalwebsite/section/home_page/home_page_gridview/homepage_gridview.dart';
+import 'package:personalwebsite/section/page_main/main_core/Widget/slider_menu_drawer.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 import 'dart:math' as math;
 
@@ -45,30 +47,39 @@ class TransparentInfoScreen extends StatelessWidget {
     return ResponsiveBuilder(builder: (context, sizeinfo) {
       Screen(sizingInfo: sizeinfo);
       // double position = Screen(sizingInfo: sizeinfo).shortSize * 1 / 100;
-      return Stack(
-        children:
-            // homePageDummy() +
-            [
-          const HomepageGridview(),
-          const HomePageReal(),
-          Align(
-            alignment: Alignment.bottomCenter,
-            child: IconButton(
-              onPressed: () {
-                //
-              },
-              color: Colors.white.withOpacity(0.2),
-              hoverColor: Colors.red,
-              highlightColor: Colors.blue,
-              focusColor: Colors.amber,
-              splashColor: Colors.green,
-              iconSize: shortSize100(10),
-              icon: Transform.rotate(angle: math.pi *180/360,
-                child: const Icon(Icons.double_arrow_rounded)),
+      return GestureDetector(
+        onVerticalDragUpdate: (details) => homePageToMainpage(),
+        onHorizontalDragUpdate: (details) => homePageToMainpage(),
+        onTap: () => homePageToMainpage(),
+        child: Stack(
+          children:
+              // homePageDummy() +
+              [
+            const HomepageGridview(),
+            const HomePageReal(),
+            Align(
+              alignment: Alignment.bottomCenter,
+              child: IconButton(
+                onPressed: () {
+                  //
+                },
+                color: Colors.white.withOpacity(0.2),
+                hoverColor: Colors.red,
+                highlightColor: Colors.blue,
+                focusColor: Colors.amber,
+                splashColor: Colors.green,
+                iconSize: shortSize100(10),
+                icon: Transform.rotate(
+                  angle: math.pi * 180 / 360,
+                  child: InkWell(
+                      onTap: () => homePageToMainpage(),
+                      child: const Icon(Icons.double_arrow_rounded)),
+                ),
+              ),
             ),
-          ),
-          // deviceIndeatorColor(),
-        ],
+            // deviceIndeatorColor(),
+          ],
+        ),
       );
     });
   }
@@ -92,5 +103,34 @@ class TransparentInfoScreen extends StatelessWidget {
             )),
       ),
     );
+  }
+}
+
+homePageToMainpage() {
+  final drawerStateHomePage =
+      SliderMenuDrawer.sliderDrawerKeyHomePage.currentState;
+  if (drawerStateHomePage != null) {
+    drawerStateHomePage.isDrawerOpen
+        // ? drawerStateHomePage.closeSlider()
+        ? null
+        : drawerStateHomePage.openSlider();
+    // :null;
+    MyApp.appBarNotifier.value = true;
+    MyApp.appBarNotifier.notifyListeners();
+  }
+}
+
+toHomePage() {
+  final drawerStateHomePage =
+      SliderMenuDrawer.sliderDrawerKeyHomePage.currentState;
+  final drawerState =
+      SliderMenuDrawer.sliderDrawerKey.currentState;
+  if (drawerStateHomePage != null && drawerState != null) {
+    if (drawerStateHomePage.isDrawerOpen) {
+      drawerStateHomePage.closeSlider();
+      drawerState.closeSlider();
+    } 
+    MyApp.appBarNotifier.value = false;
+    MyApp.appBarNotifier.notifyListeners();
   }
 }

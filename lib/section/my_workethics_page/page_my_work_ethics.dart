@@ -20,7 +20,7 @@ class MyWorkEthicsPage extends StatelessWidget {
         color: Colors.black,
         child: Column(
           children: [
-            sectionHeading("My Work Ethics",mainHeight(15)),
+            sectionHeading("My Work Ethics",mainHeight(18)),
             // myWorkEthicsHeading(),
             myWorkEthicsPoints(),
           ],
@@ -36,14 +36,24 @@ class MyWorkEthicsPage extends StatelessWidget {
   //       height: mainHeight(15),
   //       color: Colors.black,
   //       child: Center(
-  //         child: Text(
-  //           "My Work Ethics",
-  //           style: mainHeadLineStyle(),
-  //         ),
+  //         child: Container(
+  //           padding: EdgeInsets.only(left: 30,right: 30,bottom: 20),
+  //       decoration: const BoxDecoration(
+  //           image: DecorationImage(
+  //         image: AssetImage("assets/headlinebackground.png"),fit: BoxFit.fill
+  //       )),
+  //       child: Text(
+  //         "My Work Ethics",
+  //         style: mainHeadLineStyle(),
+  //       ),
+  //     ),
   //       ),
   //     ),
   //   );
   // }
+
+
+
 
   Flexible myWorkEthicsPoints() {
     return Flexible(

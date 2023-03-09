@@ -68,16 +68,7 @@ class AboutPage extends StatelessWidget {
       width: aboutImageSize().width,
       height: aboutImageSize().height,
       color: Colors.black,
-      child: Center(
-        child: Transform.scale(
-          scaleX: -1.05,
-          child: CircleAvatar(
-              //17
-              backgroundColor: Colors.black,
-              radius: mainHeight(15),
-              backgroundImage: const AssetImage("assets/abdulla_photo35.png")),
-        ),
-      ),
+      child: circleProfileImage(),
     );
   }
 
