@@ -8,7 +8,7 @@ import 'package:responsive_builder/responsive_builder.dart';
 import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
 
 class PortfolioPage extends StatelessWidget {
-   PortfolioPage({super.key});
+  PortfolioPage({super.key});
 
   ItemScrollController _itemScrollController = ItemScrollController();
   ItemPositionsListener _itemPositionsListener = ItemPositionsListener.create();
@@ -143,16 +143,17 @@ class PortfolioPage extends StatelessWidget {
     for (int index = 0; index < 10; index++) {
       dotList.add(InkWell(
         onTap: () async {
-          await  _itemScrollController.scrollTo(index: index, duration: Duration(milliseconds: 300));
-          _itemPositionsListener.itemPositions.addListener(() { });
+          await _itemScrollController.scrollTo(
+              index: index, duration: Duration(milliseconds: 300));
+          _itemPositionsListener.itemPositions.addListener(() {});
         },
         child: Container(
           width: 10,
           height: 10,
           margin: const EdgeInsets.all(5),
           decoration: const BoxDecoration(
-          color: Colors.pink,
-          borderRadius: BorderRadius.all(Radius.circular(10))),
+              color: Colors.pink,
+              borderRadius: BorderRadius.all(Radius.circular(10))),
         ),
       ));
     }

@@ -55,56 +55,37 @@ class MyApp extends StatelessWidget {
                           0,
                         ),
                         duration: const Duration(milliseconds: 300),
-                        child: IconButton(
-                            onPressed: () {
-                              final drawerState =
-                                  SliderMenuDrawer.sliderDrawerKey.currentState;
-                              if (drawerState != null) {
-                                drawerState.isDrawerOpen
-                                    ? drawerState.closeSlider()
-                                    : drawerState.openSlider();
-                                appBarNotifier.value = false;
-                                appBarNotifier.notifyListeners();
-                              }
-                            },
-                            icon: Icon(
-                              Icons.menu,
-                              size: mainShortSize(8),
-                            )),
+                        child: mainIsDeskTop()
+                            ? appBarCircleImage()
+                            : IconButton(
+                                onPressed: () {
+                                  final drawerState = SliderMenuDrawer
+                                      .sliderDrawerKey.currentState;
+                                  if (drawerState != null) {
+                                    drawerState.isDrawerOpen
+                                        ? drawerState.closeSlider()
+                                        : drawerState.openSlider();
+                                    appBarNotifier.value = false;
+                                    appBarNotifier.notifyListeners();
+                                  }
+                                },
+                                icon: Icon(
+                                  Icons.menu,
+                                  size: mainShortSize(8),
+                                )),
                       ),
                       title: Padding(
                         padding: const EdgeInsets.all(8.0),
-                        child: Text("Abdulla",style: TextStyle(fontSize: mainShortSize(5)),),
+                        child: Text(
+                          "Abdulla",
+                          style: TextStyle(fontSize: mainShortSize(5)),
+                        ),
                       ),
-                      actions: [
-                        InkWell(
-                          onTap: () {
-                            final drawerStateHomePage =
-                                  SliderMenuDrawer.sliderDrawerKeyHomePage.currentState;
-                              if (drawerStateHomePage != null) {
-                                drawerStateHomePage.isDrawerOpen
-                                    ? drawerStateHomePage.closeSlider()
-                                    // : drawerStateHomePage.openSlider();
-                                    :null;
-                                appBarNotifier.value = false;
-                                appBarNotifier.notifyListeners();
-                              }
-                          },
-                          child: Container(
-                            height: mainShortSize(8),
-                            width: mainShortSize(8),
-                            margin: const EdgeInsets.all(5),
-                            decoration: BoxDecoration(
-                                borderRadius: BorderRadius.all(Radius.circular(
-                                  mainShortSize(8),
-                                )),
-                                image: const DecorationImage(
-                                    fit: BoxFit.cover,
-                                    image: AssetImage(
-                                        "assets/abdulla_photo35.png"))),
-                          ),
-                        )
-                      ],
+                      actions: mainIsDeskTop()
+                          ? appBartextButtonList()
+                          : [
+                              appBarCircleImage(),
+                            ],
                     ),
                   );
                 },
@@ -116,6 +97,66 @@ class MyApp extends StatelessWidget {
           ),
         );
       }),
+    );
+  }
+
+  List<Widget> appBartextButtonList() {
+    List<Widget> textButtonlist = [];
+    List<String> buttonNameList = [
+      "Home",
+      "About",
+      "Portfolio",
+      "Skills",
+      "Work Ethics",
+      "Contact",
+    ];
+    for (int index = 0; index < buttonNameList.length; index++) {
+      textButtonlist.add(
+        Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: TextButton(
+            onPressed: () {
+              PageMain.itemScrollController.scrollTo(
+                  index: index, duration: const Duration(milliseconds: 700));
+              PageMain.itemPositionListner.itemPositions.addListener(() {});
+            },
+            child: Text(
+              buttonNameList[index],
+              style: const TextStyle(color: Colors.red),
+            ),
+          ),
+        ),
+      );
+    }
+    return textButtonlist;
+  }
+
+  InkWell appBarCircleImage() {
+    return InkWell(
+      onTap: () {
+        final drawerStateHomePage =
+            SliderMenuDrawer.sliderDrawerKeyHomePage.currentState;
+        if (drawerStateHomePage != null) {
+          drawerStateHomePage.isDrawerOpen
+              ? drawerStateHomePage.closeSlider()
+              // : drawerStateHomePage.openSlider();
+              : null;
+          appBarNotifier.value = false;
+          appBarNotifier.notifyListeners();
+        }
+      },
+      child: Container(
+        height: mainShortSize(8),
+        width: mainShortSize(8),
+        margin: const EdgeInsets.all(5),
+        decoration: BoxDecoration(
+            borderRadius: BorderRadius.all(Radius.circular(
+              mainShortSize(8),
+            )),
+            image: const DecorationImage(
+                fit: BoxFit.cover,
+                image: AssetImage("assets/abdulla_photo35.png"))),
+      ),
     );
   }
 }

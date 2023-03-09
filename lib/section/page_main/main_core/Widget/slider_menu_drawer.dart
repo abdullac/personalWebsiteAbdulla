@@ -36,26 +36,31 @@ class SliderMenuDrawer extends StatelessWidget {
             transform:
                 Matrix4.translationValues(0, newValue == true ? 0 : -100, 0),
             duration: const Duration(seconds: 2),
-            child: SliderDrawer(
-              key: sliderDrawerKey,
-              appBar: null,
-              slider: const MenuDrawerList(),
-              sliderOpenSize: mainWidth(60),
-              child: SliderDrawer(
-                key: sliderDrawerKeyHomePage,
-                appBar: null,
-                slider: mainPageWidget,
-                sliderOpenSize: mainWidth(100),
-                child: const PageHome(),
-              ),
-            ),
+            child: mainIsDeskTop()
+                ? sliderDrawer()
+                : SliderDrawer(
+                    key: sliderDrawerKey,
+                    appBar: null,
+                    slider: const MenuDrawerList(),
+                    sliderOpenSize: mainWidth(60),
+                    child: sliderDrawer(),
+                  ),
           );
         });
       },
     );
   }
-}
 
+  SliderDrawer sliderDrawer() {
+    return SliderDrawer(
+      key: sliderDrawerKeyHomePage,
+      appBar: null,
+      slider: mainPageWidget,
+      sliderOpenSize: mainWidth(100),
+      child: const PageHome(),
+    );
+  }
+}
 
 
 
