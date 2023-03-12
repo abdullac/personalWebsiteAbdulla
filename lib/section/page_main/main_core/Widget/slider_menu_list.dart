@@ -58,7 +58,7 @@ class MenuDrawerList extends StatelessWidget {
           style: TextStyle(
             color: Colors.redAccent[700],
             fontWeight: FontWeight.w900,
-            fontSize: mainShortSize(5)
+            fontSize: mainShortSize(4)
           ),
         ),
       ),

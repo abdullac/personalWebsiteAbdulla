@@ -116,6 +116,9 @@ homePageToMainpage() {
         : drawerStateHomePage.openSlider();
     // :null;
     MyApp.appBarNotifier.value = true;
+    MyApp.appBarImageCircle = null;
+    MyApp.appBarTitle = "";
+    MyApp.appBarBackgroundColor = Colors.redAccent.withOpacity(0);
     MyApp.appBarNotifier.notifyListeners();
   }
 }
@@ -123,13 +126,12 @@ homePageToMainpage() {
 toHomePage() {
   final drawerStateHomePage =
       SliderMenuDrawer.sliderDrawerKeyHomePage.currentState;
-  final drawerState =
-      SliderMenuDrawer.sliderDrawerKey.currentState;
+  final drawerState = SliderMenuDrawer.sliderDrawerKey.currentState;
   if (drawerStateHomePage != null && drawerState != null) {
     if (drawerStateHomePage.isDrawerOpen) {
       drawerStateHomePage.closeSlider();
       drawerState.closeSlider();
-    } 
+    }
     MyApp.appBarNotifier.value = false;
     MyApp.appBarNotifier.notifyListeners();
   }

@@ -12,10 +12,8 @@ ValueNotifier<bool> appBarShowNotifier = ValueNotifier(true);
 
 class SliderMenuDrawer extends StatelessWidget {
   final Widget mainPageWidget;
-  final String appBarTitle;
   const SliderMenuDrawer({
     Key? key,
-    required this.appBarTitle,
     required this.mainPageWidget,
   }) : super(key: key);
 
@@ -56,7 +54,7 @@ class SliderMenuDrawer extends StatelessWidget {
       key: sliderDrawerKeyHomePage,
       appBar: null,
       slider: mainPageWidget,
-      sliderOpenSize: mainWidth(100),
+      sliderOpenSize: mainLongSize(100),
       child: const PageHome(),
     );
   }

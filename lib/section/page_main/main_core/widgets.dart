@@ -57,7 +57,7 @@ Widget sectionHeading(String title,[double? height]) {
               //17
               backgroundColor: Colors.black,
               radius: radious ?? mainHeight(15),
-              backgroundImage: const AssetImage("assets/abdulla_photo35.png")),
+              backgroundImage: const AssetImage("assets/myPhotoFace.webp")),
         ),
       );
   }

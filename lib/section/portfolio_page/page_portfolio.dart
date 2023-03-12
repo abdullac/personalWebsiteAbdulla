@@ -7,6 +7,28 @@ import 'package:personalwebsite/section/portfolio_page/dimonsions/portfolio_dimo
 import 'package:responsive_builder/responsive_builder.dart';
 import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
 
+List<String> portfolioImageList = [
+  "assets/netflipzhome.webp",
+  "assets/netflipzcomingsoon.webp",
+  "assets/netflipzeveryoneswathing.webp",
+  "assets/netflipzfastluaghs.webp",
+  "assets/netflipztopsearches.webp",
+  "assets/netflipzsearchresults.webp",
+  "assets/netflipsdownloads.webp",
+  "assets/Netflipz.png",
+];
+
+List<String> portfolioTextList = [
+  "The wonderful Home page of Netflipz",
+  "This pageshows Coming soon items",
+  "Everyone's wathing items List here",
+  "You can watch Netflipz users Short video",
+  "Top search items short here",
+  "You can search here, Which item you wanted",
+  "This is downloads page",
+  "Netflipz simple logo",
+];
+
 class PortfolioPage extends StatelessWidget {
   PortfolioPage({super.key});
 
@@ -66,7 +88,7 @@ class PortfolioPage extends StatelessWidget {
   Flexible portfolioItemHeading() {
     return Flexible(
       flex: 1,
-      child: Image.asset("assets/NetClipxTextImage.png"),
+      child: Image.asset("assets/Netflipz.png"),
     );
   }
 
@@ -81,7 +103,7 @@ class PortfolioPage extends StatelessWidget {
               itemScrollController: _itemScrollController,
               itemPositionsListener: _itemPositionsListener,
               scrollDirection: Axis.horizontal,
-              itemCount: 10,
+              itemCount: portfolioImageList.length,
               itemBuilder: (ctx, index) {
                 return Container(
                   color: Colors.black,
@@ -100,11 +122,19 @@ class PortfolioPage extends StatelessWidget {
                               // horizontal: 5,
                               // vertical: 6,
                               ),
-                          decoration: const BoxDecoration(
+                          decoration: BoxDecoration(
                               color: Colors.black,
                               image: DecorationImage(
-                                  image:
-                                      AssetImage("assets/NetClipxLogo.png"))),
+                                  fit: BoxFit.contain,
+                                  image: AssetImage(portfolioImageList[index])),
+                              boxShadow: const [
+                                BoxShadow(
+                                  color: Colors.grey,
+                                  offset: Offset(0.5, 0.5),
+                                  blurRadius: 0.5,
+                                  spreadRadius: 0.5,
+                                )
+                              ]),
                         ),
                       ),
                       Flexible(
@@ -112,9 +142,9 @@ class PortfolioPage extends StatelessWidget {
                         child: Container(
                           color: Colors.black,
                           width: portfolioDimonsion(100 / 4),
-                          child: const Center(
+                          child: Center(
                             child: Text(
-                              "fijrige e\njt oeerojeo ije iiujiuuoiuiououueytheriutytyuiyrtiuyrtiruytteryt\nirtuoireutre",
+                              portfolioTextList[index],
                               textAlign: TextAlign.center,
                             ),
                           ),
@@ -140,20 +170,29 @@ class PortfolioPage extends StatelessWidget {
 
   List<Widget> portfolioDotList() {
     List<Widget> dotList = [];
-    for (int index = 0; index < 10; index++) {
+    for (int index = 0; index < portfolioImageList.length; index++) {
       dotList.add(InkWell(
         onTap: () async {
           await _itemScrollController.scrollTo(
-              index: index, duration: Duration(milliseconds: 300));
+              index: index, duration: const Duration(milliseconds: 300));
           _itemPositionsListener.itemPositions.addListener(() {});
         },
         child: Container(
           width: 10,
           height: 10,
           margin: const EdgeInsets.all(5),
-          decoration: const BoxDecoration(
-              color: Colors.pink,
-              borderRadius: BorderRadius.all(Radius.circular(10))),
+          decoration: BoxDecoration(
+              color: Colors.grey[300]?.withOpacity(0.6),
+              borderRadius: const BorderRadius.all(Radius.circular(10))),
+          child: Center(
+              child: Text(
+            "${index + 1}",
+            style: TextStyle(
+                fontSize: mainShortSize(
+                  1.6,
+                ),
+                color: Colors.black),
+          )),
         ),
       ));
     }

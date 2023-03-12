@@ -26,6 +26,9 @@ class MyApp extends StatelessWidget {
 
   // static final menuIconNotifier = ValueNotifier(true);
   static final appBarNotifier = ValueNotifier(false);
+  static Color? appBarBackgroundColor = Colors.redAccent[700];
+  static String appBarTitle = "Abdulla";
+  static late Widget? appBarImageCircle = appBarCircleImage();
 
   @override
   Widget build(BuildContext context) {
@@ -38,25 +41,28 @@ class MyApp extends StatelessWidget {
         return SafeArea(
           child: Scaffold(
             appBar: PreferredSize(
-              preferredSize: Size(mainWidth(100), mainShortSize(10)),
+              preferredSize: Size(mainWidth(100), mainShortSize(15)),
               child: ValueListenableBuilder(
                 valueListenable: appBarNotifier,
                 builder: (context, newValue, _) {
                   return AnimatedContainer(
                     transform: Matrix4.translationValues(
                         0, newValue == false ? -100 : 0, 0),
-                    duration: const Duration(milliseconds: 800),
+                    duration: const Duration(milliseconds: 400),
                     child: AppBar(
-                      backgroundColor: Colors.black12,
+                      backgroundColor: appBarBackgroundColor,
                       leading: AnimatedContainer(
                         transform: Matrix4.translationValues(
                           newValue == false ? -100 : 0,
-                          newValue == false ? 35 : 0,
+                          newValue == false ? 50 : 0,
                           0,
                         ),
                         duration: const Duration(milliseconds: 300),
                         child: mainIsDeskTop()
-                            ? appBarCircleImage()
+                            ? Transform.scale(
+                              scaleX: -1,
+                                child: appBarCircleImage(),
+                              )
                             : IconButton(
                                 onPressed: () {
                                   final drawerState = SliderMenuDrawer
@@ -77,14 +83,14 @@ class MyApp extends StatelessWidget {
                       title: Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: Text(
-                          "Abdulla",
+                          appBarTitle,
                           style: TextStyle(fontSize: mainShortSize(5)),
                         ),
                       ),
                       actions: mainIsDeskTop()
                           ? appBartextButtonList()
                           : [
-                              appBarCircleImage(),
+                              appBarImageCircle ?? const SizedBox(),
                             ],
                     ),
                   );
@@ -131,7 +137,7 @@ class MyApp extends StatelessWidget {
     return textButtonlist;
   }
 
-  InkWell appBarCircleImage() {
+  static InkWell appBarCircleImage() {
     return InkWell(
       onTap: () {
         final drawerStateHomePage =
@@ -145,17 +151,28 @@ class MyApp extends StatelessWidget {
           appBarNotifier.notifyListeners();
         }
       },
-      child: Container(
-        height: mainShortSize(8),
-        width: mainShortSize(8),
-        margin: const EdgeInsets.all(5),
-        decoration: BoxDecoration(
-            borderRadius: BorderRadius.all(Radius.circular(
-              mainShortSize(8),
-            )),
-            image: const DecorationImage(
-                fit: BoxFit.cover,
-                image: AssetImage("assets/abdulla_photo35.png"))),
+      hoverColor: Colors.black12,
+      borderRadius: BorderRadius.all(Radius.circular(mainShortSize(15))),
+      child: Center(
+        child: Container(
+          height: mainShortSize(12),
+          width: mainShortSize(12),
+          margin: const EdgeInsets.all(2),
+          decoration: BoxDecoration(
+              boxShadow: [
+                BoxShadow(
+                    color: Colors.black.withOpacity(0.4),
+                    offset: const Offset(1.5, 1.5),
+                    blurRadius: 1,
+                    spreadRadius: 0.5)
+              ],
+              borderRadius: BorderRadius.all(Radius.circular(
+                mainShortSize(18),
+              )),
+              image: const DecorationImage(
+                  fit: BoxFit.cover,
+                  image: AssetImage("assets/myPhotoFace.webp"))),
+        ),
       ),
     );
   }

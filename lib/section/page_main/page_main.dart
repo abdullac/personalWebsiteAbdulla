@@ -37,7 +37,6 @@ class PageMain extends StatelessWidget {
         systemNavigationBarColor: Colors.black,
         systemNavigationBarIconBrightness: Brightness.dark));
     return SliderMenuDrawer(
-      appBarTitle: 'Abdulla c',
       mainPageWidget: Container(
         color: Colors.red,
         child: NotificationListener<UserScrollNotification>(
@@ -50,6 +49,9 @@ class PageMain extends StatelessWidget {
               drawerMenuClose();
               MyApp.appBarNotifier.value = true;
             }
+            MyApp.appBarImageCircle = MyApp.appBarCircleImage();
+            MyApp.appBarTitle = "Abdulla";
+            MyApp.appBarBackgroundColor =  Colors.redAccent[700];
             MyApp.appBarNotifier.notifyListeners();
             return true;
           },
