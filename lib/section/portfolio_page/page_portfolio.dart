@@ -53,6 +53,21 @@ List<String> portfolioTabImageList = [
   "assets/netFlipzLogoA.webp",
 ];
 
+List<String> portfolioAdditionalImageList = [
+  "assets/appbar1.webp",
+  "assets/bottomnavigationbar1.webp",
+  "assets/imagecards.webp",
+  "assets/searchfield.webp",
+];
+
+List<String> portfolioAdditionalTextList = [
+ "Transparent Animated Hide and show App Bar",
+ "Bottom Navigation Bar can shown three types visibilty mode",
+ "Image cards and Number Image cards",
+ "Defferent views of Search field",
+];
+
+
 class PortfolioPage extends StatelessWidget {
   PortfolioPage({super.key});
 
@@ -130,52 +145,59 @@ class PortfolioPage extends StatelessWidget {
               itemCount: portfolioImageList.length,
               itemBuilder: (ctx, index) {
                 return Container(
-                  color: Colors.black,
+                  color: Colors.grey[900],
                   margin: EdgeInsets.symmetric(
                     horizontal: portfolioDimonsion(100 / 25),
                     vertical: 10,
                   ),
-                  child: Column(
-                    children: [
-                      Flexible(
-                        flex: 7,
-                        child: Container(
-                          width: portfolioDimonsion(100 / 5),
-                          height: double.infinity,
-                          margin: const EdgeInsets.symmetric(
-                              // horizontal: 5,
-                              // vertical: 6,
-                              ),
-                          decoration: BoxDecoration(
-                            color: Colors.black,
-                            image: DecorationImage(
-                                fit: BoxFit.contain,
-                                image: AssetImage(portfolioImageList[index])),
-                            // boxShadow: const [
-                            //   BoxShadow(
-                            //     color: Colors.grey,
-                            //     offset: Offset(0.5, 0.5),
-                            //     blurRadius: 0.5,
-                            //     spreadRadius: 0.5,
-                            //   )
-                            // ],
-                          ),
-                        ),
-                      ),
-                      Flexible(
-                        flex: 3,
-                        child: Container(
-                          color: Colors.black,
-                          width: portfolioDimonsion(100 / 4),
-                          child: Center(
-                            child: Text(
-                              portfolioTextList[index],
-                              textAlign: TextAlign.center,
+                  child: InkWell(
+                    onTap: () {
+                      subImagesAreaIndexNotifier.value = index;
+                      subImagesAreaIndexNotifier.notifyListeners();
+                    },
+                    child: Column(
+                      children: [
+                        Flexible(
+                          flex: 11,
+                          child: Container(
+                            width: portfolioDimonsion(100 / 4),
+                            height: double.infinity,
+                            margin: const EdgeInsets.symmetric(
+                                // horizontal: 5,
+                                // vertical: 6,
+                                ),
+                            decoration: BoxDecoration(
+                              color: Colors.grey[900],
+                              image: DecorationImage(
+                                  fit: BoxFit.contain,
+                                  image: AssetImage(portfolioImageList[index])),
+                              // boxShadow: const [
+                              //   BoxShadow(
+                              //     color: Colors.grey,
+                              //     offset: Offset(0.5, 0.5),
+                              //     blurRadius: 0.5,
+                              //     spreadRadius: 0.5,
+                              //   )
+                              // ],
                             ),
                           ),
                         ),
-                      ),
-                    ],
+                        Flexible(
+                          flex: 9,
+                          child: Container(
+                            color: Colors.black.withOpacity(0.3),
+                            width: portfolioDimonsion(100 / 4),
+                            padding: const EdgeInsets.all(8),
+                            child: Center(
+                              child: Text(
+                                portfolioTextList[index],
+                                textAlign: TextAlign.center,
+                              ),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
                 );
               },
@@ -205,8 +227,8 @@ class PortfolioPage extends StatelessWidget {
           subImagesAreaIndexNotifier.notifyListeners();
         },
         child: Container(
-          width: 10,
-          height: 10,
+          width: mainShortSize(1.7),
+          height: mainShortSize(1.7),
           margin: const EdgeInsets.all(5),
           decoration: BoxDecoration(
               color: Colors.grey[300]?.withOpacity(0.6),
@@ -233,30 +255,87 @@ class PortfolioPage extends StatelessWidget {
             valueListenable: subImagesAreaIndexNotifier,
             builder: (context, newsubImageIndex, _) {
               return Container(
-                color: Colors.black,
+                color: Colors.black.withOpacity(0.7),
                 padding: EdgeInsets.symmetric(
                     vertical: 8, horizontal: portfolioDimonsion(4)),
                 child: Stack(
                   alignment: Alignment.center,
                   children: [
+                    /// desktop view
                     Align(
                       alignment: Alignment.center,
-                      child: Image.asset(
-                        portfolioImageList[newsubImageIndex],
+                      child: Container(
+                        decoration: BoxDecoration(
+                          boxShadow: [
+                            BoxShadow(
+                              color: Colors.grey.withOpacity(0.2),
+                              offset: const Offset(0.5, 0.5),
+                              blurRadius: 0.5,
+                              spreadRadius: 0.5,
+                            ),
+                            BoxShadow(
+                              color: Colors.grey.withOpacity(0.6),
+                              offset: const Offset(-0.4, -0.4),
+                              blurRadius: 0.5,
+                              spreadRadius: 0.5,
+                            ),
+                          ],
+                        ),
+                        child: Image.asset(
+                          portfolioImageList[newsubImageIndex],
+                        ),
                       ),
                     ),
+                    ///  Tablet view
                     Align(
                       alignment: Alignment.bottomRight,
-                      child: Image.asset(
-                        portfolioTabImageList[newsubImageIndex],
-                        height: portfolioSubImagesSize(27),
+                      child: Container(
+                        decoration: BoxDecoration(
+                          boxShadow: [
+                            BoxShadow(
+                              color: Colors.grey.withOpacity(0.5),
+                              offset: const Offset(0.5, 0.5),
+                              blurRadius: 0.5,
+                              spreadRadius: 0.5,
+                            ),
+                            BoxShadow(
+                              color: Colors.red.withOpacity(0.7),
+                              offset: const Offset(-0.5, -0.5),
+                              blurRadius: 0.5,
+                              spreadRadius: 0.3,
+                            ),
+                          ],
+                        ),
+                        child: Image.asset(
+                          portfolioTabImageList[newsubImageIndex],
+                          height: portfolioSubImagesSize(27),
+                        ),
                       ),
                     ),
+                    /// Mobile view
                     Align(
                       alignment: Alignment.bottomLeft,
-                      child: Image.asset(
-                        portfolioMobileImageList[newsubImageIndex],
-                        height: portfolioSubImagesSize(25),
+                      child: Container(
+                        decoration: BoxDecoration(
+                          boxShadow: [
+                            BoxShadow(
+                              color: Colors.grey.withOpacity(0.4),
+                              offset: const Offset(0.5, 0.5),
+                              blurRadius: 0.5,
+                              spreadRadius: 0.5,
+                            ),
+                            BoxShadow(
+                              color: Colors.green.withOpacity(0.6),
+                              offset: const Offset(-0.5, -0.5),
+                              blurRadius: 0.5,
+                              spreadRadius: 0.1,
+                            ),
+                          ],
+                        ),
+                        child: Image.asset(
+                          portfolioMobileImageList[newsubImageIndex],
+                          height: portfolioSubImagesSize(25),
+                        ),
                       ),
                     )
                   ],
@@ -274,7 +353,7 @@ class PortfolioPage extends StatelessWidget {
         color: Colors.black,
         child: ScrollablePositionedList.builder(
           scrollDirection: Axis.horizontal,
-          itemCount: 10,
+          itemCount: portfolioAdditionalImageList.length,
           itemBuilder: (ctx, index) {
             return Container(
               color: Colors.black,
@@ -293,10 +372,10 @@ class PortfolioPage extends StatelessWidget {
                           // horizontal: 5,
                           // vertical: 6,
                           ),
-                      decoration: const BoxDecoration(
-                          color: Colors.black,
+                      decoration: BoxDecoration(
+                          color: Colors.grey[900]?.withOpacity(0.7),
                           image: DecorationImage(
-                              image: AssetImage("assets/NetClipxLogo.png"))),
+                              image: AssetImage(portfolioAdditionalImageList[index]))),
                     ),
                   ),
                   Flexible(
@@ -304,9 +383,9 @@ class PortfolioPage extends StatelessWidget {
                     child: Container(
                       color: Colors.black,
                       width: portfolioAdditionalImagesDimonsion(100 / 4),
-                      child: const Center(
+                      child: Center(
                         child: Text(
-                          "fijrige e\njt oeerojeo ije iiujiuuoiuiououueytheriutytyuiyrtiuyrtiruytteryt\nirtuoireutre",
+                          portfolioAdditionalTextList[index],
                           textAlign: TextAlign.center,
                         ),
                       ),
