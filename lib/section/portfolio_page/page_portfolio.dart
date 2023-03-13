@@ -7,6 +7,8 @@ import 'package:personalwebsite/section/portfolio_page/dimonsions/portfolio_dimo
 import 'package:responsive_builder/responsive_builder.dart';
 import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
 
+ValueNotifier<int> subImagesAreaIndexNotifier = ValueNotifier(0);
+
 List<String> portfolioImageList = [
   "assets/netflipzhome.webp",
   "assets/netflipzcomingsoon.webp",
@@ -27,6 +29,28 @@ List<String> portfolioTextList = [
   "You can search here, Which item you wanted",
   "This is downloads page",
   "Netflipz simple logo",
+];
+
+List<String> portfolioMobileImageList = [
+  "assets/netflipzmobilehome.webp",
+  "assets/netflipzmobilecomingsoon.webp",
+  "assets/netflipzmobileeveryoneswatching.webp",
+  "assets/netflipzmobilefastluaghs.webp",
+  "assets/netflipzmobiletopsearches.webp",
+  "assets/netflipzmobilesearchresults.webp",
+  "assets/netflipzmobiledownloads.webp",
+  "assets/netFlipzLogoA.webp",
+];
+
+List<String> portfolioTabImageList = [
+  "assets/netflipztabhome.webp",
+  "assets/netflipztabcomingsoon.webp",
+  "assets/netflipztabeveryoneswatching.webp",
+  "assets/netflipztabfastluaghs.webp",
+  "assets/netflipztabtopsearches.webp",
+  "assets/netflipztabsearchresults.webp",
+  "assets/netflipztabdownloads.webp",
+  "assets/netFlipzLogoA.webp",
 ];
 
 class PortfolioPage extends StatelessWidget {
@@ -123,18 +147,19 @@ class PortfolioPage extends StatelessWidget {
                               // vertical: 6,
                               ),
                           decoration: BoxDecoration(
-                              color: Colors.black,
-                              image: DecorationImage(
-                                  fit: BoxFit.contain,
-                                  image: AssetImage(portfolioImageList[index])),
-                              boxShadow: const [
-                                BoxShadow(
-                                  color: Colors.grey,
-                                  offset: Offset(0.5, 0.5),
-                                  blurRadius: 0.5,
-                                  spreadRadius: 0.5,
-                                )
-                              ]),
+                            color: Colors.black,
+                            image: DecorationImage(
+                                fit: BoxFit.contain,
+                                image: AssetImage(portfolioImageList[index])),
+                            // boxShadow: const [
+                            //   BoxShadow(
+                            //     color: Colors.grey,
+                            //     offset: Offset(0.5, 0.5),
+                            //     blurRadius: 0.5,
+                            //     spreadRadius: 0.5,
+                            //   )
+                            // ],
+                          ),
                         ),
                       ),
                       Flexible(
@@ -176,6 +201,8 @@ class PortfolioPage extends StatelessWidget {
           await _itemScrollController.scrollTo(
               index: index, duration: const Duration(milliseconds: 300));
           _itemPositionsListener.itemPositions.addListener(() {});
+          subImagesAreaIndexNotifier.value = index;
+          subImagesAreaIndexNotifier.notifyListeners();
         },
         child: Container(
           width: 10,
@@ -202,36 +229,40 @@ class PortfolioPage extends StatelessWidget {
   Flexible portfolioSubImagesArea() {
     return Flexible(
         flex: 5,
-        child: Container(
-          color: Colors.black,
-          padding: EdgeInsets.symmetric(
-              vertical: 8, horizontal: portfolioDimonsion(4)),
-          child: Stack(
-            alignment: Alignment.center,
-            children: [
-              Align(
-                alignment: Alignment.center,
-                child: Image.asset(
-                  imageList[1],
+        child: ValueListenableBuilder(
+            valueListenable: subImagesAreaIndexNotifier,
+            builder: (context, newsubImageIndex, _) {
+              return Container(
+                color: Colors.black,
+                padding: EdgeInsets.symmetric(
+                    vertical: 8, horizontal: portfolioDimonsion(4)),
+                child: Stack(
+                  alignment: Alignment.center,
+                  children: [
+                    Align(
+                      alignment: Alignment.center,
+                      child: Image.asset(
+                        portfolioImageList[newsubImageIndex],
+                      ),
+                    ),
+                    Align(
+                      alignment: Alignment.bottomRight,
+                      child: Image.asset(
+                        portfolioTabImageList[newsubImageIndex],
+                        height: portfolioSubImagesSize(27),
+                      ),
+                    ),
+                    Align(
+                      alignment: Alignment.bottomLeft,
+                      child: Image.asset(
+                        portfolioMobileImageList[newsubImageIndex],
+                        height: portfolioSubImagesSize(25),
+                      ),
+                    )
+                  ],
                 ),
-              ),
-              Align(
-                alignment: Alignment.bottomRight,
-                child: Image.asset(
-                  imageList[2],
-                  height: portfolioSubImagesSize(27),
-                ),
-              ),
-              Align(
-                alignment: Alignment.bottomLeft,
-                child: Image.asset(
-                  imageList[0],
-                  height: portfolioSubImagesSize(25),
-                ),
-              )
-            ],
-          ),
-        ));
+              );
+            }));
   }
 
   Flexible portfolioAdditionalImagesArea() {
