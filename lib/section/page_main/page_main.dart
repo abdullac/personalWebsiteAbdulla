@@ -58,6 +58,7 @@ class PageMain extends StatelessWidget {
           child: ScrollablePositionedList.builder(
             itemScrollController: itemScrollController,
             itemCount: pagesList.length,
+            shrinkWrap: true,
             itemBuilder: (BuildContext context, int index) {
               return pagesList[index];
             },

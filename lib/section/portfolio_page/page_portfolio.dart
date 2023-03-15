@@ -61,12 +61,11 @@ List<String> portfolioAdditionalImageList = [
 ];
 
 List<String> portfolioAdditionalTextList = [
- "Transparent Animated Hide and show App Bar",
- "Bottom Navigation Bar can shown three types visibilty mode",
- "Image cards and Number Image cards",
- "Defferent views of Search field",
+  "Transparent Animated Hide and show App Bar",
+  "three types of visibilty in Bottom Navigation Bar",
+  "Image cards and Number Image cards",
+  "Defferent views of Search field",
 ];
-
 
 class PortfolioPage extends StatelessWidget {
   PortfolioPage({super.key});
@@ -78,33 +77,28 @@ class PortfolioPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return ResponsiveBuilder(builder: (context, sizingInfo) {
       Screen(sizingInfo: sizingInfo);
-      return Container(
-        height: mainHeight(85),
-        color: Colors.black,
-        child: Column(
-          children: [
-            sectionHeading("My Works"),
-            // portfolioHeading(),
-            Flexible(
-              flex: 17,
-              child: SingleChildScrollView(
-                child: Container(
-                  height: mainLongSize(100) - mainHeight(15),
-                  color: Colors.blueGrey[900],
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      portfolioItemHeading(),
-                      portfolioImagesArea(),
-                      portfolioSubImagesArea(),
-                      portfolioAdditionalImagesArea(),
-                    ],
-                  ),
-                ),
-              ),
+      return Column(
+        children: [
+          sectionHeading("My Works"),
+          // portfolioHeading(),
+          Container(
+      height: mainIsLandscapeMobile()
+      ? mainHeight(230)
+      : mainIsTablet()
+      ? mainHeight(160)
+      : mainHeight(85),
+            color: Colors.blueGrey[900],
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                portfolioItemHeading(),
+                portfolioImagesArea(),
+                portfolioSubImagesArea(),
+                portfolioAdditionalImagesArea(),
+              ],
             ),
-          ],
-        ),
+          ),
+        ],
       );
     });
   }
@@ -158,7 +152,7 @@ class PortfolioPage extends StatelessWidget {
                     child: Column(
                       children: [
                         Flexible(
-                          flex: 11,
+                          flex: 4,
                           child: Container(
                             width: portfolioDimonsion(100 / 4),
                             height: double.infinity,
@@ -169,7 +163,7 @@ class PortfolioPage extends StatelessWidget {
                             decoration: BoxDecoration(
                               color: Colors.grey[900],
                               image: DecorationImage(
-                                  fit: BoxFit.contain,
+                                  fit: BoxFit.fitWidth,
                                   image: AssetImage(portfolioImageList[index])),
                               // boxShadow: const [
                               //   BoxShadow(
@@ -183,16 +177,15 @@ class PortfolioPage extends StatelessWidget {
                           ),
                         ),
                         Flexible(
-                          flex: 9,
+                          flex: 2,
                           child: Container(
                             color: Colors.black.withOpacity(0.3),
                             width: portfolioDimonsion(100 / 4),
-                            padding: const EdgeInsets.all(8),
-                            child: Center(
-                              child: Text(
-                                portfolioTextList[index],
-                                textAlign: TextAlign.center,
-                              ),
+                            padding: const EdgeInsets.symmetric(horizontal: 8,vertical: 2),
+                            child: Text(
+                              portfolioTextList[index],
+                              textAlign: TextAlign.center,
+                          style: TextStyle(fontSize: mainShortSize(3.2)),
                             ),
                           ),
                         ),
@@ -250,7 +243,7 @@ class PortfolioPage extends StatelessWidget {
 
   Flexible portfolioSubImagesArea() {
     return Flexible(
-        flex: 5,
+        flex: 7,
         child: ValueListenableBuilder(
             valueListenable: subImagesAreaIndexNotifier,
             builder: (context, newsubImageIndex, _) {
@@ -286,10 +279,12 @@ class PortfolioPage extends StatelessWidget {
                         ),
                       ),
                     ),
+
                     ///  Tablet view
                     Align(
                       alignment: Alignment.bottomRight,
                       child: Container(
+                        constraints: BoxConstraints(maxHeight: mainHeight(26)),
                         decoration: BoxDecoration(
                           boxShadow: [
                             BoxShadow(
@@ -312,10 +307,12 @@ class PortfolioPage extends StatelessWidget {
                         ),
                       ),
                     ),
+
                     /// Mobile view
                     Align(
                       alignment: Alignment.bottomLeft,
                       child: Container(
+                        constraints: BoxConstraints(maxHeight: mainHeight(24)),
                         decoration: BoxDecoration(
                           boxShadow: [
                             BoxShadow(
@@ -346,7 +343,7 @@ class PortfolioPage extends StatelessWidget {
 
   Flexible portfolioAdditionalImagesArea() {
     return Flexible(
-      flex: 5,
+      flex: 6,
       child: Container(
         padding: EdgeInsets.symmetric(
             horizontal: portfolioAdditionalImagesDimonsion(0)),
@@ -364,7 +361,7 @@ class PortfolioPage extends StatelessWidget {
               child: Column(
                 children: [
                   Flexible(
-                    flex: 8,
+                    flex: 4,
                     child: Container(
                       width: portfolioAdditionalImagesDimonsion(100 / 4),
                       height: double.infinity,
@@ -375,7 +372,8 @@ class PortfolioPage extends StatelessWidget {
                       decoration: BoxDecoration(
                           color: Colors.grey[900]?.withOpacity(0.7),
                           image: DecorationImage(
-                              image: AssetImage(portfolioAdditionalImageList[index]))),
+                              image: AssetImage(
+                                  portfolioAdditionalImageList[index]))),
                     ),
                   ),
                   Flexible(
@@ -383,10 +381,12 @@ class PortfolioPage extends StatelessWidget {
                     child: Container(
                       color: Colors.black,
                       width: portfolioAdditionalImagesDimonsion(100 / 4),
+                      padding: const EdgeInsets.symmetric(horizontal: 1,vertical: 1),
                       child: Center(
                         child: Text(
                           portfolioAdditionalTextList[index],
                           textAlign: TextAlign.center,
+                          style: TextStyle(fontSize: mainShortSize(3.2)),
                         ),
                       ),
                     ),
