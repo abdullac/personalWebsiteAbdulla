@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:personalwebsite/core/responsive/screen.dart';
 import 'package:personalwebsite/section/home_page/home_page_real/home_page_real.dart';
@@ -99,12 +101,12 @@ class PortfolioPage extends StatelessWidget {
           subImagesAreaIndexNotifier.value = portfolioDotPositionNotifier.value;
           _itemScrollController.scrollTo(
             index: portfolioDotPositionNotifier.value,
-            duration: const Duration(milliseconds: 1000),
+            duration: const Duration(milliseconds: 2000),
           );
         }
         subImagesAreaIndexNotifier.notifyListeners();
 
-        await Future.delayed(const Duration(seconds: 3), () {});
+        await Future.delayed(const Duration(seconds: 6), () {});
         print("imageIndex  ${portfolioDotPositionNotifier.value}");
       }
     });
@@ -295,6 +297,7 @@ class PortfolioPage extends StatelessWidget {
             valueListenable: subImagesAreaIndexNotifier,
             builder: (context, newsubImageIndex, _) {
               print("rebuild");
+              final random = Random();
               return Container(
                 color: Colors.black.withOpacity(0.7),
                 padding: EdgeInsets.symmetric(
@@ -307,7 +310,12 @@ class PortfolioPage extends StatelessWidget {
                       alignment: Alignment.center,
                       child: AnimatedContainer(
                         transform: Matrix4.translationValues(
-                            newsubImageIndex % 2 == 0 ? -30 : 30, 0, 0),
+                          newsubImageIndex % 2 == 0
+                              ? random.nextDouble() * -30
+                              : random.nextDouble() * 30,
+                          0,
+                          0,
+                        ),
                         duration: const Duration(milliseconds: 2000),
                         curve: Curves.fastOutSlowIn,
                         child: Container(
