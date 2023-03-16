@@ -28,7 +28,7 @@ class MyApp extends StatelessWidget {
   static final appBarNotifier = ValueNotifier(false);
   static Color? appBarBackgroundColor = Colors.redAccent[700];
   static String appBarTitle = "Abdulla";
-  static late Widget? appBarImageCircle = appBarCircleImage();
+  static Widget? appBarImageCircle = appBarCircleImage();
 
   @override
   Widget build(BuildContext context) {
@@ -60,13 +60,13 @@ class MyApp extends StatelessWidget {
                         duration: const Duration(milliseconds: 300),
                         child: mainIsDeskTop()
                             ? Transform.scale(
-                              scaleX: -1,
+                                scaleX: -1,
                                 child: appBarCircleImage(),
                               )
                             : IconButton(
                                 onPressed: () {
                                   final drawerState = SliderMenuDrawer
-                                      .sliderDrawerKey.currentState;
+                                      .sliderMenuDrawerKey.currentState;
                                   if (drawerState != null) {
                                     drawerState.isDrawerOpen
                                         ? drawerState.closeSlider()
@@ -128,7 +128,7 @@ class MyApp extends StatelessWidget {
             },
             child: Text(
               buttonNameList[index],
-              style:  TextStyle(color: Colors.red[300]),
+              style: TextStyle(color: Colors.red[300]),
             ),
           ),
         ),
@@ -141,12 +141,12 @@ class MyApp extends StatelessWidget {
     return InkWell(
       onTap: () {
         final drawerStateHomePage =
-            SliderMenuDrawer.sliderDrawerKeyHomePage.currentState;
+            SliderHomePageDrawer.sliderHomePageDrawerKey.currentState;
         if (drawerStateHomePage != null) {
           drawerStateHomePage.isDrawerOpen
               ? drawerStateHomePage.closeSlider()
-              // : drawerStateHomePage.openSlider();
-              : null;
+              : drawerStateHomePage.openSlider();
+          // : null;
           appBarNotifier.value = false;
           appBarNotifier.notifyListeners();
         }

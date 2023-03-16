@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_slider_drawer/flutter_slider_drawer.dart';
 import 'package:personalwebsite/core/responsive/screen.dart';
+import 'package:personalwebsite/main.dart';
 import 'package:personalwebsite/section/home_page/page_home.dart';
 import 'package:personalwebsite/section/page_main/main_core/Widget/slider_menu_drawer.dart';
 import 'package:personalwebsite/section/page_main/main_core/main_dimonsions.dart';
@@ -13,26 +14,29 @@ class MenuDrawerList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ResponsiveBuilder(builder: (context, sizingInfo) {
-      Screen(sizingInfo: sizingInfo);
-      return Transform.translate(
-        offset: Offset(0, -mainShortSize(10)),
-        child: ListView.separated(
-          // shrinkWrap: true,
-          scrollDirection:
-              mainIsLandscapeMobile() ? Axis.horizontal : Axis.vertical,
-          itemBuilder: (context, index) {
-            return menuDrawerPortions()[index];
-          },
-          separatorBuilder: (context, index) => Container(
-            height: 0.5,
-            width: 0.5,
-            color: Colors.redAccent.withOpacity(0.3),
+    return Container(
+      color: Colors.grey[900]?.withOpacity(0.95),
+      child: ResponsiveBuilder(builder: (context, sizingInfo) {
+        Screen(sizingInfo: sizingInfo);
+        return Transform.translate(
+          offset: Offset(0, -mainShortSize(10)),
+          child: ListView.separated(
+            // shrinkWrap: true,
+            scrollDirection:
+                mainIsLandscapeMobile() ? Axis.horizontal : Axis.vertical,
+            itemBuilder: (context, index) {
+              return menuDrawerPortions()[index];
+            },
+            separatorBuilder: (context, index) => Container(
+              height: 0.5,
+              width: 0.5,
+              color: Colors.redAccent.withOpacity(0.3),
+            ),
+            itemCount: 2,
           ),
-          itemCount: 2,
-        ),
-      );
-    });
+        );
+      }),
+    );
   }
 
   List<Widget> menuDrawerPortions() {
@@ -56,20 +60,20 @@ class MenuDrawerList extends StatelessWidget {
         child: Text(
           "Abdulla",
           style: TextStyle(
-            color: Colors.redAccent[700],
-            fontWeight: FontWeight.w900,
-            fontSize: mainShortSize(4)
-          ),
+              color: Colors.redAccent[700],
+              fontWeight: FontWeight.w900,
+              fontSize: mainShortSize(4)),
         ),
       ),
     ];
+
     return InkWell(
       onTap: () => toHomePage(),
       child: SizedBox(
         height: mainIsLandscapeMobile() ? mainHeight(100) : mainHeight(45),
         child: mainIsTablet()
             ? Row(
-              mainAxisAlignment: MainAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: imageAvatarAndNameWidgets,
               )
             : Column(
@@ -122,5 +126,42 @@ class MenuDrawerList extends StatelessWidget {
         ),
       ),
     );
+  }
+}
+
+// toHomePage() {
+//   final drawerStateHomePage =
+//       SliderMenuDrawer.sliderDrawerKeyHomePage.currentState;
+//   final drawerState = SliderMenuDrawer.sliderDrawerKey.currentState;
+//   print("toHomePage1");
+//   if (drawerStateHomePage != null && drawerState != null) {
+//     print("toHomePage2");
+//     if (drawerStateHomePage.isDrawerOpen) {
+//       // drawerStateHomePage.closeSlider();
+//       // drawerState.closeSlider();
+//     } else {
+//       drawerStateHomePage.openSlider();
+//       // drawerState.closeSlider();
+//     }
+//     MyApp.appBarNotifier.value = false;
+//     MyApp.appBarNotifier.notifyListeners();
+//   }
+// }
+
+toHomePage() {
+  final menuDrawerState = SliderMenuDrawer.sliderMenuDrawerKey.currentState;
+  final homePageDrawerState = SliderHomePageDrawer.sliderHomePageDrawerKey.currentState;
+  if (menuDrawerState != null && homePageDrawerState != null) {
+
+      menuDrawerState.closeSlider();
+      homePageDrawerState.openSlider();
+    // if (menuDrawerState.isDrawerOpen) {
+    //   menuDrawerState.closeSlider();
+    //   MyApp.drawerSideNotifier.value = DrawerSide.right;
+    // } else {
+    //   //
+    // }
+    MyApp.appBarNotifier.value = false;
+    MyApp.appBarNotifier.notifyListeners();
   }
 }

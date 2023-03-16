@@ -28,6 +28,7 @@ class ImageArea extends StatelessWidget {
             decoration: const BoxDecoration(
               image: DecorationImage(
                   image: AssetImage("assets/MyphotoBig.webp"),
+                  // image: AssetImage("assets/personShapeText.png"),
                   fit: BoxFit.fitHeight),
               // color: Color.fromARGB(255, 18, 18, 18),
               color: Colors.black,

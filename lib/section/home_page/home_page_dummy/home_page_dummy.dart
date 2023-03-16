@@ -23,7 +23,21 @@ List<Widget> homePageDummy() {
           : Screen.internal.isSquare == true
               ? null
               : longSize100(55),
-      child: ImageCode(),
+      // child: ImageCode(),
+      child: Container(
+        height: Screen.internal.isPortrait == true
+          ?  longSize100(70)
+          : Screen.internal.isSquare == true
+              ? longSize100(60)
+              : shortSize100(90),
+        width: Screen.internal.isPortrait == true
+          ?  shortSize100(100)
+          : Screen.internal.isSquare == true
+              ? shortSize100(60)
+              : longSize100(45),
+        decoration: const BoxDecoration(
+        image: DecorationImage(image: AssetImage("assets/personShapeText.png"))
+      ),)
     ),
     Positioned(
         top:

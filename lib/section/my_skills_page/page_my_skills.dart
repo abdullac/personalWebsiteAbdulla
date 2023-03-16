@@ -61,6 +61,7 @@ class SkillsPage extends StatelessWidget {
               mySkillsItem(networkImageList[5], "Dart"),
               mySkillsItem(networkImageList[6], "Flutter"),
               mySkillsItem(networkImageList[8], "Freezed"),
+              mySkillsItem(networkImageList[11], "Bloc"),
               mySkillsItem(networkImageList[9], "Dio"),
               mySkillsItem(networkImageList[10], "Json"),
               mySkillsItem(networkImageList[7], "Java"),
@@ -95,6 +96,8 @@ class SkillsPage extends StatelessWidget {
         Image.network(
           assetImage,
           height: mySkilsGridItemImageHeight(),
+          errorBuilder: (context, error, stackTrace) => Container(width: 5,height: 5,
+            color: Colors.red.withOpacity(0.3),),
         ),
         Text(title)
       ],

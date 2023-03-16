@@ -6,6 +6,8 @@ import 'package:personalwebsite/section/home_page/home_page_dummy/home_page_dumm
 import 'package:personalwebsite/section/home_page/home_page_real/home_page_real.dart';
 import 'package:personalwebsite/section/home_page/home_page_gridview/homepage_gridview.dart';
 import 'package:personalwebsite/section/page_main/main_core/Widget/slider_menu_drawer.dart';
+import 'package:personalwebsite/section/page_main/main_core/main_dimonsions.dart';
+import 'package:personalwebsite/section/page_main/page_main.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 import 'dart:math' as math;
 
@@ -24,7 +26,7 @@ class PageHome extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
         width: double.infinity,
-        height: double.infinity,
+        height: Dimonsion.internal.height,
         color: Colors.grey[800],
         // color: Colors.black,
         child: ScreenTypeLayout(
@@ -53,7 +55,8 @@ class TransparentInfoScreen extends StatelessWidget {
         onTap: () => homePageToMainpage(),
         child: Stack(
           children:
-              // homePageDummy() +
+              // homePageDummy() 
+              // +
               [
             const HomepageGridview(),
             const HomePageReal(),
@@ -61,7 +64,7 @@ class TransparentInfoScreen extends StatelessWidget {
               alignment: Alignment.bottomCenter,
               child: IconButton(
                 onPressed: () {
-                  //
+                  homePageToMainpage();
                 },
                 color: Colors.white.withOpacity(0.2),
                 hoverColor: Colors.red,
@@ -71,9 +74,7 @@ class TransparentInfoScreen extends StatelessWidget {
                 iconSize: shortSize100(10),
                 icon: Transform.rotate(
                   angle: math.pi * 180 / 360,
-                  child: InkWell(
-                      onTap: () => homePageToMainpage(),
-                      child: const Icon(Icons.double_arrow_rounded)),
+                  child: const Icon(Icons.double_arrow_rounded),
                 ),
               ),
             ),
@@ -107,13 +108,15 @@ class TransparentInfoScreen extends StatelessWidget {
 }
 
 homePageToMainpage() {
+    initialOpeningNotifier.value = false;
   final drawerStateHomePage =
-      SliderMenuDrawer.sliderDrawerKeyHomePage.currentState;
+      SliderHomePageDrawer.sliderHomePageDrawerKey.currentState;
   if (drawerStateHomePage != null) {
     drawerStateHomePage.isDrawerOpen
-        // ? drawerStateHomePage.closeSlider()
-        ? null
-        : drawerStateHomePage.openSlider();
+        ? drawerStateHomePage.closeSlider()
+        // ? null
+        // : drawerStateHomePage.openSlider();
+        : null;
     // :null;
     MyApp.appBarNotifier.value = true;
     MyApp.appBarImageCircle = null;
@@ -123,16 +126,15 @@ homePageToMainpage() {
   }
 }
 
-toHomePage() {
-  final drawerStateHomePage =
-      SliderMenuDrawer.sliderDrawerKeyHomePage.currentState;
-  final drawerState = SliderMenuDrawer.sliderDrawerKey.currentState;
-  if (drawerStateHomePage != null && drawerState != null) {
-    if (drawerStateHomePage.isDrawerOpen) {
-      drawerStateHomePage.closeSlider();
-      drawerState.closeSlider();
-    }
-    MyApp.appBarNotifier.value = false;
-    MyApp.appBarNotifier.notifyListeners();
-  }
-}
+
+
+
+
+
+  //   final drawerStateHomePage =
+  //     SliderMenuDrawer.sliderDrawerKeyHomePage.currentState;
+  // if (drawerStateHomePage != null) {
+  //   drawerStateHomePage.isDrawerOpen
+  //       ? print("draweropened")
+  //       : print("drawerclosed");
+  // }

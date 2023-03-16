@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:personalwebsite/core/responsive/screen.dart';
 import 'package:personalwebsite/core/transparent_screen/variables/colors.dart';
@@ -20,7 +19,7 @@ class MyWorkEthicsPage extends StatelessWidget {
         color: Colors.black,
         child: Column(
           children: [
-            sectionHeading("My Work Ethics",mainHeight(18)),
+            sectionHeading("My Work Ethics", mainHeight(18)),
             // myWorkEthicsHeading(),
             myWorkEthicsPoints(),
           ],
@@ -52,9 +51,6 @@ class MyWorkEthicsPage extends StatelessWidget {
   //   );
   // }
 
-
-
-
   Flexible myWorkEthicsPoints() {
     return Flexible(
       flex: 3,
@@ -69,12 +65,12 @@ class MyWorkEthicsPage extends StatelessWidget {
               mainAxisSpacing: 0,
               childAspectRatio: 9),
           children: [
-            myWorkEthicPoint("Long time Working"),
-            myWorkEthicPoint("Perfect Finishing"),
-            myWorkEthicPoint("Perfect Finishing"),
-            myWorkEthicPoint("Long time Working"),
-            myWorkEthicPoint("Long time Working"),
-            myWorkEthicPoint("Perfect Finishing"),
+            myWorkEthicPoint("Aim to make every work complete with perfect."),
+            myWorkEthicPoint("Working longer hours with responsibility."),
+            myWorkEthicPoint("Friendly attitude towards everyone."),
+            myWorkEthicPoint("Tackle work with positive attitude."),
+            myWorkEthicPoint("Ready to work with pressure."),
+            myWorkEthicPoint("Learning new things, including to projects."),
           ],
         ),
       ),
@@ -82,7 +78,10 @@ class MyWorkEthicsPage extends StatelessWidget {
   }
 
   Widget myWorkEthicPoint(String workEthicsPoint) {
-    Icon checkIcon = Icon(Icons.radio_button_checked,color: green600,);
+    Icon checkIcon = Icon(
+      Icons.radio_button_checked,
+      color: green600,
+    );
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: Row(

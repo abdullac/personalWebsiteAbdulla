@@ -107,7 +107,6 @@ class PortfolioPage extends StatelessWidget {
         subImagesAreaIndexNotifier.notifyListeners();
 
         await Future.delayed(const Duration(seconds: 6), () {});
-        print("imageIndex  ${portfolioDotPositionNotifier.value}");
       }
     });
     return ResponsiveBuilder(builder: (context, sizingInfo) {
@@ -296,7 +295,6 @@ class PortfolioPage extends StatelessWidget {
         child: ValueListenableBuilder(
             valueListenable: subImagesAreaIndexNotifier,
             builder: (context, newsubImageIndex, _) {
-              print("rebuild");
               final random = Random();
               return Container(
                 color: Colors.black.withOpacity(0.7),

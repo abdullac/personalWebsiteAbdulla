@@ -16,6 +16,7 @@ List<String> networkImageList = [
   "https://raw.githubusercontent.com/abdullac/personalWebsiteAbdulla/main/assets/freezed.png",
   "https://raw.githubusercontent.com/abdullac/personalWebsiteAbdulla/main/assets/dio.png",
   "https://raw.githubusercontent.com/abdullac/personalWebsiteAbdulla/main/assets/json.png",
+  "https://raw.githubusercontent.com/abdullac/personalWebsiteAbdulla/main/assets/zpoutnr.png",
 ];
 
 List<String> imageList = [

@@ -3,9 +3,11 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_slider_drawer/flutter_slider_drawer.dart';
+import 'package:personalwebsite/core/responsive/screen.dart';
 import 'package:personalwebsite/main.dart';
 import 'package:personalwebsite/section/about_page/page_about.dart';
 import 'package:personalwebsite/section/contact_page/page_contact.dart';
+import 'package:personalwebsite/section/footer_page/page_footer.dart';
 import 'package:personalwebsite/section/home_page/page_home.dart';
 import 'package:personalwebsite/section/looking_for_job_page/page_looking_for_job.dart';
 import 'package:personalwebsite/section/my_skills_page/page_my_skills.dart';
@@ -13,9 +15,11 @@ import 'package:personalwebsite/section/my_workethics_page/page_my_work_ethics.d
 import 'package:personalwebsite/section/page_main/main_core/Widget/slider_menu_drawer.dart';
 import 'package:personalwebsite/section/page_main/main_core/main_dimonsions.dart';
 import 'package:personalwebsite/section/portfolio_page/page_portfolio.dart';
+import 'package:responsive_builder/responsive_builder.dart';
 import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
 
 bool isAppBarDelayStart = false;
+ValueNotifier<bool> initialOpeningNotifier = ValueNotifier(true);
 
 List<Widget> pagesList = [
   const HomePage3(),
@@ -25,6 +29,7 @@ List<Widget> pagesList = [
   const SkillsPage(),
   const LookingForJob(),
   const ContactPage(),
+  const Footer()
 ];
 
 class PageMain extends StatelessWidget {
@@ -40,47 +45,55 @@ class PageMain extends StatelessWidget {
     SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
         systemNavigationBarColor: Colors.black,
         systemNavigationBarIconBrightness: Brightness.dark));
-    return SliderMenuDrawer(
-      mainPageWidget: Container(
-        color: Colors.red,
-        child: NotificationListener<UserScrollNotification>(
-          onNotification: (notification) {
-            final scrollDirection = notification.direction.name;
-            if (scrollDirection == "reverse") {
-              drawerMenuClose();
-              MyApp.appBarNotifier.value = false;
-            } else if (scrollDirection == "forward") {
-              drawerMenuClose();
-              MyApp.appBarNotifier.value = true;
-            }
-            MyApp.appBarImageCircle = MyApp.appBarCircleImage();
-            MyApp.appBarTitle = "Abdulla";
-            MyApp.appBarBackgroundColor = Colors.redAccent[700];
-            MyApp.appBarNotifier.notifyListeners();
-            if (isAppBarDelayStart == false &&
-                MyApp.appBarNotifier.value == true) {
-              isAppBarDelayStart = true;
-              Future.delayed(const Duration(seconds: 5), () {
-                homePageToMainpage();
-                isAppBarDelayStart = false;
+    return SliderHomePageDrawer(
+      mainPageWidget: SliderMenuDrawer(
+        mainPageWidget: Container(
+          color: Colors.red,
+          child: NotificationListener<UserScrollNotification>(
+            onNotification: (notification) {
+              final scrollDirection = notification.direction.name;
+              if (scrollDirection == "reverse") {
+                drawerMenuClose();
+                MyApp.appBarNotifier.value = false;
+              } else if (scrollDirection == "forward") {
+                drawerMenuClose();
+                MyApp.appBarNotifier.value = true;
+              }
+              MyApp.appBarImageCircle = MyApp.appBarCircleImage();
+              MyApp.appBarTitle = "Abdulla";
+              MyApp.appBarBackgroundColor = Colors.redAccent[700];
+              MyApp.appBarNotifier.notifyListeners();
+              if (isAppBarDelayStart == false &&
+                  MyApp.appBarNotifier.value == true) {
+                isAppBarDelayStart = true;
                 Future.delayed(const Duration(seconds: 5), () {
-                  MyApp.appBarNotifier.value = false;
+                  /////////////////////
+                  MyApp.appBarNotifier.value = true;
+                  MyApp.appBarImageCircle = null;
+                  MyApp.appBarTitle = "";
+                  MyApp.appBarBackgroundColor = Colors.redAccent.withOpacity(0);
                   MyApp.appBarNotifier.notifyListeners();
+                  /////////////////////
+                  isAppBarDelayStart = false;
+                  Future.delayed(const Duration(seconds: 5), () {
+                    MyApp.appBarNotifier.value = false;
+                    MyApp.appBarNotifier.notifyListeners();
+                  });
                 });
-              });
-            } else {
-              //
-            }
+              } else {
+                //
+              }
 
-            return true;
-          },
-          child: ScrollablePositionedList.builder(
-            itemScrollController: itemScrollController,
-            itemCount: pagesList.length,
-            shrinkWrap: true,
-            itemBuilder: (BuildContext context, int index) {
-              return pagesList[index];
+              return true;
             },
+            child: ScrollablePositionedList.builder(
+              itemScrollController: itemScrollController,
+              itemCount: pagesList.length,
+              shrinkWrap: true,
+              itemBuilder: (BuildContext context, int index) {
+                return pagesList[index];
+              },
+            ),
           ),
         ),
       ),
@@ -89,7 +102,7 @@ class PageMain extends StatelessWidget {
 }
 
 drawerMenuClose() {
-  final drawerState = SliderMenuDrawer.sliderDrawerKey.currentState;
+  final drawerState = SliderMenuDrawer.sliderMenuDrawerKey.currentState;
   if (drawerState != null) {
     drawerState.isDrawerOpen
         ? drawerState.closeSlider()
@@ -145,8 +158,6 @@ class SocialMediaIconsPosts extends StatelessWidget {
     return const Placeholder();
   }
 }
-
-
 
 
 ////// copyRight

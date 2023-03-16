@@ -1,7 +1,7 @@
-
 import 'package:flutter/material.dart';
 import 'package:personalwebsite/core/responsive/functions.dart';
 import 'package:personalwebsite/core/responsive/screen.dart';
+import 'package:personalwebsite/core/transparent_screen/widgets/transparent_screen_widget.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 
 class LabelArea extends StatelessWidget {
@@ -60,3 +60,16 @@ class LabelArea extends StatelessWidget {
   }
 }
 
+
+
+
+
+
+// TransparentScreenWidget(
+//             textTitles: const [
+//               "child: Text(\"Yes your own\",style: customStyle)",
+//               "child: Text(\"  A B D U L L A  \",style: nameStyle)",
+//               "child: Text(\"Flutter Devoper\",style: titleStyle)",
+//             ],
+//             positionedCustomWidgetList: [Positioned(child: SizedBox())],
+//           ),
