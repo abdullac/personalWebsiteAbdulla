@@ -6,6 +6,7 @@ import 'package:flutter_slider_drawer/flutter_slider_drawer.dart';
 import 'package:personalwebsite/main.dart';
 import 'package:personalwebsite/section/about_page/page_about.dart';
 import 'package:personalwebsite/section/contact_page/page_contact.dart';
+import 'package:personalwebsite/section/home_page/page_home.dart';
 import 'package:personalwebsite/section/looking_for_job_page/page_looking_for_job.dart';
 import 'package:personalwebsite/section/my_skills_page/page_my_skills.dart';
 import 'package:personalwebsite/section/my_workethics_page/page_my_work_ethics.dart';
@@ -14,7 +15,9 @@ import 'package:personalwebsite/section/page_main/main_core/main_dimonsions.dart
 import 'package:personalwebsite/section/portfolio_page/page_portfolio.dart';
 import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
 
-List<Widget> pagesList =  [
+bool isAppBarDelayStart = false;
+
+List<Widget> pagesList = [
   const HomePage3(),
   const AboutPage(),
   PortfolioPage(),
@@ -27,7 +30,8 @@ List<Widget> pagesList =  [
 class PageMain extends StatelessWidget {
   PageMain({Key? key}) : super(key: key);
 
-  static final ItemScrollController itemScrollController = ItemScrollController();
+  static final ItemScrollController itemScrollController =
+      ItemScrollController();
   static final ItemPositionsListener itemPositionListner =
       ItemPositionsListener.create();
 
@@ -51,8 +55,23 @@ class PageMain extends StatelessWidget {
             }
             MyApp.appBarImageCircle = MyApp.appBarCircleImage();
             MyApp.appBarTitle = "Abdulla";
-            MyApp.appBarBackgroundColor =  Colors.redAccent[700];
+            MyApp.appBarBackgroundColor = Colors.redAccent[700];
             MyApp.appBarNotifier.notifyListeners();
+            if (isAppBarDelayStart == false &&
+                MyApp.appBarNotifier.value == true) {
+              isAppBarDelayStart = true;
+              Future.delayed(const Duration(seconds: 5), () {
+                homePageToMainpage();
+                isAppBarDelayStart = false;
+                Future.delayed(const Duration(seconds: 5), () {
+                  MyApp.appBarNotifier.value = false;
+                  MyApp.appBarNotifier.notifyListeners();
+                });
+              });
+            } else {
+              //
+            }
+
             return true;
           },
           child: ScrollablePositionedList.builder(
@@ -75,7 +94,7 @@ drawerMenuClose() {
     drawerState.isDrawerOpen
         ? drawerState.closeSlider()
         // : drawerState.openSlider();
-        :null;
+        : null;
   }
 }
 

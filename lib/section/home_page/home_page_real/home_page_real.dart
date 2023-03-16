@@ -4,6 +4,17 @@ import 'package:personalwebsite/section/home_page/home_page_real/image_area.dart
 import 'package:personalwebsite/section/home_page/home_page_real/label_area.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 
+List<String> networkImageList = [
+  "https://www.freepnglogos.com/uploads/html5-logo-png/html5-logo-html-logo-0.png",
+  "https://www.freepnglogos.com/uploads/html5-logo-png/html5-logo-opencode-css-8.png",
+  "https://www.freepnglogos.com/uploads/javascript/javascript-online-logo-for-website-0.png",
+  "https://seeklogo.com/images/J/jquery-logo-CFE6ECE363-seeklogo.com.png",
+ "https://seeklogo.com/images/B/bootstrap-5-logo-85A1F11F4F-seeklogo.com.png",
+ "https://seeklogo.com/images/D/dart-logo-FDA1939EC4-seeklogo.com.png",
+ "https://seeklogo.com/images/F/flutter-logo-5086DD11C5-seeklogo.com.png",
+ "https://seeklogo.com/images/J/java-logo-7F8B35BAB3-seeklogo.com.png",
+];
+
 List<String> imageList = [
   "assets/dio.png",
   // "assets/emoji.png",
@@ -62,8 +73,7 @@ class HomePageReal extends StatelessWidget {
           landScapeFlex: 1,
           nonLandSapeFlex: 2,
           // color: const Color.fromARGB(255, 18, 18, 18).withOpacity(0.94),
-          color: Colors.black.withOpacity(0.9)
-          ),
+          color: Colors.black.withOpacity(0.9)),
     ];
   }
 

@@ -128,7 +128,7 @@ class MyApp extends StatelessWidget {
             },
             child: Text(
               buttonNameList[index],
-              style: const TextStyle(color: Colors.red),
+              style:  TextStyle(color: Colors.red[300]),
             ),
           ),
         ),

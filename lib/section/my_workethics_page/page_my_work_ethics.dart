@@ -61,6 +61,7 @@ class MyWorkEthicsPage extends StatelessWidget {
       child: Container(
         color: Colors.black,
         child: GridView(
+          physics: const NeverScrollableScrollPhysics(),
           padding: const EdgeInsets.all(8),
           gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
               crossAxisCount: myWorkEthicsGridCrossAxisCount(),
