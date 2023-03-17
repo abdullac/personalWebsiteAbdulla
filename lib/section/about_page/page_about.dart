@@ -3,6 +3,7 @@ import 'package:personalwebsite/core/responsive/screen.dart';
 import 'package:personalwebsite/section/page_main/main_core/main_dimonsions.dart';
 import 'package:personalwebsite/section/page_main/main_core/widgets.dart';
 import 'package:responsive_builder/responsive_builder.dart';
+import 'dart:math' as math;
 
 //// aboutPage - resume CV button
 class AboutPage extends StatelessWidget {
@@ -19,17 +20,63 @@ class AboutPage extends StatelessWidget {
           color: Colors.black,
           child: Column(
             children: [
-              sectionHeading("About",mainHeight(20)),
+              sectionHeading("About", mainHeight(20)),
               // aboutHeading(),
-              mainIsLandScape()
-                  ? Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: aboutPortions(),
-                    )
-                  : Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: aboutPortions(),
+              Container(
+                color: Colors.teal.withOpacity(0),
+                height: mainHeight(100),
+                // width: mainWidth(100),
+                child: Stack(
+                  children: [
+                    Align(
+                      alignment: Alignment.topLeft,
+                      child: Transform.scale(
+                        scaleX: -1,
+                        origin:
+                            Offset(mainWidth(mainIsLandScape() ? -7 : 0), 0),
+                        child: Opacity(
+                          opacity: 0.7,
+                          child: Container(
+                            width: mainIsLandScape()
+                                ? mainWidth(60)
+                                : double.infinity,
+                            height: mainIsLandScape()
+                                ? mainHeight(100)
+                                : mainHeight(100) - mainWidth(30),
+                            decoration: BoxDecoration(
+                                color: Colors.cyan.withOpacity(0),
+                                image: const DecorationImage(
+                                    fit: BoxFit.fitHeight,
+                                    image: AssetImage(
+                                        "assets/myPhotoBigFace.webp"))),
+                          ),
+                        ),
+                      ),
                     ),
+                    Align(
+                      alignment: Alignment.centerRight,
+                      child: Container(
+                        // height: mainHeight(80),
+                        // width: mainWidth(80),
+                        // color: Colors.green.withOpacity(0.1),
+                        child:
+                            //  mainIsLandScape()
+                            //     ? Row(
+                            //         mainAxisAlignment: MainAxisAlignment.center,
+                            //         children: aboutPortions(),
+                            //       )
+                            //     :
+                            Column(
+                          mainAxisAlignment: mainIsLandScape()
+                              ? MainAxisAlignment.center
+                              : MainAxisAlignment.end,
+                          children: aboutPortions(),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
             ],
           ),
         );
@@ -58,27 +105,54 @@ class AboutPage extends StatelessWidget {
 
   List<Widget> aboutPortions() {
     return [
-      aboutImagePortion(),
+      // aboutImagePortion(),
       aboutTextsPortion(),
     ];
   }
 
-  Widget aboutImagePortion() {
-    return Container(
-      width: aboutImageSize().width,
-      height: aboutImageSize().height,
-      color: Colors.black,
-      child: circleProfileImage(),
-    );
-  }
+  // Widget aboutImagePortion() {
+  //   return Container(
+  //     width: aboutImageSize().width,
+  //     height: aboutImageSize().height,
+  //     color: Colors.black,
+  //     child: circleProfileImage(),
+  //   );
+  // }
 
   Widget aboutTextsPortion() {
     return Container(
-      color: Colors.black,
-      height: aboutDetailSize().height,
+      // height: aboutDetailSize().height,
+      decoration: BoxDecoration(
+        color: Colors.black.withOpacity(1),
+        borderRadius: BorderRadius.only(
+            bottomLeft: Radius.circular(mainShortSize(3)),
+            topLeft: Radius.circular(mainShortSize(3))),
+        gradient: LinearGradient(
+            colors: [
+              Colors.blueGrey[800]!.withOpacity(0.4),
+              Colors.black12.withOpacity(0.03),
+              Colors.black12.withOpacity(0.04),
+              Colors.black12.withOpacity(0.45),
+              Colors.black,
+            ],
+            stops: const [
+              0.001,
+              0.0,
+              0.07,
+              0.2,
+              0.35,
+            ],
+            transform: mainIsLandScape()
+                ? null
+                : const GradientRotation(math.pi * 90 / 180)),
+      ),
       width: aboutDetailSize().width,
       child: Padding(
-        padding: const EdgeInsets.only(left: 8, right: 8, bottom: 8, top: 16),
+        padding: EdgeInsets.only(
+            left: mainShortSize(3),
+            right: mainShortSize(3),
+            bottom: mainShortSize(3),
+            top: mainShortSize(3)),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
@@ -102,7 +176,7 @@ class AboutPage extends StatelessWidget {
                       ),
                     ])),
             Text(
-              loremipsom,
+              aboutDescription,
               textAlign: TextAlign.justify,
               style: mainDescriptionDetailStyle(),
             ),

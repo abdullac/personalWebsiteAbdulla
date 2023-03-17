@@ -89,9 +89,9 @@ class SkillsPage extends StatelessWidget {
     );
   }
 
-  Column mySkillsItem(String assetImage, String title) {
+  Widget mySkillsItem(String assetImage, String title) {
     return Column(
-      mainAxisAlignment: MainAxisAlignment.center,
+      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: [
         Image.network(
           assetImage,

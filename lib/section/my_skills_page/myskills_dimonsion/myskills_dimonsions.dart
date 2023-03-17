@@ -10,8 +10,8 @@ int mySkilsGridcrosAxisCount() {
 
 double mySkilsGridItemImageHeight() {
   return mainIsDeskTop()
-      ? mainHeight(35)
+      ? mainHeight(25)
       : mainIsLandscapeMobile()
-          ? mainHeight(50)
-          : mainHeight(20);
+          ? mainHeight(45)
+          : mainHeight(17);
 }

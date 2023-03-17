@@ -109,9 +109,13 @@ class MenuDrawerList extends StatelessWidget {
     return InkWell(
       onTap: () {
         drawerMenuClose();
-        PageMain.itemScrollController.scrollTo(
-            index: index, duration: const Duration(milliseconds: 700));
-        PageMain.itemPositionListner.itemPositions.addListener(() {});
+        if (index == 0) {
+          toHomePage();
+        } else {
+          PageMain.itemScrollController.scrollTo(
+              index: index, duration: const Duration(milliseconds: 700));
+          PageMain.itemPositionListner.itemPositions.addListener(() {});
+        }
       },
       child: Center(
         child: ListTile(
@@ -150,11 +154,11 @@ class MenuDrawerList extends StatelessWidget {
 
 toHomePage() {
   final menuDrawerState = SliderMenuDrawer.sliderMenuDrawerKey.currentState;
-  final homePageDrawerState = SliderHomePageDrawer.sliderHomePageDrawerKey.currentState;
+  final homePageDrawerState =
+      SliderHomePageDrawer.sliderHomePageDrawerKey.currentState;
   if (menuDrawerState != null && homePageDrawerState != null) {
-
-      menuDrawerState.closeSlider();
-      homePageDrawerState.openSlider();
+    menuDrawerState.closeSlider();
+    homePageDrawerState.openSlider();
     // if (menuDrawerState.isDrawerOpen) {
     //   menuDrawerState.closeSlider();
     //   MyApp.drawerSideNotifier.value = DrawerSide.right;

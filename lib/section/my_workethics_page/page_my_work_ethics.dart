@@ -60,10 +60,12 @@ class MyWorkEthicsPage extends StatelessWidget {
           physics: const NeverScrollableScrollPhysics(),
           padding: const EdgeInsets.all(8),
           gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-              crossAxisCount: myWorkEthicsGridCrossAxisCount(),
-              crossAxisSpacing: 5,
-              mainAxisSpacing: 0,
-              childAspectRatio: 9),
+            crossAxisCount: myWorkEthicsGridCrossAxisCount(),
+            crossAxisSpacing: 5,
+            mainAxisSpacing: 0,
+            // childAspectRatio: 9,
+            childAspectRatio: 10
+          ),
           children: [
             myWorkEthicPoint("Aim to make every work complete with perfect."),
             myWorkEthicPoint("Working longer hours with responsibility."),
@@ -82,17 +84,20 @@ class MyWorkEthicsPage extends StatelessWidget {
       Icons.radio_button_checked,
       color: green600,
     );
-    return Padding(
-      padding: const EdgeInsets.all(8.0),
-      child: Row(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 5),
-            child: checkIcon,
-          ),
-          Text(workEthicsPoint)
-        ],
+    return Container(
+      color: Colors.black,
+      child: Padding(
+        padding: const EdgeInsets.all(0.5),
+        child: Row(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 5),
+              child: checkIcon,
+            ),
+            Text(workEthicsPoint)
+          ],
+        ),
       ),
     );
   }

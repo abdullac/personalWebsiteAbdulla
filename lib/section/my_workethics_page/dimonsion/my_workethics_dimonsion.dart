@@ -15,8 +15,8 @@ int myWorkEthicsGridCrossAxisCount(){
 
 double myWorkEthicsAreaHeight(){
   return mainIsDeskTop()
-  ? mainWidth(20)
+  ? (mainWidth(7)+mainHeight(19))
   : mainIsTablet() || mainIsLandscapeMobile()
-  ? mainWidth(35)
-  : mainWidth(95);
+  ? (mainWidth(16)+mainHeight(19))
+  : (mainWidth(60)+mainHeight(19));
 }
