@@ -15,7 +15,18 @@ class MenuDrawerList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: Colors.grey[900]?.withOpacity(0.95),
+      decoration: BoxDecoration(
+          color: Colors.grey[900]?.withOpacity(0.95),
+          gradient: LinearGradient(
+            colors: [
+               Colors.black.withOpacity(0.9),
+               Colors.grey[900]!.withOpacity(0.95),
+            ],
+            stops: const [
+              0,
+              0.7
+            ]
+          )),
       child: ResponsiveBuilder(builder: (context, sizingInfo) {
         Screen(sizingInfo: sizingInfo);
         return Transform.translate(

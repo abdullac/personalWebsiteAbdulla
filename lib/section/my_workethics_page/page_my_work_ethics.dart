@@ -82,7 +82,8 @@ class MyWorkEthicsPage extends StatelessWidget {
   Widget myWorkEthicPoint(String workEthicsPoint) {
     Icon checkIcon = Icon(
       Icons.radio_button_checked,
-      color: green600,
+      // color: green600,
+      color: Colors.redAccent[700]?.withOpacity(0.8),
     );
     return Container(
       color: Colors.black,

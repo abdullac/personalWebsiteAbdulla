@@ -46,6 +46,11 @@ class SliderMenuDrawer extends StatelessWidget {
                 slideDirection: SlideDirection.LEFT_TO_RIGHT,
                 slider: const MenuDrawerList(),
                 sliderOpenSize: mainWidth(60),
+                sliderBoxShadow: SliderBoxShadow(
+                  color: Colors.black26,
+                  blurRadius: 10,
+                  spreadRadius: 1
+                ),
                 child: mainPageWidget,
               ),
             );

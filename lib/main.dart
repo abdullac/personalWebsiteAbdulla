@@ -5,6 +5,7 @@ import 'package:flutter_slider_drawer/flutter_slider_drawer.dart';
 import 'package:personalwebsite/core/responsive/screen.dart';
 import 'package:personalwebsite/scrn_main/scrn_main.dart';
 import 'package:personalwebsite/section/home_page/page_home.dart';
+import 'package:personalwebsite/section/page_main/main_core/Widget/slider_menu_list.dart';
 import 'package:personalwebsite/section/page_main/main_core/main_dimonsions.dart';
 import 'package:personalwebsite/section/page_main/main_core/widgets.dart';
 import 'package:personalwebsite/section/page_main/page_main.dart';
@@ -122,9 +123,13 @@ class MyApp extends StatelessWidget {
           padding: const EdgeInsets.all(8.0),
           child: TextButton(
             onPressed: () {
-              PageMain.itemScrollController.scrollTo(
-                  index: index, duration: const Duration(milliseconds: 700));
-              PageMain.itemPositionListner.itemPositions.addListener(() {});
+              if (index == 0) {
+                toHomePage();
+              } else {
+                PageMain.itemScrollController.scrollTo(
+                    index: index, duration: const Duration(milliseconds: 700));
+                PageMain.itemPositionListner.itemPositions.addListener(() {});
+              }
             },
             child: Text(
               buttonNameList[index],

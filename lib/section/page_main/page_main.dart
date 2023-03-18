@@ -20,6 +20,7 @@ import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
 
 bool isAppBarDelayStart = false;
 ValueNotifier<bool> initialOpeningNotifier = ValueNotifier(true);
+ValueNotifier<bool> gotoTopButtonNotifier = ValueNotifier(false);
 
 List<Widget> pagesList = [
   const HomePage3(),
@@ -48,9 +49,12 @@ class PageMain extends StatelessWidget {
     return SliderHomePageDrawer(
       mainPageWidget: SliderMenuDrawer(
         mainPageWidget: Container(
-          color: Colors.red,
+          color: Colors.black,
           child: NotificationListener<UserScrollNotification>(
             onNotification: (notification) {
+              final scrollPixels = notification.metrics.pixels;
+              gotoTopButtonNotifier.value =
+                  scrollPixels >= mainHeight(100) ? true : false;
               final scrollDirection = notification.direction.name;
               if (scrollDirection == "reverse") {
                 drawerMenuClose();
@@ -86,13 +90,44 @@ class PageMain extends StatelessWidget {
 
               return true;
             },
-            child: ScrollablePositionedList.builder(
-              itemScrollController: itemScrollController,
-              itemCount: pagesList.length,
-              shrinkWrap: true,
-              itemBuilder: (BuildContext context, int index) {
-                return pagesList[index];
-              },
+            child: Stack(
+              children: [
+                ScrollablePositionedList.builder(
+                  itemScrollController: itemScrollController,
+                  itemCount: pagesList.length,
+                  shrinkWrap: true,
+                  itemBuilder: (BuildContext context, int index) {
+                    return pagesList[index];
+                  },
+                ),
+                Positioned(
+                  bottom: 10,
+                  right: 5,
+                  child: ValueListenableBuilder(
+                      valueListenable: gotoTopButtonNotifier,
+                      builder: (context, newValue, _) {
+                        return newValue == false
+                            ? SizedBox()
+                            : CircleAvatar(
+                                backgroundColor:
+                                    Colors.grey[700]?.withOpacity(0.5),
+                                child: IconButton(
+                                  onPressed: () {
+                                    itemScrollController.scrollTo(
+                                      index: 1,
+                                      duration:
+                                          const Duration(milliseconds: 500),
+                                    );
+                                  },
+                                  icon: Icon(
+                                    Icons.keyboard_double_arrow_up_rounded,
+                                    color: Colors.redAccent.withOpacity(0.8),
+                                  ),
+                                ),
+                              );
+                      }),
+                )
+              ],
             ),
           ),
         ),

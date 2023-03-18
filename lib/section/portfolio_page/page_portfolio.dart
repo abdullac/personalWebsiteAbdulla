@@ -21,6 +21,8 @@ int _additionalImageItemIndex = 0;
 ValueNotifier<NextAAndPrevios> nextAndPreviosNotifier =
     ValueNotifier(NextAAndPrevios.next);
 
+bool stopPortfolioImageScroll = false;
+
 List<String> portfolioImageList = [
   "assets/netflipzhome.webp",
   "assets/netflipzcomingsoon.webp",
@@ -74,7 +76,7 @@ List<String> portfolioAdditionalImageList = [
 
 List<String> portfolioAdditionalTextList = [
   "Transparent Animated Hide and show App Bar",
-  "three types of visibilty in Bottom Navigation Bar",
+  "Three types of visibilty in Bottom Navigation Bar",
   "Image cards and Number Image cards",
   "Defferent views of Search field",
 ];
@@ -93,21 +95,7 @@ class PortfolioPage extends StatelessWidget {
   Widget build(BuildContext context) {
     WidgetsBinding.instance.addPostFrameCallback((_) async {
       subImagesAreaIndexNotifier.notifyListeners();
-      for (portfolioDotPositionNotifier.value = 0;
-          portfolioDotPositionNotifier.value < portfolioImageList.length;
-          portfolioDotPositionNotifier.value++) {
-        if (portfolioDotPositionNotifier.value == portfolioImageList.length) {
-        } else {
-          subImagesAreaIndexNotifier.value = portfolioDotPositionNotifier.value;
-          _itemScrollController.scrollTo(
-            index: portfolioDotPositionNotifier.value,
-            duration: const Duration(milliseconds: 2000),
-          );
-        }
-        subImagesAreaIndexNotifier.notifyListeners();
-
-        await Future.delayed(const Duration(seconds: 6), () {});
-      }
+      await portfolioImagesListAutoScrolling();
     });
     return ResponsiveBuilder(builder: (context, sizingInfo) {
       Screen(sizingInfo: sizingInfo);
@@ -137,6 +125,27 @@ class PortfolioPage extends StatelessWidget {
     });
   }
 
+  Future<void> portfolioImagesListAutoScrolling() async {
+    for (portfolioDotPositionNotifier.value;
+        portfolioDotPositionNotifier.value < portfolioImageList.length;
+        portfolioDotPositionNotifier.value++) {
+      if (portfolioDotPositionNotifier.value == portfolioImageList.length) {
+      } else {
+        subImagesAreaIndexNotifier.value = portfolioDotPositionNotifier.value;
+        _itemScrollController.scrollTo(
+          index: portfolioDotPositionNotifier.value,
+          duration: const Duration(milliseconds: 2000),
+        );
+      }
+      subImagesAreaIndexNotifier.notifyListeners();
+
+      await Future.delayed(const Duration(seconds: 6), () {});
+      if (stopPortfolioImageScroll == true) {
+        break;
+      }
+    }
+  }
+
   // Flexible portfolioHeading() {
   //   return Flexible(
   //     flex: 3,
@@ -164,72 +173,85 @@ class PortfolioPage extends StatelessWidget {
       flex: 6,
       child: Stack(
         children: [
-          Container(
-            color: Colors.black,
-            child: ScrollablePositionedList.builder(
-              physics: const NeverScrollableScrollPhysics(),
-              itemScrollController: _itemScrollController,
-              itemPositionsListener: _itemPositionsListener,
-              scrollDirection: Axis.horizontal,
-              itemCount: portfolioImageList.length,
-              itemBuilder: (ctx, index) {
-                return Container(
-                  color: Colors.grey[900],
-                  margin: EdgeInsets.symmetric(
-                    horizontal: portfolioDimonsion(100 / 25),
-                    vertical: 10,
-                  ),
-                  child: InkWell(
-                    onTap: () {
-                      subImagesAreaIndexNotifier.value = index;
-                      subImagesAreaIndexNotifier.notifyListeners();
-                    },
-                    child: Column(
-                      children: [
-                        Flexible(
-                          flex: 4,
-                          child: Container(
-                            width: portfolioDimonsion(100 / 4),
-                            height: double.infinity,
-                            margin: const EdgeInsets.symmetric(
-                                // horizontal: 5,
-                                // vertical: 6,
-                                ),
-                            decoration: BoxDecoration(
-                              color: Colors.grey[900],
-                              image: DecorationImage(
-                                  fit: BoxFit.fitWidth,
-                                  image: AssetImage(portfolioImageList[index])),
-                              // boxShadow: const [
-                              //   BoxShadow(
-                              //     color: Colors.grey,
-                              //     offset: Offset(0.5, 0.5),
-                              //     blurRadius: 0.5,
-                              //     spreadRadius: 0.5,
-                              //   )
-                              // ],
-                            ),
-                          ),
-                        ),
-                        Flexible(
-                          flex: 2,
-                          child: Container(
-                            color: Colors.black.withOpacity(0.3),
-                            width: portfolioDimonsion(100 / 4),
-                            padding: const EdgeInsets.symmetric(
-                                horizontal: 8, vertical: 2),
-                            child: Text(
-                              portfolioTextList[index],
-                              textAlign: TextAlign.center,
-                              style: TextStyle(fontSize: mainShortSize(3.2)),
-                            ),
-                          ),
-                        ),
-                      ],
+          InkWell(
+            onLongPress: () async {
+              if (stopPortfolioImageScroll == true) {
+                stopPortfolioImageScroll = false;
+                print(stopPortfolioImageScroll);
+                await portfolioImagesListAutoScrolling();
+              } else {
+                stopPortfolioImageScroll = true;
+                print(stopPortfolioImageScroll);
+              }
+            },
+            child: Container(
+              color: Colors.black,
+              child: ScrollablePositionedList.builder(
+                physics: const NeverScrollableScrollPhysics(),
+                itemScrollController: _itemScrollController,
+                itemPositionsListener: _itemPositionsListener,
+                scrollDirection: Axis.horizontal,
+                itemCount: portfolioImageList.length,
+                itemBuilder: (ctx, index) {
+                  return Container(
+                    color: Colors.grey[900],
+                    margin: EdgeInsets.symmetric(
+                      horizontal: portfolioDimonsion(100 / 25),
+                      vertical: 10,
                     ),
-                  ),
-                );
-              },
+                    child: InkWell(
+                      onTap: () {
+                        subImagesAreaIndexNotifier.value = index;
+                        subImagesAreaIndexNotifier.notifyListeners();
+                      },
+                      child: Column(
+                        children: [
+                          Flexible(
+                            flex: 4,
+                            child: Container(
+                              width: portfolioDimonsion(100 / 4),
+                              height: double.infinity,
+                              margin: const EdgeInsets.symmetric(
+                                  // horizontal: 5,
+                                  // vertical: 6,
+                                  ),
+                              decoration: BoxDecoration(
+                                color: Colors.grey[900],
+                                image: DecorationImage(
+                                    fit: BoxFit.fitWidth,
+                                    image:
+                                        AssetImage(portfolioImageList[index])),
+                                // boxShadow: const [
+                                //   BoxShadow(
+                                //     color: Colors.grey,
+                                //     offset: Offset(0.5, 0.5),
+                                //     blurRadius: 0.5,
+                                //     spreadRadius: 0.5,
+                                //   )
+                                // ],
+                              ),
+                            ),
+                          ),
+                          Flexible(
+                            flex: 2,
+                            child: Container(
+                              color: Colors.black.withOpacity(0.3),
+                              width: portfolioDimonsion(100 / 4),
+                              padding: const EdgeInsets.symmetric(
+                                  horizontal: 8, vertical: 2),
+                              child: Text(
+                                portfolioTextList[index],
+                                textAlign: TextAlign.center,
+                                style: TextStyle(fontSize: mainShortSize(3.2)),
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  );
+                },
+              ),
             ),
           ),
           Align(
