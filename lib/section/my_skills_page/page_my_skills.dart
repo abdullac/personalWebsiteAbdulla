@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:personalwebsite/core/responsive/screen.dart';
-import 'package:personalwebsite/section/home_page/home_page_real/home_page_real.dart';
-import 'package:personalwebsite/section/my_skills_page/myskills_dimonsion/myskills_dimonsions.dart';
-import 'package:personalwebsite/section/page_main/main_core/main_dimonsions.dart';
-import 'package:personalwebsite/section/page_main/main_core/widgets.dart';
+import 'package:personalwebsite/section/page_main/widgets/section_heading.dart';
+import 'package:personalwebsite/section/home_page/core/home_constents.dart';
+import 'package:personalwebsite/section/my_skills_page/core/skills_constents.dart';
+import 'package:personalwebsite/section/page_main/core/main_dimonsions.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 
 class SkillsPage extends StatelessWidget {
@@ -19,7 +19,6 @@ class SkillsPage extends StatelessWidget {
         child: Column(
           children: [
             sectionHeading("My Skills"),
-            // mySkillsHeading(),
             mySkillsGridview(),
           ],
         ),
@@ -27,80 +26,44 @@ class SkillsPage extends StatelessWidget {
     });
   }
 
-  // Flexible mySkillsHeading() {
-  //   return Flexible(
-  //     flex: 3,
-  //     child: Container(
-  //       // color: Colors.cyan[700],
-  //       color: Colors.black,
-  //       child: Center(
-  //         child: Text(
-  //           "My Skills",
-  //           style: mainHeadLineStyle(),
-  //         ),
-  //       ),
-  //     ),
-  //   );
-  // }
-
   Flexible mySkillsGridview() {
     return Flexible(
       flex: 17,
       child: Container(
-        // color: Colors.cyan[900],
         color: Colors.black,
         child: Padding(
           padding: const EdgeInsets.all(8.0),
           child: GridView(
-            shrinkWrap: true,
-            scrollDirection: Axis.horizontal,
-            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-              crossAxisCount: mySkilsGridcrosAxisCount(),
-            ),
-            children: [
-              mySkillsItem(networkImageList[5], "Dart"),
-              mySkillsItem(networkImageList[6], "Flutter"),
-              mySkillsItem(networkImageList[8], "Freezed"),
-              mySkillsItem(networkImageList[11], "Bloc"),
-              mySkillsItem(networkImageList[9], "Dio"),
-              mySkillsItem(networkImageList[10], "Json"),
-              mySkillsItem(networkImageList[7], "Java"),
-              mySkillsItem(networkImageList[0], "HTML"),
-              mySkillsItem(networkImageList[1], "CSS"),
-              mySkillsItem(networkImageList[2], "Java Script"),
-              mySkillsItem(networkImageList[3], "JQuery"),
-              mySkillsItem(networkImageList[4], "Boot Strap"),
-              // mySkillsItem(imageList[1],"hjfhgdsjf"),
-              // mySkillsItem(imageList[2],"hjfhgdsjf"),
-              // mySkillsItem(imageList[3],"hjfhgdsjf"),
-              // mySkillsItem(imageList[4],"hjfhgdsjf"),
-              // mySkillsItem(imageList[5],"hjfhgdsjf"),
-              // mySkillsItem(imageList[6],"hjfhgdsjf"),
-              // mySkillsItem(imageList[7],"hjfhgdsjf"),
-              // mySkillsItem(imageList[1],"hjfhgdsjf"),
-              // mySkillsItem(imageList[2],"hjfhgdsjf"),
-              // mySkillsItem(imageList[3],"hjfhgdsjf"),
-              // mySkillsItem(imageList[4],"hjfhgdsjf"),
-              // mySkillsItem(imageList[5],"hjfhgdsjf"),
-            ],
-          ),
+              shrinkWrap: true,
+              scrollDirection: Axis.horizontal,
+              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: mySkilsGridcrosAxisCount(),
+              ),
+              children: mySkillsItemsWidgetList()),
         ),
       ),
     );
   }
 
-  Widget mySkillsItem(String assetImage, String title) {
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-      children: [
-        Image.network(
-          assetImage,
-          height: mySkilsGridItemImageHeight(),
-          errorBuilder: (context, error, stackTrace) => Container(width: 5,height: 5,
-            color: Colors.red.withOpacity(0.3),),
-        ),
-        Text(title)
-      ],
-    );
+  List<Widget> mySkillsItemsWidgetList() {
+    List<Widget> skillsItemsWidgetList = [];
+    for (int index = 0; index < skillsTitleList.length; index++) {
+      skillsItemsWidgetList.add(Column(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        children: [
+          Image.network(
+            networkImageList[index],
+            height: mySkilsGridItemImageHeight(),
+            errorBuilder: (context, error, stackTrace) => Container(
+              width: 5,
+              height: 5,
+              color: Colors.red.withOpacity(0.3),
+            ),
+          ),
+          Text(skillsTitleList[index])
+        ],
+      ));
+    }
+    return skillsItemsWidgetList;
   }
 }

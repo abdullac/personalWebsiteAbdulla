@@ -1,31 +1,29 @@
-import 'dart:ui';
-
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_slider_drawer/flutter_slider_drawer.dart';
-import 'package:personalwebsite/core/responsive/screen.dart';
-import 'package:personalwebsite/main.dart';
+import 'package:personalwebsite/core/widgets/appbar_preferresize.dart';
 import 'package:personalwebsite/section/about_page/page_about.dart';
 import 'package:personalwebsite/section/contact_page/page_contact.dart';
 import 'package:personalwebsite/section/footer_page/page_footer.dart';
-import 'package:personalwebsite/section/home_page/page_home.dart';
-import 'package:personalwebsite/section/looking_for_job_page/page_looking_for_job.dart';
+import 'package:personalwebsite/section/hireme_page/page_hireme.dart';
 import 'package:personalwebsite/section/my_skills_page/page_my_skills.dart';
 import 'package:personalwebsite/section/my_workethics_page/page_my_work_ethics.dart';
-import 'package:personalwebsite/section/page_main/main_core/Widget/slider_menu_drawer.dart';
-import 'package:personalwebsite/section/page_main/main_core/main_dimonsions.dart';
+import 'package:personalwebsite/section/page_main/widgets/slider_menu_drawer.dart';
+import 'package:personalwebsite/section/page_main/core/main_dimonsions.dart';
+import 'package:personalwebsite/section/page_main/widgets/main_page_listview.dart';
+import 'package:personalwebsite/section/page_main/widgets/mainpage_goto_top_button.dart';
+import 'package:personalwebsite/section/page_main/widgets/slider_homepage_drawer.dart';
 import 'package:personalwebsite/section/portfolio_page/page_portfolio.dart';
-import 'package:responsive_builder/responsive_builder.dart';
 import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
 
-bool isAppBarDelayStart = false;
 ValueNotifier<bool> initialOpeningNotifier = ValueNotifier(true);
 ValueNotifier<bool> gotoTopButtonNotifier = ValueNotifier(false);
+
+int lastforwardScrolledTime = DateTime.now().millisecondsSinceEpoch;
 
 List<Widget> pagesList = [
   const HomePage3(),
   const AboutPage(),
-  PortfolioPage(),
+  const PortfolioPage(),
   const MyWorkEthicsPage(),
   const SkillsPage(),
   const LookingForJob(),
@@ -34,7 +32,7 @@ List<Widget> pagesList = [
 ];
 
 class PageMain extends StatelessWidget {
-  PageMain({Key? key}) : super(key: key);
+  const PageMain({Key? key}) : super(key: key);
 
   static final ItemScrollController itemScrollController =
       ItemScrollController();
@@ -52,81 +50,13 @@ class PageMain extends StatelessWidget {
           color: Colors.black,
           child: NotificationListener<UserScrollNotification>(
             onNotification: (notification) {
-              final scrollPixels = notification.metrics.pixels;
-              gotoTopButtonNotifier.value =
-                  scrollPixels >= mainHeight(100) ? true : false;
-              final scrollDirection = notification.direction.name;
-              if (scrollDirection == "reverse") {
-                drawerMenuClose();
-                MyApp.appBarNotifier.value = false;
-              } else if (scrollDirection == "forward") {
-                drawerMenuClose();
-                MyApp.appBarNotifier.value = true;
-              }
-              MyApp.appBarImageCircle = MyApp.appBarCircleImage();
-              MyApp.appBarTitle = "Abdulla";
-              MyApp.appBarBackgroundColor = Colors.redAccent[700];
-              MyApp.appBarNotifier.notifyListeners();
-              if (isAppBarDelayStart == false &&
-                  MyApp.appBarNotifier.value == true) {
-                isAppBarDelayStart = true;
-                Future.delayed(const Duration(seconds: 5), () {
-                  /////////////////////
-                  MyApp.appBarNotifier.value = true;
-                  MyApp.appBarImageCircle = null;
-                  MyApp.appBarTitle = "";
-                  MyApp.appBarBackgroundColor = Colors.redAccent.withOpacity(0);
-                  MyApp.appBarNotifier.notifyListeners();
-                  /////////////////////
-                  isAppBarDelayStart = false;
-                  Future.delayed(const Duration(seconds: 5), () {
-                    MyApp.appBarNotifier.value = false;
-                    MyApp.appBarNotifier.notifyListeners();
-                  });
-                });
-              } else {
-                //
-              }
-
+              whenMainpageListvieScroll(notification);
               return true;
             },
             child: Stack(
               children: [
-                ScrollablePositionedList.builder(
-                  itemScrollController: itemScrollController,
-                  itemCount: pagesList.length,
-                  shrinkWrap: true,
-                  itemBuilder: (BuildContext context, int index) {
-                    return pagesList[index];
-                  },
-                ),
-                Positioned(
-                  bottom: 10,
-                  right: 5,
-                  child: ValueListenableBuilder(
-                      valueListenable: gotoTopButtonNotifier,
-                      builder: (context, newValue, _) {
-                        return newValue == false
-                            ? SizedBox()
-                            : CircleAvatar(
-                                backgroundColor:
-                                    Colors.grey[700]?.withOpacity(0.5),
-                                child: IconButton(
-                                  onPressed: () {
-                                    itemScrollController.scrollTo(
-                                      index: 1,
-                                      duration:
-                                          const Duration(milliseconds: 500),
-                                    );
-                                  },
-                                  icon: Icon(
-                                    Icons.keyboard_double_arrow_up_rounded,
-                                    color: Colors.redAccent.withOpacity(0.8),
-                                  ),
-                                ),
-                              );
-                      }),
-                )
+                mainPageListView(),
+                gotoTopButton(),
               ],
             ),
           ),
@@ -134,18 +64,63 @@ class PageMain extends StatelessWidget {
       ),
     );
   }
-}
 
-drawerMenuClose() {
-  final drawerState = SliderMenuDrawer.sliderMenuDrawerKey.currentState;
-  if (drawerState != null) {
-    drawerState.isDrawerOpen
-        ? drawerState.closeSlider()
-        // : drawerState.openSlider();
-        : null;
+  Future<void> whenMainpageListvieScroll(
+      UserScrollNotification notification) async {
+    final scrollPixels = notification.metrics.pixels;
+    gotoTopButtonNotifier.value =
+        scrollPixels >= mainHeight(100) ? true : false;
+    final scrollDirection = notification.direction.name;
+    drawerMenuClose();
+    if (scrollDirection == "reverse") {
+      appBarNotifier.value = false;
+    } else if (scrollDirection == "forward") {
+      whenForwardScroll();
+      await afterForwardSroll5sec();
+      await afterForwardSroll10sec();
+    }
+    appBarNotifier.notifyListeners();
+  }
+
+  void whenForwardScroll() {
+    lastforwardScrolledTime = DateTime.now().millisecondsSinceEpoch;
+    appBarNotifier.value = true;
+    appBarImageCircle = appBarCircleImage();
+    appBarTitle = "Abdulla";
+    appBarBackgroundColor = Colors.redAccent[700];
+  }
+
+  Future<void> afterForwardSroll5sec() async {
+    await Future.delayed(const Duration(seconds: 5), () {
+      if (lastforwardScrolledTime <
+          DateTime.now().millisecondsSinceEpoch - 4999) {
+        appBarImageCircle = null;
+        appBarTitle = "";
+        appBarBackgroundColor = Colors.transparent;
+        appBarNotifier.notifyListeners();
+      }
+    });
+  }
+
+  Future<void> afterForwardSroll10sec() async {
+    await Future.delayed(const Duration(seconds: 5), () {
+      if (lastforwardScrolledTime <
+          DateTime.now().millisecondsSinceEpoch - 9999) {
+        appBarNotifier.value = false;
+        appBarNotifier.notifyListeners();
+      }
+    });
   }
 }
 
+drawerMenuClose() {
+  final drawerMenuState = SliderMenuDrawer.sliderMenuDrawerKey.currentState;
+  if (drawerMenuState != null) {
+    drawerMenuState.isDrawerOpen ? drawerMenuState.closeSlider() : null;
+  }
+}
+
+//////////////////////////////////////////////////////////////////////////////////////
 class NavBar extends StatelessWidget {
   const NavBar({super.key});
 
@@ -194,5 +169,4 @@ class SocialMediaIconsPosts extends StatelessWidget {
   }
 }
 
-
-////// copyRight
+///////////////////////////////////////////////////////////////////////////

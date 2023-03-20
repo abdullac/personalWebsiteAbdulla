@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:personalwebsite/core/responsive/screen.dart';
-import 'package:personalwebsite/section/page_main/main_core/Widget/slider_menu_list.dart';
-import 'package:personalwebsite/section/page_main/main_core/main_dimonsions.dart';
+import 'package:personalwebsite/section/footer_page/core/footer_consteents.dart';
+import 'package:personalwebsite/section/page_main/core/Widget/slider_menu_list.dart';
+import 'package:personalwebsite/section/page_main/core/main_dimonsions.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 
 class Footer extends StatelessWidget {
@@ -15,14 +16,14 @@ class Footer extends StatelessWidget {
         mainAxisSize: MainAxisSize.min,
         children: [
           const Text(
-            "Created by",
+            footerTitle1,
             style: TextStyle(color: Colors.black),
           ),
           TextButton(
             onPressed: () {
               toHomePage();
             },
-            child: const Text("Abdulla",
+            child: const Text(footerTitle2,
                 style: TextStyle(
                     fontWeight: FontWeight.bold, color: Colors.white70)),
           )
@@ -36,18 +37,15 @@ class Footer extends StatelessWidget {
           const Icon(Icons.copyright, color: Colors.black54),
           RichText(
             text: const TextSpan(
-                text: "2023 ",
+                text: footerTitle3,
                 style: TextStyle(color: Colors.white70),
                 children: [
                   TextSpan(
-                      text: "All rights reserved",
-                      style: TextStyle(color: Colors.black))
+                      text: footerTitle4, style: TextStyle(color: Colors.black))
                 ]),
           ),
         ],
       ),
-      // Text("Created by"),
-      // Text("Abdulla"),
     ];
     return ResponsiveBuilder(
       builder: (context, sizingInfo) {
