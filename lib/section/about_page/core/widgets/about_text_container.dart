@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:personalwebsite/core/constents/colors.dart';
 import 'package:personalwebsite/section/about_page/core/about_constends.dart';
 import 'package:personalwebsite/section/page_main/core/main_dimonsions.dart';
 import 'dart:math' as math;
 
 Container aboutTextContainer() {
   return Container(
-    color: Colors.teal.withOpacity(0),
+    color: kTransparent,
     height: mainHeight(100),
     child: Align(
       alignment: Alignment.centerRight,
@@ -23,7 +24,7 @@ Widget aboutTextsPortion() {
   return Container(
     margin: aboutTextContainerMargin(),
     decoration: BoxDecoration(
-      color: Colors.black.withOpacity(1),
+      color: kBlack,
       borderRadius: aboutTextContainerBorderRadius(),
       gradient: aboutTextContainerLinearGradient(),
     ),

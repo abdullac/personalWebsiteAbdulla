@@ -50,7 +50,7 @@ class AboutPage extends StatelessWidget {
 Column aboutHeadingAndText() {
   return Column(
     children: [
-      sectionHeading(aboutHeading, mainHeight(20)),
+      sectionHeading(aboutHeading),
       aboutTextContainer(),
     ],
   );

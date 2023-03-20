@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:personalwebsite/core/constents/colors.dart';
 import 'package:personalwebsite/core/responsive/functions.dart';
 import 'package:personalwebsite/core/responsive/screen.dart';
 import 'package:personalwebsite/section/home_page/core/home_constents.dart';
+import 'package:personalwebsite/section/page_main/core/main_dimonsions.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 
 class LabelArea extends StatelessWidget {
@@ -16,9 +19,9 @@ class LabelArea extends StatelessWidget {
       return Align(
         alignment: homePageLabalAreaAlignment(),
         child: Container(
-          height: shortSize100(33),
-          width: shortSize100(64),
-          color: const Color.fromARGB(255, 26, 26, 26).withOpacity(0.1),
+          height: mainShortSize(33),
+          width: mainShortSize(64),
+          color: kBlack26,
           padding: EdgeInsets.only(left: shortSize100(3)),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -34,27 +37,31 @@ class LabelArea extends StatelessWidget {
     return [
       Text(
         titleWelcome,
-        style: TextStyle(
-            letterSpacing: shortSize100(1),
-            fontSize: shortSize100(3),
-            fontWeight: FontWeight.w900,
-            color: Colors.white.withOpacity(0.3)),
+        style: GoogleFonts.mPlusRounded1c(
+            textStyle: TextStyle(
+                letterSpacing: mainShortSize(1),
+                fontSize: mainShortSize(3),
+                fontWeight: FontWeight.w900,
+                color: kGrey05)),
       ),
       Text(
         titleName,
-        style: TextStyle(
-            letterSpacing: shortSize100(3.2),
-            fontSize: shortSize100(10),
+        style: GoogleFonts.mPlusRounded1c(
+            textStyle:TextStyle(
+            letterSpacing: mainShortSize(3.1),
+            fontSize: mainShortSize(10),
             fontWeight: FontWeight.w900,
-            color: Colors.white),
+            color: kWhite)),
       ),
       Text(
         titleplatform,
-        style: TextStyle(
-            letterSpacing: shortSize100(0.66),
-            fontSize: shortSize100(5.7),
-            fontWeight: FontWeight.w500,
-            color: const Color.fromARGB(255, 255, 23, 46)),
+        style: GoogleFonts.mPlusRounded1c(
+            textStyle:TextStyle(
+            letterSpacing: mainShortSize(0.66),
+            fontSize: mainShortSize(5.7),
+            fontWeight: FontWeight.w600,
+            color: kRedAccent)),
+            // color: const Color.fromARGB(255, 255, 23, 46))),
       ),
     ];
   }

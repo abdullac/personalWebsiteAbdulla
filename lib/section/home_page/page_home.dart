@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:personalwebsite/core/constents/colors.dart';
 import 'package:personalwebsite/core/responsive/screen.dart';
 import 'package:personalwebsite/core/widgets/appbar_preferresize.dart';
-import 'package:personalwebsite/section/home_page/core/widgets/goto_mainpage_button.dart';
+import 'package:personalwebsite/section/home_page/core/widgets/goto_mainpage_button_and_gesture.dart';
 import 'package:personalwebsite/section/home_page/core/widgets/home_page_real.dart';
 import 'package:personalwebsite/section/home_page/core/widgets/homepage_background_small_images.dart';
+import 'package:personalwebsite/section/page_main/core/main_dimonsions.dart';
 import 'package:personalwebsite/section/page_main/page_main.dart';
 import 'package:personalwebsite/section/page_main/widgets/slider_homepage_drawer.dart';
 import 'package:responsive_builder/responsive_builder.dart';
@@ -21,12 +23,15 @@ class PageHome extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      width: double.infinity,
-      height: Dimonsion.internal.height,
-      color: Colors.grey[800],
-      child: const HomePageWidget(),
-    );
+    return ResponsiveBuilder(builder: (context, sizingInfo) {
+      Screen(sizingInfo: sizingInfo);
+      return Container(
+        width: double.infinity,
+        height: mainHeight(100),
+        color: kBlack,
+        child: const HomePageWidget(),
+      );
+    });
   }
 }
 
@@ -47,31 +52,5 @@ class HomePageWidget extends StatelessWidget {
         ],
       );
     });
-  }
-
-  Widget homePageStackWithGestureDetector(
-      {required List<Widget> homePageStackChildrens}) {
-    return GestureDetector(
-      onVerticalDragUpdate: (details) => homePageToMainpage(),
-      onHorizontalDragUpdate: (details) => homePageToMainpage(),
-      onTap: () => homePageToMainpage(),
-      child: Stack(
-        children: homePageStackChildrens,
-      ),
-    );
-  }
-}
-
-homePageToMainpage() {
-  initialOpeningNotifier.value = false;
-  final drawerStateHomePage =
-      SliderHomePageDrawer.sliderHomePageDrawerKey.currentState;
-  if (drawerStateHomePage != null) {
-    drawerStateHomePage.isDrawerOpen ? drawerStateHomePage.closeSlider() : null;
-    appBarNotifier.value = true;
-    appBarImageCircle = null;
-    appBarTitle = "";
-    appBarBackgroundColor = Colors.redAccent.withOpacity(0);
-    appBarNotifier.notifyListeners();
   }
 }

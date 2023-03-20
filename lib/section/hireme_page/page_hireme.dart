@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:personalwebsite/core/constents/colors.dart';
 import 'package:personalwebsite/core/responsive/screen.dart';
 import 'package:personalwebsite/section/page_main/widgets/section_heading.dart';
 import 'package:personalwebsite/section/hireme_page/core/hireme_constents.dart';
@@ -16,7 +18,7 @@ class LookingForJob extends StatelessWidget {
         Screen(sizingInfo: sizingInfo);
         return Container(
           height: mainHeight(70),
-          color: Colors.black,
+          color: kBlack,
           child: Column(
             children: [
               sectionHeading(hiremeHeading),
@@ -28,11 +30,11 @@ class LookingForJob extends StatelessWidget {
     );
   }
 
-  Flexible hiremeContents() {
+  Widget hiremeContents() {
     return Flexible(
       flex: 25,
       child: Container(
-        color: Colors.black,
+        color: kTransparent,
         child: Center(
           child: Padding(
             padding: hiremeContentsPadding(),
@@ -49,8 +51,6 @@ class LookingForJob extends StatelessWidget {
       ),
     );
   }
-
-
 }
 
 Opacity devicesIcons() {
@@ -96,32 +96,36 @@ RichText hiremeTextContent() {
     textAlign: TextAlign.justify,
     text: TextSpan(
       text: hireText1,
-      style: TextStyle(
-        color: Colors.white60.withOpacity(0.6),
-      ),
+      style: GoogleFonts.varelaRound(
+          textStyle: TextStyle(
+        color: kWhite80,
+        fontSize: mainShortSize(3.3),
+      )),
       children: [
         TextSpan(
           text: hireText4,
           style: TextStyle(
-              color: Colors.red[300]?.withOpacity(0.8),
-              fontWeight: FontWeight.w500),
+            color: kRedAccent,
+            fontWeight: FontWeight.w500,
+          ),
         ),
         TextSpan(
           text: hireText5,
           style: TextStyle(
-            color: Colors.white60.withOpacity(0.6),
+            color: kWhite80,
           ),
         ),
         TextSpan(
           text: hireText2,
           style: TextStyle(
-              color: Colors.red[300]?.withOpacity(0.8),
-              fontWeight: FontWeight.w500),
+            color: kRedAccent,
+            fontWeight: FontWeight.w500,
+          ),
         ),
         TextSpan(
           text: hireText3,
           style: TextStyle(
-            color: Colors.white60.withOpacity(0.6),
+            color: kWhite80,
           ),
         ),
       ],

@@ -1,11 +1,14 @@
 import 'package:email_validator/email_validator.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:personalwebsite/section/contact_page/core/contact_constents.dart';
 import 'package:personalwebsite/section/contact_page/core/widgets/contact_form_field_widget.dart';
 import 'package:personalwebsite/section/contact_page/core/widgets/snackbar_while_submit.dart';
 import 'package:personalwebsite/section/contact_page/page_contact.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert' as convert;
+
+import 'package:personalwebsite/section/page_main/core/main_dimonsions.dart';
 
 Flexible nameFormFieldWidget() {
   return contactFormFieldWidget(
@@ -65,8 +68,14 @@ Flexible formFieldSubmitButton() {
         child: ElevatedButton(
           style: submitButtonStyle,
           onPressed: () => submitForm(),
-          child: const Text(
+          child: Text(
             submitButtonTitle,
+            style: GoogleFonts.varelaRound(
+              textStyle: TextStyle(
+                fontSize: mainShortSize(3.3),
+                fontWeight: FontWeight.w900,
+              ),
+            ),
           ),
         ),
       ),

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:personalwebsite/core/constents/colors.dart';
 import 'package:personalwebsite/section/page_main/core/main_dimonsions.dart';
 import 'package:personalwebsite/section/portfolio_page/page_portfolio.dart';
 
@@ -35,8 +36,8 @@ double portfolioAdditionalImagesDimonsion(double value) {
 BoxDecoration additionalImagesItemBorderAndDecoration(int index) {
   return BoxDecoration(
     border: Border.all(
-      color: Colors.red.withOpacity(
-          additionalImageItemIndexNotifier.value == index ? 0.9 : 0.5),
+      color: kGrey.withOpacity(
+          additionalImageItemIndexNotifier.value == index ? 0.4 : 0.3),
     ),
   );
 }

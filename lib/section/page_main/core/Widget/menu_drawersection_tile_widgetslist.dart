@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:personalwebsite/core/constents/colors.dart';
 import 'package:personalwebsite/section/page_main/core/Widget/slider_menu_list.dart';
 import 'package:personalwebsite/section/page_main/core/main_constents.dart';
 import 'package:personalwebsite/section/page_main/page_main.dart';
@@ -15,11 +16,11 @@ List<Widget> sectionTileWidgetsList() {
           child: ListTile(
             leading: Icon(
               sectionTileItemsLists[index][0],
-              color: Colors.redAccent[400],
+              color: kRedAccent,
             ),
             title: Text(
               sectionTileItemsLists[index][1],
-              style: TextStyle(color: Colors.redAccent[100]),
+              style: TextStyle(color: kRed),
             ),
           ),
         ),

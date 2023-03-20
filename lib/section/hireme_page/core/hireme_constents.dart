@@ -13,10 +13,12 @@ const String hireText3 =
 const String hireText4 = "Web";
 const String hireText5 = " and defferent types of operating systems like ";
 
-
-
 //////  () =>  //////
-  EdgeInsets hiremeContentsPadding() {
-    return EdgeInsets.all(
-              mainIsPortraitMobile() ? 8.0 : mainShortSize(15));
-  }
+EdgeInsets hiremeContentsPadding() {
+  return EdgeInsets.symmetric(
+    vertical:
+        // mainIsPortraitMobile() ? 8.0 : mainShortSize(1.4),
+        8,
+    horizontal: mainShortSize(4.5),
+  );
+}

@@ -1,5 +1,7 @@
-
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:personalwebsite/core/constents/colors.dart';
+import 'package:personalwebsite/section/page_main/core/main_dimonsions.dart';
 
 Flexible contactFormFieldWidget({
   required int flex,
@@ -16,7 +18,7 @@ Flexible contactFormFieldWidget({
     flex: flex,
     child: Container(
       height: height,
-      color: Colors.black,
+      color: kTransparent,
       padding: const EdgeInsets.all(1),
       child: TextFormField(
         controller: controller,
@@ -26,7 +28,10 @@ Flexible contactFormFieldWidget({
             formFieldValue != null && validatorCondition(formFieldValue)
                 ? errorText
                 : null,
+        style: GoogleFonts.varelaRound(
+            textStyle: TextStyle(fontSize: mainShortSize(3.3))),
         decoration: InputDecoration(
+          suffixIcon: const Icon(Icons.error_outline),
           contentPadding: const EdgeInsets.all(4),
           labelText: labelText,
           hintText: hintText,

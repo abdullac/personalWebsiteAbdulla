@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:personalwebsite/core/constents/colors.dart';
 import 'package:personalwebsite/core/responsive/screen.dart';
 
 bool mainIsLandscapeMobile() {
@@ -12,7 +14,6 @@ bool mainIsPortraitMobile() {
 bool mainIsSquareMobile() {
   return mainIsMobile() && mainIsSquare() ? true : false;
 }
-
 
 bool mainIsLandScape() => Screen.internal.isLandscape;
 bool mainIsPortrait() => Screen.internal.isPortrait;
@@ -42,42 +43,43 @@ Size aboutDetailSize() {
 }
 
 ///////////////////////////////////////////// STYLES ///////
-TextStyle mainHeadLineStyle() =>
-// mainIsPortrait()?
-    TextStyle(
+TextStyle mainHeadLineStyle() => GoogleFonts.mPlusRounded1c(
+        textStyle: TextStyle(
       color: Colors.white70,
-      fontSize: mainShortSize(10),
+      fontSize: mainShortSize(7),
       fontWeight: FontWeight.w800,
-    )
-    // : TextStyle(
-    //     fontSize: mainShortSize(10),
-    //     fontWeight: FontWeight.w500,
-    //   )
-    ;
+    ));
 
-TextStyle mainDescriptionStyle() => TextStyle(
-    fontSize: mainShortSize(3.5),
-    fontWeight: FontWeight.w600,
-    color: Colors.white70);
+TextStyle mainDescriptionStyle() => GoogleFonts.varelaRound(
+    textStyle: TextStyle(
+        fontSize: mainShortSize(3.5),
+        fontWeight: FontWeight.w600,
+        color: kWhite80));
 
-TextStyle mainHighlightStyle1() => TextStyle(
-    fontSize: mainShortSize(4.5),
-    fontWeight: FontWeight.w700,
-    color: Colors.redAccent[100]);
+TextStyle mainHighlightStyle1() => GoogleFonts.varelaRound(
+    textStyle: TextStyle(
+        fontSize: mainShortSize(4.5),
+        fontWeight: FontWeight.w700,
+        color: kRed));
 
-TextStyle mainHighlightStyle2() => TextStyle(
-    fontSize: mainShortSize(4.5),
-    fontWeight: FontWeight.w700,
-    color: Colors.redAccent);
+TextStyle mainHighlightStyle2() => GoogleFonts.varelaRound(
+    textStyle: TextStyle(
+        fontSize: mainShortSize(4.5),
+        fontWeight: FontWeight.w700,
+        color: kRedAccent));
 
-TextStyle mainDescriptionDetailStyle() => mainIsSquare()
-    ? TextStyle(
-        fontSize: mainShortSize(3),
-        fontWeight: FontWeight.w500,
-        color: Colors.white)
-    : TextStyle(
-        fontSize: mainShortSize(4),
-        fontWeight: FontWeight.w500,
-        color: Colors.white);
+TextStyle mainDescriptionDetailStyle() =>
+// mainIsSquare()
+//     ? GoogleFonts.varelaRound(
+//             textStyle:TextStyle(
+//         fontSize: mainShortSize(3.3),
+//         fontWeight: FontWeight.w500,
+//         color: Colors.white))
+//     :
+    GoogleFonts.varelaRound(
+        textStyle: TextStyle(
+            fontSize: mainShortSize(3.3),
+            fontWeight: FontWeight.w500,
+            color: kWhite80));
 
 //////////////////////////////////////// String ////

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:personalwebsite/core/constents/colors.dart';
 import 'package:personalwebsite/section/portfolio_page/core/portfolio_constents.dart';
 import 'package:personalwebsite/section/portfolio_page/page_portfolio.dart';
 
@@ -21,22 +22,20 @@ Align additioanalImagesScrollControllButtons() {
 
 Opacity additionalImagesPreviosButton(NextAAndPrevios newValue) {
   return Opacity(
-    opacity: newValue == NextAAndPrevios.next ? 0.4 : 1,
+    opacity: newValue == NextAAndPrevios.next ? 0.4 : 0.7,
     child: IconButton(
       onPressed: additionalImagesPreviosPressed,
-      icon: Icon(Icons.keyboard_double_arrow_left_rounded,
-          color: Colors.red[200]?.withOpacity(0.7)),
+      icon: Icon(Icons.keyboard_double_arrow_left_rounded, color: kRed),
     ),
   );
 }
 
 Opacity additionalImagesNextButton(NextAAndPrevios newValue) {
   return Opacity(
-    opacity: newValue == NextAAndPrevios.previos ? 0.4 : 1,
+    opacity: newValue == NextAAndPrevios.previos ? 0.4 : 0.7,
     child: IconButton(
       onPressed: additionalImagesNextPressed,
-      icon: Icon(Icons.keyboard_double_arrow_right_rounded,
-          color: Colors.red[200]?.withOpacity(0.7)),
+      icon: Icon(Icons.keyboard_double_arrow_right_rounded, color: kRed),
     ),
   );
 }

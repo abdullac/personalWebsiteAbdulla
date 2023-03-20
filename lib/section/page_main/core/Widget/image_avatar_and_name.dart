@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:personalwebsite/core/constents/colors.dart';
+import 'package:personalwebsite/core/constents/strings.dart';
 import 'package:personalwebsite/section/page_main/core/Widget/circle_profile_image.dart';
 import 'package:personalwebsite/section/page_main/core/Widget/slider_menu_list.dart';
 import 'package:personalwebsite/section/page_main/core/main_dimonsions.dart';
@@ -15,11 +17,18 @@ Widget imageAvatarAndName() {
     Padding(
       padding: const EdgeInsets.all(8.0),
       child: Text(
-        "Abdulla",
+        myName,
         style: TextStyle(
-            color: Colors.redAccent[700],
+            color: kRedAccent,
             fontWeight: FontWeight.w900,
-            fontSize: mainShortSize(4)),
+            fontSize: mainShortSize(4),
+            shadows: const [
+              Shadow(
+                color: kBlack26,
+                offset: Offset(2, 2),
+                blurRadius: 1,
+              )
+            ]),
       ),
     ),
   ];

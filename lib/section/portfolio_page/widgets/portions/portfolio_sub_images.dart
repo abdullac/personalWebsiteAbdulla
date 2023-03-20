@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:personalwebsite/core/constents/colors.dart';
 import 'package:personalwebsite/section/page_main/core/main_dimonsions.dart';
 import 'package:personalwebsite/section/portfolio_page/core/dimonsions/portfolio_dimonsion.dart';
 import 'package:personalwebsite/section/portfolio_page/core/portfolio_constents.dart';
@@ -12,7 +13,7 @@ Flexible portfolioSubImagesArea() {
           valueListenable: subImagesAreaIndexNotifier,
           builder: (context, newsubImageIndex, _) {
             return Container(
-              color: Colors.black.withOpacity(0.7),
+              color: kBlack915,
               padding: EdgeInsets.symmetric(
                   vertical: 8, horizontal: portfolioDimonsion(4)),
               child: Stack(

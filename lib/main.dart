@@ -23,8 +23,8 @@ class MyApp extends StatelessWidget {
         Screen(sizingInfo: sizingInfo);
         return SafeArea(
           child: Scaffold(
-            appBar: appBarPreferredSize(),
             extendBodyBehindAppBar: true,
+            appBar: appBarPreferredSize(),
             body: const PageMain(),
           ),
         );

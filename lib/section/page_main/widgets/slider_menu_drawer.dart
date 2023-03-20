@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_slider_drawer/flutter_slider_drawer.dart';
 import 'package:personalwebsite/core/responsive/screen.dart';
-import 'package:personalwebsite/section/home_page/page_home.dart';
 import 'package:personalwebsite/section/page_main/core/Widget/slider_menu_list.dart';
 import 'package:personalwebsite/section/page_main/core/main_constents.dart';
 import 'package:personalwebsite/section/page_main/core/main_dimonsions.dart';
-import 'package:personalwebsite/section/page_main/page_main.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 
 ValueNotifier<bool> appBarShowNotifier = ValueNotifier(true);
@@ -42,7 +40,7 @@ class SliderMenuDrawer extends StatelessWidget {
                 key: sliderMenuDrawerKey,
                 appBar: null,
                 slideDirection: SlideDirection.LEFT_TO_RIGHT,
-                slider: MenuDrawerList(),
+                slider: const MenuDrawerList(),
                 sliderOpenSize: mainWidth(60),
                 sliderBoxShadow: sliderMenuDrawerShadow,
                 child: mainPageWidget,
@@ -54,4 +52,3 @@ class SliderMenuDrawer extends StatelessWidget {
     );
   }
 }
-

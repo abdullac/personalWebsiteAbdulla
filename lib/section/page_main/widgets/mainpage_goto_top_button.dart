@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:personalwebsite/core/constents/colors.dart';
 import 'package:personalwebsite/section/page_main/page_main.dart';
 
 Positioned gotoTopButton() {
@@ -11,14 +12,14 @@ Positioned gotoTopButton() {
         return newValue == false
             ? const SizedBox()
             : CircleAvatar(
-                backgroundColor: Colors.grey[700]?.withOpacity(0.5),
+                backgroundColor: kGrey05,
                 child: IconButton(
                   onPressed: () {
                     mainpageGotoTopButtonPressed();
                   },
                   icon: Icon(
                     Icons.keyboard_double_arrow_up_rounded,
-                    color: Colors.redAccent.withOpacity(0.8),
+                    color: kBlack915,
                   ),
                 ),
               );

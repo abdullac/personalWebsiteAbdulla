@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:personalwebsite/core/constents/colors.dart';
 import 'package:personalwebsite/section/page_main/core/main_dimonsions.dart';
 import 'package:personalwebsite/section/portfolio_page/core/dimonsions/portfolio_dimonsion.dart';
 import 'package:personalwebsite/section/portfolio_page/core/portfolio_constents.dart';
@@ -19,7 +21,7 @@ InkWell portfolioImagesListview() {
   return InkWell(
     onLongPress: portfolioImagesAreaLongPressed,
     child: Container(
-      color: Colors.black,
+      color: kBlack,
       child: ScrollablePositionedList.builder(
         physics: const NeverScrollableScrollPhysics(),
         itemScrollController: PortfolioPage.itemScrollController,
@@ -34,7 +36,7 @@ InkWell portfolioImagesListview() {
 
 Widget portfolioImagesListViewItemBuilder(ctx, index) {
   return Container(
-    color: Colors.grey[900],
+    color: kGrey05,
     margin: EdgeInsets.symmetric(
       horizontal: portfolioDimonsion(100 / 25),
       vertical: 10,
@@ -61,7 +63,7 @@ Flexible portfolioimagesListImagePortion(index) {
       height: double.infinity,
       margin: const EdgeInsets.symmetric(),
       decoration: BoxDecoration(
-        color: Colors.grey[900],
+        color: kBlack,
         image: DecorationImage(
           fit: BoxFit.fitWidth,
           image: AssetImage(portfolioImageList[index]),
@@ -75,13 +77,20 @@ Flexible portfolioimagesListTextPortion(index) {
   return Flexible(
     flex: 2,
     child: Container(
-      color: Colors.black.withOpacity(0.3),
+      color: kBlack26,
       width: portfolioDimonsion(100 / 4),
+      height: double.infinity,
       padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 2),
       child: Text(
         portfolioTextList[index],
         textAlign: TextAlign.center,
-        style: TextStyle(fontSize: mainShortSize(3.2)),
+        maxLines: 2,
+        overflow: TextOverflow.fade,
+        style: GoogleFonts.varelaRound(
+            textStyle: TextStyle(
+          fontSize: mainShortSize(3.3),
+          color: kWhite80,
+        )),
       ),
     ),
   );

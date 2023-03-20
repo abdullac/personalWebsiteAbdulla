@@ -23,12 +23,13 @@ class SliderHomePageDrawer extends StatelessWidget {
     return ValueListenableBuilder(
       valueListenable: appBarShowNotifier,
       builder: (context, newValue, _) {
-        return ResponsiveBuilder(builder: (context, sizingInfo) {
-          Screen(sizingInfo: sizingInfo);
-          return AnimatedContainer(
-            transform: sliderHomepageDrawerTransform(newValue),
-            duration: const Duration(seconds: 2),
-            child: ValueListenableBuilder(
+        return ResponsiveBuilder(
+          builder: (context, sizingInfo) {
+            Screen(sizingInfo: sizingInfo);
+            return AnimatedContainer(
+              transform: sliderHomepageDrawerTransform(newValue),
+              duration: const Duration(seconds: 2),
+              child: ValueListenableBuilder(
                 valueListenable: initialOpeningNotifier,
                 builder: (context, newValue, _) {
                   return SliderDrawer(
@@ -40,13 +41,13 @@ class SliderHomePageDrawer extends StatelessWidget {
                     appBar: null,
                     slider: const PageHome(),
                     sliderOpenSize: mainWidth(100),
-                    child: initialOpeningNotifier.value == true
-                        ? const PageHome()
-                        : mainPageWidget,
+                    child: newValue == true ? const PageHome() : mainPageWidget,
                   );
-                }),
-          );
-        });
+                },
+              ),
+            );
+          },
+        );
       },
     );
   }

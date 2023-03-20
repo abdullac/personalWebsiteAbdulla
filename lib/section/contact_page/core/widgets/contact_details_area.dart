@@ -1,11 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:personalwebsite/core/constents/colors.dart';
 import 'package:personalwebsite/section/contact_page/core/contact_constents.dart';
+import 'package:personalwebsite/section/contact_page/page_contact.dart';
 import 'package:personalwebsite/section/page_main/core/main_dimonsions.dart';
 
-Widget contactDetailsArea() {
+Widget contactDetailsArea(ContactArea contactArea) {
   return Flexible(
+    flex: contactArea == ContactArea.column ? 1 : 2,
     child: Container(
-      color: Colors.black,
+      color: kTransparent,
       padding: const EdgeInsets.all(5),
       child: Column(
         children: [
@@ -18,10 +22,13 @@ Widget contactDetailsArea() {
 }
 
 Flexible connectMeTitleWidget() {
-  return const Flexible(
+  return Flexible(
     flex: 1,
     child: Center(
-      child: Text(connectMeTitle),
+      child: Text(
+        connectMeTitle,
+        style: contactSubTitleStyle(),
+      ),
     ),
   );
 }
@@ -54,22 +61,24 @@ Flexible contactDetailsWidgets() {
 
 Padding contactDetailIcon(int index) {
   return Padding(
-    padding: EdgeInsets.all(mainShortSize(1.5)),
+    padding: EdgeInsets.all(mainShortSize(2)),
     child: Icon(
       contactDetailTitlesAndIconsList[index][1],
-      color: Colors.redAccent[400],
-      size: mainShortSize(4.5),
+      color: kRedAccent,
+      size: mainShortSize(5),
     ),
   );
 }
 
 Padding contactDetailTitle(int index) {
   return Padding(
-    padding: EdgeInsets.all(mainShortSize(1.5)),
-    child: Text(
-      contactDetailTitlesAndIconsList[index][0],
-      style:
-          TextStyle(color: Colors.redAccent[100], fontSize: mainShortSize(3)),
-    ),
+    padding: EdgeInsets.all(mainShortSize(2)),
+    child: Text(contactDetailTitlesAndIconsList[index][0],
+        style: GoogleFonts.varelaRound(
+          textStyle: TextStyle(
+            color: kRed,
+            fontSize: mainShortSize(3.3),
+          ),
+        )),
   );
 }

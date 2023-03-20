@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:personalwebsite/core/constents/colors.dart';
 import 'package:personalwebsite/core/responsive/screen.dart';
 import 'package:personalwebsite/section/page_main/widgets/section_heading.dart';
 import 'package:personalwebsite/section/my_workethics_page/core/workethics_constents.dart';
@@ -14,10 +16,10 @@ class MyWorkEthicsPage extends StatelessWidget {
       Screen(sizingInfo: sizingInfo);
       return Container(
         height: myWorkEthicsAreaHeight(),
-        color: Colors.black,
+        color: kBlack,
         child: Column(
           children: [
-            sectionHeading(workEthicHeading, mainHeight(18)),
+            sectionHeading(workEthicHeading),
             myWorkEthicsPoints(),
           ],
         ),
@@ -29,7 +31,7 @@ class MyWorkEthicsPage extends StatelessWidget {
     return Flexible(
       flex: 3,
       child: Container(
-        color: Colors.black,
+        color: kTransparent,
         child: GridView(
           physics: const NeverScrollableScrollPhysics(),
           padding: const EdgeInsets.all(8),
@@ -47,22 +49,34 @@ class MyWorkEthicsPage extends StatelessWidget {
   List<Widget> myWorkEthicPointWidgetList() {
     Icon checkIcon = Icon(
       Icons.radio_button_checked,
-      color: Colors.redAccent[700]?.withOpacity(0.8),
+      color: kRed05,
     );
     List<Widget> workEthicPointWidgetList = [];
     for (int index = 0; index < workethicPointsList.length; index++) {
       workEthicPointWidgetList.add(Container(
-        color: Colors.black,
+        color: kTransparent,
         child: Padding(
           padding: const EdgeInsets.all(0.5),
           child: Row(
             crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisSize: MainAxisSize.min,
             children: [
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 5),
                 child: checkIcon,
               ),
-              Text(workethicPointsList[index])
+              Flexible(
+                child: SingleChildScrollView(
+                  scrollDirection: Axis.horizontal,
+                  child: Text(
+                    workethicPointsList[index],
+                    style: GoogleFonts.varelaRound(
+                      fontSize: mainShortSize(3.3),
+                      color: kWhite80,
+                    ),
+                  ),
+                ),
+              )
             ],
           ),
         ),

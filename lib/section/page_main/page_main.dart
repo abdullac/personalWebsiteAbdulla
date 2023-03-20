@@ -1,18 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:personalwebsite/core/constents/colors.dart';
+import 'package:personalwebsite/core/constents/strings.dart';
 import 'package:personalwebsite/core/widgets/appbar_preferresize.dart';
-import 'package:personalwebsite/section/about_page/page_about.dart';
-import 'package:personalwebsite/section/contact_page/page_contact.dart';
-import 'package:personalwebsite/section/footer_page/page_footer.dart';
-import 'package:personalwebsite/section/hireme_page/page_hireme.dart';
-import 'package:personalwebsite/section/my_skills_page/page_my_skills.dart';
-import 'package:personalwebsite/section/my_workethics_page/page_my_work_ethics.dart';
 import 'package:personalwebsite/section/page_main/widgets/slider_menu_drawer.dart';
 import 'package:personalwebsite/section/page_main/core/main_dimonsions.dart';
 import 'package:personalwebsite/section/page_main/widgets/main_page_listview.dart';
 import 'package:personalwebsite/section/page_main/widgets/mainpage_goto_top_button.dart';
 import 'package:personalwebsite/section/page_main/widgets/slider_homepage_drawer.dart';
-import 'package:personalwebsite/section/portfolio_page/page_portfolio.dart';
 import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
 
 ValueNotifier<bool> initialOpeningNotifier = ValueNotifier(true);
@@ -20,16 +15,6 @@ ValueNotifier<bool> gotoTopButtonNotifier = ValueNotifier(false);
 
 int lastforwardScrolledTime = DateTime.now().millisecondsSinceEpoch;
 
-List<Widget> pagesList = [
-  const HomePage3(),
-  const AboutPage(),
-  const PortfolioPage(),
-  const MyWorkEthicsPage(),
-  const SkillsPage(),
-  const LookingForJob(),
-  const ContactPage(),
-  const Footer()
-];
 
 class PageMain extends StatelessWidget {
   const PageMain({Key? key}) : super(key: key);
@@ -42,15 +27,15 @@ class PageMain extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
-        systemNavigationBarColor: Colors.black,
+        systemNavigationBarColor: kBlack,
         systemNavigationBarIconBrightness: Brightness.dark));
     return SliderHomePageDrawer(
       mainPageWidget: SliderMenuDrawer(
         mainPageWidget: Container(
-          color: Colors.black,
+          color: kBlack,
           child: NotificationListener<UserScrollNotification>(
             onNotification: (notification) {
-              whenMainpageListvieScroll(notification);
+              whenMainpageListviewScroll(notification);
               return true;
             },
             child: Stack(
@@ -65,7 +50,7 @@ class PageMain extends StatelessWidget {
     );
   }
 
-  Future<void> whenMainpageListvieScroll(
+  Future<void> whenMainpageListviewScroll(
       UserScrollNotification notification) async {
     final scrollPixels = notification.metrics.pixels;
     gotoTopButtonNotifier.value =
@@ -86,8 +71,8 @@ class PageMain extends StatelessWidget {
     lastforwardScrolledTime = DateTime.now().millisecondsSinceEpoch;
     appBarNotifier.value = true;
     appBarImageCircle = appBarCircleImage();
-    appBarTitle = "Abdulla";
-    appBarBackgroundColor = Colors.redAccent[700];
+    appBarTitle = myName;
+    appBarBackgroundColor = kRedAccent;
   }
 
   Future<void> afterForwardSroll5sec() async {
@@ -136,8 +121,8 @@ class HomePage3 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: mainShortSize(10),
-      color: Colors.black,
+      height: mainShortSize(0),
+      color: kBlack,
     );
   }
 }

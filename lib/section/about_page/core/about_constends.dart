@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:personalwebsite/core/constents/colors.dart';
 import 'package:personalwebsite/section/page_main/core/main_dimonsions.dart';
 import 'dart:math' as math;
 
@@ -17,7 +18,7 @@ List<Color> aboutTextContainerGradientColorsList = [
   Colors.black12.withOpacity(0.01),
   Colors.black12.withOpacity(0.04),
   Colors.black12.withOpacity(0.45),
-  Colors.black,
+  kBlack,
 ];
 
 List<Color> blueSplashGradientColorsList = [

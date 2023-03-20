@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:personalwebsite/core/constents/colors.dart';
 import 'package:personalwebsite/core/responsive/screen.dart';
 import 'package:personalwebsite/section/page_main/widgets/section_heading.dart';
 import 'package:personalwebsite/section/portfolio_page/core/dimonsions/portfolio_dimonsion.dart';
@@ -56,7 +57,7 @@ class PortfolioPage extends StatelessWidget {
   Container portfolioArea() {
     return Container(
       height: portfolioAreaHeight(),
-      color: Colors.blueGrey[900],
+      color: kGrey05,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [

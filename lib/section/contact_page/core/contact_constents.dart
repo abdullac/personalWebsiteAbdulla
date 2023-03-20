@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:personalwebsite/core/constents/colors.dart';
+import 'package:personalwebsite/section/page_main/core/main_dimonsions.dart';
 
 /// text
 const String contactHeading = "Contact";
@@ -26,7 +29,7 @@ const String snakBarSubmitError = "Please enter valid details";
 /// style
 ButtonStyle submitButtonStyle = ButtonStyle(
   backgroundColor: MaterialStateProperty.all(
-    Colors.redAccent[400],
+    kRedAccent,
   ),
 );
 
@@ -40,7 +43,24 @@ const List<List<dynamic>> contactDetailTitlesAndIconsList = [
 //////  () => ///////
 BoxDecoration contactDetailContainerDecoration() {
   return BoxDecoration(
-    color: Colors.red[50]?.withOpacity(0.2),
+    color: kGrey05,
     borderRadius: const BorderRadius.all(Radius.circular(50)),
+  );
+}
+
+TextStyle contactSubTitleStyle() {
+  return GoogleFonts.varelaRound(
+    textStyle: TextStyle(
+      fontSize: mainShortSize(3),
+      fontWeight: FontWeight.bold,
+      color: kWhite80,
+      shadows: [
+        Shadow(
+          color: kRed05,
+          offset: const Offset(1.5, 1.5),
+          blurRadius: 1.5,
+        ),
+      ],
+    ),
   );
 }

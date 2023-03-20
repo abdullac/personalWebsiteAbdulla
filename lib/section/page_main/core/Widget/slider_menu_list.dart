@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:personalwebsite/core/constents/colors.dart';
 import 'package:personalwebsite/core/responsive/screen.dart';
 import 'package:personalwebsite/core/widgets/appbar_preferresize.dart';
 import 'package:personalwebsite/section/page_main/core/Widget/image_avatar_and_name.dart';
@@ -37,7 +38,7 @@ class MenuDrawerList extends StatelessWidget {
   Widget redLineSeperator(context, index) => Container(
         height: 0.5,
         width: 0.5,
-        color: Colors.redAccent.withOpacity(0.3),
+        color: kRed05,
       );
 
   List<Widget> menuDrawerPortions() {

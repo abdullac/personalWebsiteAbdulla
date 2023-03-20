@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:personalwebsite/core/constents/colors.dart';
 import 'package:personalwebsite/core/responsive/screen.dart';
 import 'package:personalwebsite/section/home_page/core/widgets/image_area.dart';
 import 'package:personalwebsite/section/home_page/core/widgets/label_area.dart';
@@ -11,11 +12,10 @@ class HomePageReal extends StatelessWidget {
   Widget build(BuildContext context) {
     return ResponsiveBuilder(builder: (context, sizingInfo) {
       Screen(sizingInfo: sizingInfo);
-      print(Screen.internal.orientationed);
       var isLandscape = Screen.internal.isLandscape == true;
 
       return Container(
-        color: Colors.red.withOpacity(0.0),
+        color: kTransparent,
         child: isLandscape
             ? Row(children: homePagelabeAndImage(isLandscape: isLandscape))
             : Column(children: homePagelabeAndImage(isLandscape: isLandscape)),
@@ -26,17 +26,17 @@ class HomePageReal extends StatelessWidget {
   List<Widget> homePagelabeAndImage({required bool isLandscape}) {
     return [
       homePagelabeOrImage(
-          child: const LabelArea(),
-          isLandscape: isLandscape,
-          landScapeFlex: 1,
-          nonLandScapeFlex: 1,
-          color: Colors.black.withOpacity(0.93)),
+        child: const LabelArea(),
+        isLandscape: isLandscape,
+        landScapeFlex: 1,
+        nonLandScapeFlex: 1,
+      ),
       homePagelabeOrImage(
-          child: const ImageArea(),
-          isLandscape: isLandscape,
-          landScapeFlex: 1,
-          nonLandScapeFlex: 2,
-          color: Colors.black.withOpacity(0.9)),
+        child: const ImageArea(),
+        isLandscape: isLandscape,
+        landScapeFlex: 1,
+        nonLandScapeFlex: 2,
+      ),
     ];
   }
 
@@ -45,14 +45,13 @@ class HomePageReal extends StatelessWidget {
     required bool isLandscape,
     required int landScapeFlex,
     required int nonLandScapeFlex,
-    required Color color,
   }) {
     return Expanded(
         flex: isLandscape ? landScapeFlex : nonLandScapeFlex,
         child: Container(
           width: double.infinity,
           height: double.infinity,
-          color: color,
+          color: kBlack915,
           child: Stack(
             children: [child],
           ),

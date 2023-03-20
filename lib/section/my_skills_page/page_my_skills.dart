@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:personalwebsite/core/constents/colors.dart';
 import 'package:personalwebsite/core/responsive/screen.dart';
 import 'package:personalwebsite/section/page_main/widgets/section_heading.dart';
-import 'package:personalwebsite/section/home_page/core/home_constents.dart';
 import 'package:personalwebsite/section/my_skills_page/core/skills_constents.dart';
 import 'package:personalwebsite/section/page_main/core/main_dimonsions.dart';
 import 'package:responsive_builder/responsive_builder.dart';
@@ -15,7 +16,7 @@ class SkillsPage extends StatelessWidget {
       Screen(sizingInfo: sizingInfo);
       return Container(
         height: mainHeight(100),
-        color: Colors.black,
+        color: kBlack,
         child: Column(
           children: [
             sectionHeading("My Skills"),
@@ -30,7 +31,7 @@ class SkillsPage extends StatelessWidget {
     return Flexible(
       flex: 17,
       child: Container(
-        color: Colors.black,
+        color: kTransparent,
         child: Padding(
           padding: const EdgeInsets.all(8.0),
           child: GridView(
@@ -48,21 +49,28 @@ class SkillsPage extends StatelessWidget {
   List<Widget> mySkillsItemsWidgetList() {
     List<Widget> skillsItemsWidgetList = [];
     for (int index = 0; index < skillsTitleList.length; index++) {
-      skillsItemsWidgetList.add(Column(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        children: [
-          Image.network(
-            networkImageList[index],
-            height: mySkilsGridItemImageHeight(),
-            errorBuilder: (context, error, stackTrace) => Container(
-              width: 5,
-              height: 5,
-              color: Colors.red.withOpacity(0.3),
+      skillsItemsWidgetList.add(
+        Column(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: [
+            Image.network(
+              networkImageList[index],
+              height: mySkilsGridItemImageHeight(),
+              errorBuilder: (context, error, stackTrace) => Container(
+                width: 5,
+                height: 5,
+                color: kRed05,
+              ),
             ),
-          ),
-          Text(skillsTitleList[index])
-        ],
-      ));
+            Text(skillsTitleList[index],
+                style: GoogleFonts.varelaRound(
+                    textStyle: TextStyle(
+                  fontSize: mainShortSize(3.3),
+                  color: kWhite80,
+                )))
+          ],
+        ),
+      );
     }
     return skillsItemsWidgetList;
   }

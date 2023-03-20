@@ -1,38 +1,46 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:personalwebsite/core/constents/appbar_constents.dart';
+import 'package:personalwebsite/core/constents/colors.dart';
+import 'package:personalwebsite/core/responsive/screen.dart';
 import 'package:personalwebsite/section/page_main/widgets/slider_menu_drawer.dart';
 import 'package:personalwebsite/section/page_main/core/Widget/slider_menu_list.dart';
 import 'package:personalwebsite/section/page_main/core/main_dimonsions.dart';
 import 'package:personalwebsite/section/page_main/page_main.dart';
 import 'package:personalwebsite/section/page_main/widgets/slider_homepage_drawer.dart';
+import 'package:responsive_builder/responsive_builder.dart';
 
 final appBarNotifier = ValueNotifier(false);
-Color? appBarBackgroundColor = Colors.redAccent[700];
+Color? appBarBackgroundColor = kRedAccent;
 String appBarTitle = "Abdulla";
 Widget? appBarImageCircle = appBarCircleImage();
 
 PreferredSize appBarPreferredSize() {
   return PreferredSize(
     preferredSize: Size(mainWidth(100), mainShortSize(15)),
-    child: ValueListenableBuilder(
-      valueListenable: appBarNotifier,
-      builder: (context, newValue, _) {
-        return AnimatedContainer(
-          transform: appbarTransform(newValue),
-          duration: const Duration(milliseconds: 400),
-          child: AppBar(
-            backgroundColor: appBarBackgroundColor,
-            leading: appbarLeadingWidgets(newValue),
-            title: appbarTitleWidget(),
-            actions: mainIsDeskTop()
-                ? appBartextButtonList()
-                : [
-                    appBarImageCircle ?? const SizedBox(),
-                  ],
-          ),
-        );
-      },
-    ),
+    child: ResponsiveBuilder(builder: (context, sizingInfo) {
+      Screen(sizingInfo: sizingInfo);
+      return ValueListenableBuilder(
+        valueListenable: appBarNotifier,
+        builder: (context, newValue, _) {
+          return AnimatedContainer(
+            transform: appbarTransform(newValue),
+            duration: const Duration(milliseconds: 400),
+            child: AppBar(
+              shadowColor: kTransparent,
+              backgroundColor: appBarBackgroundColor,
+              leading: appbarLeadingWidgets(newValue),
+              title: appbarTitleWidget(),
+              actions: mainIsDeskTop()
+                  ? appBartextButtonList()
+                  : [
+                      appBarImageCircle ?? const SizedBox(),
+                    ],
+            ),
+          );
+        },
+      );
+    }),
   );
 }
 
@@ -57,12 +65,18 @@ AnimatedContainer appbarLeadingWidgets(bool newValue) {
   );
 }
 
-Padding appbarTitleWidget() {
+Widget appbarTitleWidget() {
   return Padding(
     padding: const EdgeInsets.all(8.0),
     child: Text(
       appBarTitle,
-      style: TextStyle(fontSize: mainShortSize(5)),
+      style: GoogleFonts.dancingScript(
+          textStyle: TextStyle(
+              fontSize: mainShortSize(7),
+              fontWeight: FontWeight.w800,
+              letterSpacing: mainShortSize(0),
+              shadows: appBarTitleShadow,
+              color: kWhite)),
     ),
   );
 }
@@ -85,7 +99,8 @@ List<Widget> appBartextButtonList() {
           },
           child: Text(
             buttonNameList[index],
-            style: TextStyle(color: Colors.red[300]),
+            style:GoogleFonts.varelaRound(textStyle: TextStyle(color: kRed), 
+            fontSize: mainShortSize(2.2)) ,
           ),
         ),
       ),
@@ -99,7 +114,7 @@ InkWell appBarCircleImage() {
     onTap: () {
       appbarCircleImageOnTap();
     },
-    hoverColor: Colors.black12,
+    hoverColor: kBlack26,
     borderRadius: BorderRadius.all(Radius.circular(mainShortSize(15))),
     child: Center(
       child: Container(
@@ -107,10 +122,10 @@ InkWell appBarCircleImage() {
         width: mainShortSize(12),
         margin: const EdgeInsets.all(2),
         decoration: BoxDecoration(
-          boxShadow: [
+          boxShadow: const [
             BoxShadow(
-                color: Colors.black.withOpacity(0.4),
-                offset: const Offset(1.5, 1.5),
+                color: kBlack26,
+                offset: Offset(1.5, 1.5),
                 blurRadius: 1,
                 spreadRadius: 0.5)
           ],

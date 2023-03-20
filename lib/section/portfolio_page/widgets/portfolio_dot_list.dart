@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:personalwebsite/core/constents/colors.dart';
 import 'package:personalwebsite/section/page_main/core/main_dimonsions.dart';
 import 'package:personalwebsite/section/portfolio_page/core/portfolio_constents.dart';
 import 'package:personalwebsite/section/portfolio_page/page_portfolio.dart';
@@ -59,8 +60,8 @@ Container portFolioDotButton(
 
 Color? portfolioDotButtonSeletionColor(int index, int newValue) {
   return index == newValue
-      ? Colors.red[300]
-      : Colors.grey[300]?.withOpacity(0.6);
+      ? kRed05
+      : kGrey05;
 }
 
 Center portfoliDotButtonNumberText(int index) {
@@ -70,7 +71,7 @@ Center portfoliDotButtonNumberText(int index) {
       textAlign: TextAlign.center,
       style: TextStyle(
         fontSize: mainShortSize(3),
-        color: Colors.black,
+        color: kBlack915,
       ),
     ),
   );

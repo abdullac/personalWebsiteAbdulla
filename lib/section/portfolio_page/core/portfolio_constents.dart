@@ -1,6 +1,7 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
+import 'package:personalwebsite/core/constents/colors.dart';
 
 /// text
 const String portfolioHeading = "My Works";
@@ -17,7 +18,7 @@ const List<String> portfolioImageList = [
   "assets/netflipztopsearches.webp",
   "assets/netflipzsearchresults.webp",
   "assets/netflipsdownloads.webp",
-  "assets/Netflipz.png",
+  // "assets/Netflipz.png",
 ];
 
 const List<String> portfolioMobileImageList = [
@@ -28,7 +29,7 @@ const List<String> portfolioMobileImageList = [
   "assets/netflipzmobiletopsearches.webp",
   "assets/netflipzmobilesearchresults.webp",
   "assets/netflipzmobiledownloads.webp",
-  "assets/netFlipzLogoA.webp",
+  // "assets/netFlipzLogoA.webp",
 ];
 
 const List<String> portfolioTabImageList = [
@@ -39,7 +40,7 @@ const List<String> portfolioTabImageList = [
   "assets/netflipztabtopsearches.webp",
   "assets/netflipztabsearchresults.webp",
   "assets/netflipztabdownloads.webp",
-  "assets/netFlipzLogoA.webp",
+  // "assets/netFlipzLogoA.webp",
 ];
 
 const List<String> portfolioAdditionalImageList = [
@@ -58,7 +59,7 @@ const List<String> portfolioTextList = [
   "Top search items short here",
   "You can search here, Which item you wanted",
   "This is downloads page",
-  "Netflipz simple logo",
+  // "Netflipz simple logo",
 ];
 
 const List<String> portfolioAdditionalTextList = [
@@ -72,13 +73,13 @@ const List<String> portfolioAdditionalTextList = [
 
 List<BoxShadow> portfolioSubimagesDesktopShadow = [
   BoxShadow(
-    color: Colors.grey.withOpacity(0.2),
+    color: kGrey05,
     offset: const Offset(0.5, 0.5),
     blurRadius: 0.5,
     spreadRadius: 0.5,
   ),
   BoxShadow(
-    color: Colors.grey.withOpacity(0.6),
+    color: kRed05,
     offset: const Offset(-0.4, -0.4),
     blurRadius: 0.5,
     spreadRadius: 0.5,
@@ -87,13 +88,13 @@ List<BoxShadow> portfolioSubimagesDesktopShadow = [
 
 List<BoxShadow> portfolioSubimagesTabletShadow = [
   BoxShadow(
-    color: Colors.grey.withOpacity(0.5),
+    color: kGrey05,
     offset: const Offset(0.5, 0.5),
     blurRadius: 0.5,
     spreadRadius: 0.5,
   ),
   BoxShadow(
-    color: Colors.red.withOpacity(0.7),
+    color:  kWhite80,
     offset: const Offset(-0.5, -0.5),
     blurRadius: 0.5,
     spreadRadius: 0.3,
@@ -101,13 +102,13 @@ List<BoxShadow> portfolioSubimagesTabletShadow = [
 ];
 List<BoxShadow> portfolioSubimagesMobileShadow = [
   BoxShadow(
-    color: Colors.grey.withOpacity(0.4),
+    color: kGrey05,
     offset: const Offset(0.5, 0.5),
     blurRadius: 0.5,
     spreadRadius: 0.5,
   ),
   BoxShadow(
-    color: Colors.green.withOpacity(0.6),
+    color: kGrey05,
     offset: const Offset(-0.5, -0.5),
     blurRadius: 0.5,
     spreadRadius: 0.1,
@@ -138,3 +139,54 @@ Matrix4 portfolioSubMobileViewTransform(int newsubImageIndex) =>
       newsubImageIndex % 2 == 0 ? -10 : 0,
       0,
     );
+
+
+
+
+
+
+////////////////////////
+
+// List<BoxShadow> portfolioSubimagesDesktopShadow = [
+//   BoxShadow(
+//     color: Colors.grey.withOpacity(0.2),
+//     offset: const Offset(0.5, 0.5),
+//     blurRadius: 0.5,
+//     spreadRadius: 0.5,
+//   ),
+//   BoxShadow(
+//     color: Colors.grey.withOpacity(0.6),
+//     offset: const Offset(-0.4, -0.4),
+//     blurRadius: 0.5,
+//     spreadRadius: 0.5,
+//   ),
+// ];
+
+// List<BoxShadow> portfolioSubimagesTabletShadow = [
+//   BoxShadow(
+//     color: Colors.grey.withOpacity(0.5),
+//     offset: const Offset(0.5, 0.5),
+//     blurRadius: 0.5,
+//     spreadRadius: 0.5,
+//   ),
+//   BoxShadow(
+//     color: Colors.red.withOpacity(0.7),
+//     offset: const Offset(-0.5, -0.5),
+//     blurRadius: 0.5,
+//     spreadRadius: 0.3,
+//   ),
+// ];
+// List<BoxShadow> portfolioSubimagesMobileShadow = [
+//   BoxShadow(
+//     color: Colors.grey.withOpacity(0.4),
+//     offset: const Offset(0.5, 0.5),
+//     blurRadius: 0.5,
+//     spreadRadius: 0.5,
+//   ),
+//   BoxShadow(
+//     color: Colors.green.withOpacity(0.6),
+//     offset: const Offset(-0.5, -0.5),
+//     blurRadius: 0.5,
+//     spreadRadius: 0.1,
+//   ),
+// ];
