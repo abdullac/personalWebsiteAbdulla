@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:personalwebsite/core/constents/colors.dart';
+import 'package:personalwebsite/core/constents/text_sizes.dart';
 import 'package:personalwebsite/section/page_main/core/main_dimonsions.dart';
 import 'package:personalwebsite/section/portfolio_page/core/dimonsions/portfolio_dimonsion.dart';
 import 'package:personalwebsite/section/portfolio_page/core/portfolio_constents.dart';
@@ -19,19 +20,18 @@ Flexible portfolioImagesArea() {
 
 InkWell portfolioImagesListview() {
   return InkWell(
-    onLongPress: portfolioImagesAreaLongPressed,
-    child: Container(
-      color: kBlack,
-      child: ScrollablePositionedList.builder(
-        physics: const NeverScrollableScrollPhysics(),
-        itemScrollController: PortfolioPage.itemScrollController,
-        itemPositionsListener: PortfolioPage.itemPositionsListener,
-        scrollDirection: Axis.horizontal,
-        itemCount: portfolioImageList.length,
-        itemBuilder: portfolioImagesListViewItemBuilder,
-      ),
-    ),
-  );
+      onLongPress: portfolioImagesAreaLongPressed,
+      child: Container(
+        color: kBlack,
+        child: ScrollablePositionedList.builder(
+          physics: const NeverScrollableScrollPhysics(),
+          itemScrollController: PortfolioPage.itemScrollController,
+          itemPositionsListener: PortfolioPage.itemPositionsListener,
+          scrollDirection: Axis.horizontal,
+          itemCount: portfolioImageList.length,
+          itemBuilder: portfolioImagesListViewItemBuilder,
+        ),
+      ));
 }
 
 Widget portfolioImagesListViewItemBuilder(ctx, index) {
@@ -88,7 +88,7 @@ Flexible portfolioimagesListTextPortion(index) {
         overflow: TextOverflow.fade,
         style: GoogleFonts.varelaRound(
             textStyle: TextStyle(
-          fontSize: mainShortSize(3.3),
+          fontSize: textSize2(),
           color: kWhite80,
         )),
       ),
@@ -102,6 +102,7 @@ portfolioImagesItemOnTap(int index) {
 }
 
 void portfolioImagesAreaLongPressed() async {
+
   if (stopPortfolioImageScroll == true) {
     stopPortfolioImageScroll = false;
     await portfolioImagesListAutoScrolling();

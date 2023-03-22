@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:personalwebsite/core/constents/colors.dart';
+import 'package:personalwebsite/core/constents/text_sizes.dart';
 import 'package:personalwebsite/section/page_main/core/main_dimonsions.dart';
 
 /// text
@@ -10,7 +11,7 @@ const String messageTitle = "Message Me";
 const String submitButtonTitle = "Submit";
 
 const String formNameLabel = "Name";
-const String formNumberLabel = "Contact no:";
+const String formNumberLabel = "Contact no";
 const String formEmailLabel = "Email";
 const String formMessageLabel = "Message";
 const String formNameHint = "Enter your name here";
@@ -51,7 +52,7 @@ BoxDecoration contactDetailContainerDecoration() {
 TextStyle contactSubTitleStyle() {
   return GoogleFonts.varelaRound(
     textStyle: TextStyle(
-      fontSize: mainShortSize(3),
+      fontSize: textSize3(),
       fontWeight: FontWeight.bold,
       color: kWhite80,
       shadows: [

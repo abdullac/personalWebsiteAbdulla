@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:personalwebsite/core/constents/colors.dart';
+import 'package:personalwebsite/core/constents/text_sizes.dart';
 import 'package:personalwebsite/core/responsive/screen.dart';
 
 bool mainIsLandscapeMobile() {
@@ -52,19 +53,19 @@ TextStyle mainHeadLineStyle() => GoogleFonts.mPlusRounded1c(
 
 TextStyle mainDescriptionStyle() => GoogleFonts.varelaRound(
     textStyle: TextStyle(
-        fontSize: mainShortSize(3.5),
+        fontSize: textSize2(),
         fontWeight: FontWeight.w600,
         color: kWhite80));
 
 TextStyle mainHighlightStyle1() => GoogleFonts.varelaRound(
     textStyle: TextStyle(
-        fontSize: mainShortSize(4.5),
+        fontSize: textSize3(),
         fontWeight: FontWeight.w700,
         color: kRed));
 
 TextStyle mainHighlightStyle2() => GoogleFonts.varelaRound(
     textStyle: TextStyle(
-        fontSize: mainShortSize(4.5),
+        fontSize: textSize3(),
         fontWeight: FontWeight.w700,
         color: kRedAccent));
 
@@ -78,7 +79,8 @@ TextStyle mainDescriptionDetailStyle() =>
 //     :
     GoogleFonts.varelaRound(
         textStyle: TextStyle(
-            fontSize: mainShortSize(3.3),
+            // fontSize: mainShortSize(3.3),
+            fontSize: textSize2(),
             fontWeight: FontWeight.w500,
             color: kWhite80));
 

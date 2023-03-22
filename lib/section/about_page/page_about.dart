@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:personalwebsite/core/responsive/screen.dart';
 import 'package:personalwebsite/section/page_main/widgets/section_heading.dart';
-import 'package:personalwebsite/section/about_page/core/about_constends.dart';
+import 'package:personalwebsite/section/about_page/core/about_constents.dart';
 import 'package:personalwebsite/section/about_page/core/widgets/about_image_shade_container.dart';
 import 'package:personalwebsite/section/about_page/core/widgets/about_imagee_container.dart';
 import 'package:personalwebsite/section/about_page/core/widgets/about_text_container.dart';

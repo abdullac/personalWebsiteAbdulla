@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:personalwebsite/core/constents/colors.dart';
+import 'package:personalwebsite/core/constents/text_sizes.dart';
 import 'package:personalwebsite/core/responsive/screen.dart';
 import 'package:personalwebsite/section/page_main/widgets/section_heading.dart';
 import 'package:personalwebsite/section/hireme_page/core/hireme_constents.dart';
@@ -17,7 +18,7 @@ class LookingForJob extends StatelessWidget {
       builder: (context, sizingInfo) {
         Screen(sizingInfo: sizingInfo);
         return Container(
-          height: mainHeight(70),
+          height: mainHeight(78),
           color: kBlack,
           child: Column(
             children: [
@@ -99,7 +100,8 @@ RichText hiremeTextContent() {
       style: GoogleFonts.varelaRound(
           textStyle: TextStyle(
         color: kWhite80,
-        fontSize: mainShortSize(3.3),
+        // fontSize: mainShortSize(3.3),
+        fontSize: textSize2(),
       )),
       children: [
         TextSpan(

@@ -1,6 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:personalwebsite/applications/appbar_bloc/appbar_bloc.dart';
+import 'package:personalwebsite/applications/homepage_bloc/home_page_bloc.dart';
 import 'package:personalwebsite/core/constents/colors.dart';
-import 'package:personalwebsite/section/page_main/core/Widget/slider_menu_list.dart';
+import 'package:personalwebsite/core/constents/text_sizes.dart';
+import 'package:personalwebsite/core/widgets/appbar_preferresize.dart';
+import 'package:personalwebsite/main.dart';
 import 'package:personalwebsite/section/page_main/core/main_constents.dart';
 import 'package:personalwebsite/section/page_main/page_main.dart';
 
@@ -20,7 +25,8 @@ List<Widget> sectionTileWidgetsList() {
             ),
             title: Text(
               sectionTileItemsLists[index][1],
-              style: TextStyle(color: kRed),
+              style: TextStyle(color: kRed,
+              fontSize: textSize2()),
             ),
           ),
         ),
@@ -33,7 +39,10 @@ List<Widget> sectionTileWidgetsList() {
 void sectionTileOnTap(int index) {
   drawerMenuClose();
   if (index == 0) {
-    toHomePage();
+    BlocProvider.of<HomePageBloc>(
+            NavigationService.navigatorKey.currentContext!)
+        .add(const GoToHomePage());
+    // toHomePage();
   } else {
     PageMain.itemScrollController
         .scrollTo(index: index, duration: const Duration(milliseconds: 700));

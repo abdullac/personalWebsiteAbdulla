@@ -45,6 +45,7 @@ class HomePageWidget extends StatelessWidget {
     return ResponsiveBuilder(builder: (context, sizeinfo) {
       Screen(sizingInfo: sizeinfo);
       return homePageStackWithGestureDetector(
+        ctx: context,
         homePageStackChildrens: [
           const HomepageBackgroundSmallImages(),
           const HomePageReal(),

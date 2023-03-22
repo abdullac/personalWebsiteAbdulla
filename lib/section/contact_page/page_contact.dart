@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:personalwebsite/core/constents/colors.dart';
 import 'package:personalwebsite/core/responsive/screen.dart';
+import 'package:personalwebsite/section/contact_page/core/widgets/contact_form_widgets.dart';
 import 'package:personalwebsite/section/page_main/widgets/section_heading.dart';
 import 'package:personalwebsite/section/contact_page/core/contact_constents.dart';
 import 'package:personalwebsite/section/contact_page/core/widgets/contact_details_area.dart';
@@ -27,6 +28,7 @@ class ContactPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     contactPageGlobalKey = context;
+
     return ResponsiveBuilder(builder: (context, sizingInfo) {
       Screen(sizingInfo: sizingInfo);
       return Container(

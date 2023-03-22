@@ -49,14 +49,3 @@ class MenuDrawerList extends StatelessWidget {
   }
 }
 
-toHomePage() {
-  final menuDrawerState = SliderMenuDrawer.sliderMenuDrawerKey.currentState;
-  final homePageDrawerState =
-      SliderHomePageDrawer.sliderHomePageDrawerKey.currentState;
-  if (menuDrawerState != null && homePageDrawerState != null) {
-    menuDrawerState.closeSlider();
-    homePageDrawerState.openSlider();
-    appBarNotifier.value = false;
-    appBarNotifier.notifyListeners();
-  }
-}

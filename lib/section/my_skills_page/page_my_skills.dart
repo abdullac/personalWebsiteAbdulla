@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:personalwebsite/core/constents/colors.dart';
+import 'package:personalwebsite/core/constents/text_sizes.dart';
 import 'package:personalwebsite/core/responsive/screen.dart';
 import 'package:personalwebsite/section/page_main/widgets/section_heading.dart';
 import 'package:personalwebsite/section/my_skills_page/core/skills_constents.dart';
@@ -65,7 +66,7 @@ class SkillsPage extends StatelessWidget {
             Text(skillsTitleList[index],
                 style: GoogleFonts.varelaRound(
                     textStyle: TextStyle(
-                  fontSize: mainShortSize(3.3),
+                  fontSize: textSize2(),
                   color: kWhite80,
                 )))
           ],

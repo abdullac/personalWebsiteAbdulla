@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:personalwebsite/core/constents/colors.dart';
+import 'package:personalwebsite/core/constents/text_sizes.dart';
 import 'package:personalwebsite/core/responsive/functions.dart';
 import 'package:personalwebsite/core/responsive/screen.dart';
 import 'package:personalwebsite/section/home_page/core/home_constents.dart';
@@ -40,7 +41,7 @@ class LabelArea extends StatelessWidget {
         style: GoogleFonts.mPlusRounded1c(
             textStyle: TextStyle(
                 letterSpacing: mainShortSize(1),
-                fontSize: mainShortSize(3),
+                fontSize: textSize2(),
                 fontWeight: FontWeight.w900,
                 color: kGrey05)),
       ),
@@ -48,7 +49,7 @@ class LabelArea extends StatelessWidget {
         titleName,
         style: GoogleFonts.mPlusRounded1c(
             textStyle:TextStyle(
-            letterSpacing: mainShortSize(3.1),
+            letterSpacing: mainShortSize(3),
             fontSize: mainShortSize(10),
             fontWeight: FontWeight.w900,
             color: kWhite)),

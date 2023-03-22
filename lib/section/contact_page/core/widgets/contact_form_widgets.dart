@@ -1,6 +1,10 @@
 import 'package:email_validator/email_validator.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:personalwebsite/applications/contactpage_bloc/contactpage_bloc.dart';
+import 'package:personalwebsite/core/constents/text_sizes.dart';
+import 'package:personalwebsite/main.dart';
 import 'package:personalwebsite/section/contact_page/core/contact_constents.dart';
 import 'package:personalwebsite/section/contact_page/core/widgets/contact_form_field_widget.dart';
 import 'package:personalwebsite/section/contact_page/core/widgets/snackbar_while_submit.dart';
@@ -67,12 +71,16 @@ Flexible formFieldSubmitButton() {
         width: double.infinity,
         child: ElevatedButton(
           style: submitButtonStyle,
-          onPressed: () => submitForm(),
+          // onPressed: () => submitForm(),
+          onPressed: () => BlocProvider.of<ContactpageBloc>(
+                  NavigationService.navigatorKey.currentContext!)
+              .add(const SubmitForm()),
           child: Text(
             submitButtonTitle,
             style: GoogleFonts.varelaRound(
               textStyle: TextStyle(
-                fontSize: mainShortSize(3.3),
+                // fontSize: mainShortSize(3.3),
+                fontSize: textSize2(),
                 fontWeight: FontWeight.w900,
               ),
             ),
@@ -112,8 +120,11 @@ Future<bool> submitFormToGoogleSheetle() async {
   String tempEmail = emailEditingController.text;
   String tempMessage = messageEditingController.text;
 
+  /// tempVisit is null now.
+  String? tempVisit;
+
   String queryString =
-      "?name=$tempName&contact=$tempContact&email=$tempEmail&message=$tempMessage";
+      "?name=$tempName&contact=$tempContact&email=$tempEmail&message=$tempMessage&visit$tempVisit";
   var finalUri = Uri.parse(sriptUrl + queryString);
   try {
     var response = await http.get(finalUri);
@@ -128,3 +139,4 @@ Future<bool> submitFormToGoogleSheetle() async {
   }
   return seccesSubmit;
 }
+

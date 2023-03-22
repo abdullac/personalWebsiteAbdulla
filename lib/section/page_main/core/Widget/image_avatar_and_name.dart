@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:personalwebsite/applications/homepage_bloc/home_page_bloc.dart';
 import 'package:personalwebsite/core/constents/colors.dart';
 import 'package:personalwebsite/core/constents/strings.dart';
+import 'package:personalwebsite/main.dart';
 import 'package:personalwebsite/section/page_main/core/Widget/circle_profile_image.dart';
-import 'package:personalwebsite/section/page_main/core/Widget/slider_menu_list.dart';
 import 'package:personalwebsite/section/page_main/core/main_dimonsions.dart';
 
 Widget imageAvatarAndName() {
@@ -34,7 +36,10 @@ Widget imageAvatarAndName() {
   ];
 
   return InkWell(
-    onTap: () => toHomePage(),
+    onTap: () => BlocProvider.of<HomePageBloc>(
+            NavigationService.navigatorKey.currentContext!)
+        .add(const GoToHomePage()),
+    // toHomePage(),
     child: SizedBox(
       height: mainIsLandscapeMobile() ? mainHeight(100) : mainHeight(45),
       child: mainIsTablet()

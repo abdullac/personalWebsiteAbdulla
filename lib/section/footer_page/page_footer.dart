@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:personalwebsite/applications/homepage_bloc/home_page_bloc.dart';
 import 'package:personalwebsite/core/constents/colors.dart';
+import 'package:personalwebsite/core/constents/text_sizes.dart';
 import 'package:personalwebsite/core/responsive/screen.dart';
 import 'package:personalwebsite/section/footer_page/core/footer_consteents.dart';
-import 'package:personalwebsite/section/page_main/core/Widget/slider_menu_list.dart';
 import 'package:personalwebsite/section/page_main/core/main_dimonsions.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 
@@ -21,19 +23,21 @@ class Footer extends StatelessWidget {
                 footerTitle1,
                 style: GoogleFonts.varelaRound(
                   textStyle: TextStyle(color: kBlack915),
-                  fontSize: mainShortSize(2.5),
+                  fontSize: textSize1(),
                 ),
               ),
               TextButton(
                 onPressed: () {
-                  toHomePage();
+                  BlocProvider.of<HomePageBloc>(context).add(const GoToHomePage());
+                  // toHomePage();
                 },
+                style: ButtonStyle(padding: MaterialStateProperty.all(const EdgeInsets.all(0))),
                 child: Text(footerTitle2,
                     style: GoogleFonts.varelaRound(
                         textStyle: TextStyle(
                       fontWeight: FontWeight.bold,
                       color: kGrey,
-                      fontSize: mainShortSize(2.5),
+                      fontSize: textSize1(),
                     ))),
               )
             ],
@@ -45,7 +49,7 @@ class Footer extends StatelessWidget {
               Icon(
                 Icons.copyright,
                 color: kBlack26,
-                size: mainShortSize(4),
+                size: textSize2(),
               ),
               RichText(
                 text: TextSpan(
@@ -53,7 +57,7 @@ class Footer extends StatelessWidget {
                   style: GoogleFonts.varelaRound(
                       textStyle: TextStyle(
                     color: kGrey,
-                    fontSize: mainShortSize(2.5),
+                    fontSize: textSize1(),
                   )),
                   children: [
                     TextSpan(

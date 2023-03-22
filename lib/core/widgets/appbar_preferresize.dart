@@ -1,46 +1,82 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:personalwebsite/applications/appbar_bloc/appbar_bloc.dart';
+import 'package:personalwebsite/applications/homepage_bloc/home_page_bloc.dart';
 import 'package:personalwebsite/core/constents/appbar_constents.dart';
 import 'package:personalwebsite/core/constents/colors.dart';
 import 'package:personalwebsite/core/responsive/screen.dart';
+import 'package:personalwebsite/domain/home_page/goto_home.dart';
+import 'package:personalwebsite/main.dart';
 import 'package:personalwebsite/section/page_main/widgets/slider_menu_drawer.dart';
-import 'package:personalwebsite/section/page_main/core/Widget/slider_menu_list.dart';
 import 'package:personalwebsite/section/page_main/core/main_dimonsions.dart';
 import 'package:personalwebsite/section/page_main/page_main.dart';
 import 'package:personalwebsite/section/page_main/widgets/slider_homepage_drawer.dart';
 import 'package:responsive_builder/responsive_builder.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 final appBarNotifier = ValueNotifier(false);
-Color? appBarBackgroundColor = kRedAccent;
-String appBarTitle = "Abdulla";
+// Color? appBarBackgroundColor = kRedAccent;
+// String appBarTitle = "Abdulla";
 Widget? appBarImageCircle = appBarCircleImage();
+
+// PreferredSize appBarPreferredSize() {
+//   return PreferredSize(
+//     preferredSize: Size(mainWidth(100), mainShortSize(15)),
+//     child: ResponsiveBuilder(
+//       builder: (context, sizingInfo) {
+//         Screen(sizingInfo: sizingInfo);
+//         return ValueListenableBuilder(
+//           valueListenable: appBarNotifier,
+//           builder: (context, newValue, _) {
+//             return AnimatedContainer(
+//               transform: appbarTransform(newValue),
+//               duration: const Duration(milliseconds: 400),
+//               child: AppBar(
+//                 shadowColor: kTransparent,
+//                 backgroundColor: appBarBackgroundColor,
+//                 leading: appbarLeadingWidgets(newValue),
+//                 title: appbarTitleWidget(),
+//                 actions: mainIsDeskTop()
+//                     ? appBartextButtonList()
+//                     : [
+//                         appBarImageCircle ?? const SizedBox(),
+//                       ],
+//               ),
+//             );
+//           },
+//         );
+//       },
+//     ),
+//   );
+// }
 
 PreferredSize appBarPreferredSize() {
   return PreferredSize(
     preferredSize: Size(mainWidth(100), mainShortSize(15)),
-    child: ResponsiveBuilder(builder: (context, sizingInfo) {
-      Screen(sizingInfo: sizingInfo);
-      return ValueListenableBuilder(
-        valueListenable: appBarNotifier,
-        builder: (context, newValue, _) {
-          return AnimatedContainer(
-            transform: appbarTransform(newValue),
-            duration: const Duration(milliseconds: 400),
-            child: AppBar(
-              shadowColor: kTransparent,
-              backgroundColor: appBarBackgroundColor,
-              leading: appbarLeadingWidgets(newValue),
-              title: appbarTitleWidget(),
-              actions: mainIsDeskTop()
-                  ? appBartextButtonList()
-                  : [
-                      appBarImageCircle ?? const SizedBox(),
-                    ],
-            ),
-          );
-        },
-      );
-    }),
+    child: ResponsiveBuilder(
+      builder: (context, sizingInfo) {
+        Screen(sizingInfo: sizingInfo);
+        return BlocBuilder<AppbarBloc, AppbarState>(
+          builder: (context, state) {
+            return AnimatedContainer(
+              transform: appbarTransform(state.isShow),
+              duration: const Duration(milliseconds: 400),
+              child: AppBar(
+                shadowColor: kTransparent,
+                backgroundColor: state.backgoundColor,
+                leading: appbarLeadingWidgets(state.isShow),
+                title: appbarTitleWidget(state.title),
+                actions: mainIsDeskTop()
+                    ? appBartextButtonList()
+                    : [
+                        appBarImageCircle ?? const SizedBox(),
+                      ],
+              ),
+            );
+          },
+        );
+      },
+    ),
   );
 }
 
@@ -65,11 +101,11 @@ AnimatedContainer appbarLeadingWidgets(bool newValue) {
   );
 }
 
-Widget appbarTitleWidget() {
+Widget appbarTitleWidget(String appbarTitle) {
   return Padding(
     padding: const EdgeInsets.all(8.0),
     child: Text(
-      appBarTitle,
+      appbarTitle,
       style: GoogleFonts.dancingScript(
           textStyle: TextStyle(
               fontSize: mainShortSize(7),
@@ -90,7 +126,10 @@ List<Widget> appBartextButtonList() {
         child: TextButton(
           onPressed: () {
             if (index == 0) {
-              toHomePage();
+              BlocProvider.of<HomePageBloc>(
+                      NavigationService.navigatorKey.currentContext!)
+                  .add(const GoToHomePage());
+              // toHomePage();
             } else {
               PageMain.itemScrollController.scrollTo(
                   index: index, duration: const Duration(milliseconds: 700));
@@ -99,8 +138,9 @@ List<Widget> appBartextButtonList() {
           },
           child: Text(
             buttonNameList[index],
-            style:GoogleFonts.varelaRound(textStyle: TextStyle(color: kRed), 
-            fontSize: mainShortSize(2.2)) ,
+            style: GoogleFonts.varelaRound(
+                textStyle: TextStyle(color: kRed),
+                fontSize: mainShortSize(2.2)),
           ),
         ),
       ),
@@ -112,7 +152,9 @@ List<Widget> appBartextButtonList() {
 InkWell appBarCircleImage() {
   return InkWell(
     onTap: () {
-      appbarCircleImageOnTap();
+      BlocProvider.of<HomePageBloc>(
+              NavigationService.navigatorKey.currentContext!)
+          .add(const GoToHomePage());
     },
     hoverColor: kBlack26,
     borderRadius: BorderRadius.all(Radius.circular(mainShortSize(15))),
@@ -150,19 +192,22 @@ void appbarMenuIconPressed() {
     drawerState.isDrawerOpen
         ? drawerState.closeSlider()
         : drawerState.openSlider();
-    appBarNotifier.value = false;
-    appBarNotifier.notifyListeners();
+    // appBarNotifier.value = false;
+    // appBarNotifier.notifyListeners();
+    BlocProvider.of<AppbarBloc>(NavigationService.navigatorKey.currentContext!)
+        .add(const HideToTopAppBar());
   }
 }
 
-void appbarCircleImageOnTap() {
-  final drawerStateHomePage =
-      SliderHomePageDrawer.sliderHomePageDrawerKey.currentState;
-  if (drawerStateHomePage != null) {
-    drawerStateHomePage.isDrawerOpen
-        ? drawerStateHomePage.closeSlider()
-        : drawerStateHomePage.openSlider();
-    appBarNotifier.value = false;
-    appBarNotifier.notifyListeners();
-  }
-}
+// void appbarCircleImageOnTap() {
+//   final drawerStateHomePage =
+//       SliderHomePageDrawer.sliderHomePageDrawerKey.currentState;
+//   if (drawerStateHomePage != null) {
+//     drawerStateHomePage.isDrawerOpen
+//         ? drawerStateHomePage.closeSlider()
+//         : drawerStateHomePage.openSlider();
+//     appBarNotifier.value = false;
+//     appBarNotifier.notifyListeners();
+//   }
+// }
+

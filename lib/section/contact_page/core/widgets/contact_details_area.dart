@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:personalwebsite/core/constents/colors.dart';
+import 'package:personalwebsite/core/constents/text_sizes.dart';
 import 'package:personalwebsite/section/contact_page/core/contact_constents.dart';
 import 'package:personalwebsite/section/contact_page/page_contact.dart';
 import 'package:personalwebsite/section/page_main/core/main_dimonsions.dart';
@@ -77,7 +78,8 @@ Padding contactDetailTitle(int index) {
         style: GoogleFonts.varelaRound(
           textStyle: TextStyle(
             color: kRed,
-            fontSize: mainShortSize(3.3),
+            // fontSize: mainShortSize(3.3),
+            fontSize: textSize2(),
           ),
         )),
   );

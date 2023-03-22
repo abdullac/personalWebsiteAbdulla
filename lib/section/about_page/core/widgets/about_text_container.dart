@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:personalwebsite/core/constents/colors.dart';
-import 'package:personalwebsite/section/about_page/core/about_constends.dart';
+import 'package:personalwebsite/section/about_page/core/about_constents.dart';
 import 'package:personalwebsite/section/page_main/core/main_dimonsions.dart';
 import 'dart:math' as math;
 
@@ -54,7 +54,7 @@ Positioned blueSplashForAboutContainer() {
             begin: Alignment.topCenter,
             end: Alignment.bottomCenter,
             colors: blueSplashGradientColorsList,
-            stops: blueSplashGradientStopsList,
+            stops: blueSplashGradientStopsList(),
           ),
         ),
       ),

@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:personalwebsite/applications/appbar_bloc/appbar_bloc.dart';
+import 'package:personalwebsite/applications/mainpage_bloc/mainpage_bloc.dart';
 import 'package:personalwebsite/core/constents/colors.dart';
+import 'package:personalwebsite/main.dart';
 import 'package:personalwebsite/section/page_main/page_main.dart';
 
 Positioned gotoTopButton() {
@@ -15,7 +19,13 @@ Positioned gotoTopButton() {
                 backgroundColor: kGrey05,
                 child: IconButton(
                   onPressed: () {
-                    mainpageGotoTopButtonPressed();
+                    BlocProvider.of<AppbarBloc>(
+                            NavigationService.navigatorKey.currentContext!)
+                        .add(const TransparentBackground());
+                    BlocProvider.of<MainpageBloc>(
+                            NavigationService.navigatorKey.currentContext!)
+                        .add(const GoToTop());
+                    // mainpageGotoTopButtonPressed();
                   },
                   icon: Icon(
                     Icons.keyboard_double_arrow_up_rounded,
@@ -29,6 +39,8 @@ Positioned gotoTopButton() {
 }
 
 void mainpageGotoTopButtonPressed() {
+  // BlocProvider.of<AppbarBloc>(NavigationService.navigatorKey.currentContext!)
+  //     .add(const TransparentBackground());
   PageMain.itemScrollController.scrollTo(
     index: 1,
     duration: const Duration(milliseconds: 500),

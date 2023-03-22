@@ -31,26 +31,33 @@ List<Color> blueSplashGradientColorsList = [
   Colors.blueAccent.withOpacity(0.05),
 ];
 
-/// gradient stops List
-const List<double> aboutTextContainerGradientStopsList = [
-  0.001,
-  0.0,
-  0.07,
-  0.2,
-  0.35,
-];
-
-const List<double> blueSplashGradientStopsList = [
-  0,
-  0.2,
-  0.4,
-  0.5,
-  0.52,
-  0.95,
-  1,
-];
-
 //////  () =>  //////
+
+/// gradient stops List
+// const List<double> aboutTextContainerGradientStopsList = [
+//   0.001,
+//   0.0,
+//   0.07,
+//   0.2,
+//   0.35,
+// ];
+List<double> aboutTextContainerGradientStopsList() => [
+      0.001,
+      0.0,
+      0.07,
+      0.5,
+      0.7,
+    ];
+
+List<double> blueSplashGradientStopsList() => [
+      0,
+      0.2,
+      0.4,
+      0.5,
+      0.52,
+      0.95,
+      1,
+    ];
 
 EdgeInsets? aboutTextContainerMargin() {
   return mainIsLandScape()
@@ -70,7 +77,7 @@ BorderRadius aboutTextContainerBorderRadius() => BorderRadius.only(
 LinearGradient aboutTextContainerLinearGradient() {
   return LinearGradient(
     colors: aboutTextContainerGradientColorsList,
-    stops: aboutTextContainerGradientStopsList,
+    stops: aboutTextContainerGradientStopsList(),
     transform:
         mainIsLandScape() ? null : const GradientRotation(math.pi * 90 / 180),
   );

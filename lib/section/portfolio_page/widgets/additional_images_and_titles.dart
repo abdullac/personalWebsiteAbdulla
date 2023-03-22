@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:personalwebsite/core/constents/colors.dart';
+import 'package:personalwebsite/core/constents/text_sizes.dart';
 import 'package:personalwebsite/section/page_main/core/main_dimonsions.dart';
 import 'package:personalwebsite/section/portfolio_page/core/dimonsions/portfolio_dimonsion.dart';
 import 'package:personalwebsite/section/portfolio_page/core/portfolio_constents.dart';
@@ -78,7 +79,7 @@ Flexible additionalImagesItemTitleportion(int index) {
           overflow: TextOverflow.fade,
           style: GoogleFonts.varelaRound(
               textStyle: TextStyle(
-            fontSize: mainShortSize(3.3),
+            fontSize: textSize2(),
             color: kWhite80,
           )),
         ),
