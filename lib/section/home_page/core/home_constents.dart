@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:personalwebsite/core/responsive/functions.dart';
 import 'package:personalwebsite/core/responsive/screen.dart';
+import 'package:personalwebsite/section/page_main/core/main_dimonsions.dart';
 
 /// text
 const String titleWelcome = " Yes, Your Own";
@@ -45,8 +45,8 @@ int homepageBackgroundImagesCrossAxisCount = Screen.internal.isPortrait
         : 12;
 
 int homepageBackgroundImagesItemCount() {
-  return (((longSize100(100) /
-                  (shortSize100(100) /
+  return (((mainLongSize(100) /
+                  (mainShortSize(100) /
                       homepageBackgroundImagesCrossAxisCount)) +
               1) *
           homepageBackgroundImagesCrossAxisCount)

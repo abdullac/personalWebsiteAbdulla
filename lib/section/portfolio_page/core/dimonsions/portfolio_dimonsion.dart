@@ -37,7 +37,7 @@ BoxDecoration additionalImagesItemBorderAndDecoration(int index) {
   return BoxDecoration(
     border: Border.all(
       color: kGrey.withOpacity(
-          additionalImageItemIndexNotifier.value == index ? 0.4 : 0.3),
+          additionalImageItemIndexNotifier.value == index ? 0.5 : 0.2),
     ),
   );
 }

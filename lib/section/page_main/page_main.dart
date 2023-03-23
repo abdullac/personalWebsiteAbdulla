@@ -85,6 +85,7 @@ class PageMain extends StatelessWidget {
     BlocProvider.of<AppbarBloc>(NavigationService.navigatorKey.currentContext!)
         .add(const ShowfromTopAppBar());
     appBarImageCircle = appBarCircleImage();
+    goToLinkedInLogo = LinkedInLogo();
     // appBarTitle = myName;
     // appBarBackgroundColor = kRedAccent;
   }
@@ -94,6 +95,7 @@ class PageMain extends StatelessWidget {
       if (lastforwardScrolledTime <
           DateTime.now().millisecondsSinceEpoch - 4999) {
         appBarImageCircle = null;
+        goToLinkedInLogo = null;
         BlocProvider.of<AppbarBloc>(NavigationService.navigatorKey.currentContext!)
         .add(const TransparentBackground());
         // appBarTitle = "";

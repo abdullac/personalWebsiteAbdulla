@@ -13,11 +13,13 @@ import 'package:personalwebsite/section/page_main/page_main.dart';
 import 'package:personalwebsite/section/page_main/widgets/slider_homepage_drawer.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 final appBarNotifier = ValueNotifier(false);
 // Color? appBarBackgroundColor = kRedAccent;
 // String appBarTitle = "Abdulla";
 Widget? appBarImageCircle = appBarCircleImage();
+Widget? goToLinkedInLogo = LinkedInLogo();
 
 // PreferredSize appBarPreferredSize() {
 //   return PreferredSize(
@@ -52,7 +54,8 @@ Widget? appBarImageCircle = appBarCircleImage();
 
 PreferredSize appBarPreferredSize() {
   return PreferredSize(
-    preferredSize: Size(mainWidth(100), mainShortSize(15)),
+    preferredSize: Size(mainWidth(100), mainHeight(10)),
+    //  mainShortSize(15)
     child: ResponsiveBuilder(
       builder: (context, sizingInfo) {
         Screen(sizingInfo: sizingInfo);
@@ -64,11 +67,14 @@ PreferredSize appBarPreferredSize() {
               child: AppBar(
                 shadowColor: kTransparent,
                 backgroundColor: state.backgoundColor,
+                leadingWidth: mainIsPortrait() ? mainShortSize(7) : null,
                 leading: appbarLeadingWidgets(state.isShow),
                 title: appbarTitleWidget(state.title),
                 actions: mainIsDeskTop()
                     ? appBartextButtonList()
                     : [
+                        // imageCircle will remove when appbar is transparent.
+                        goToLinkedInLogo ?? const SizedBox(),
                         appBarImageCircle ?? const SizedBox(),
                       ],
               ),
@@ -89,11 +95,11 @@ AnimatedContainer appbarLeadingWidgets(bool newValue) {
             scaleX: -1,
             child: appBarCircleImage(),
           )
-        : IconButton(
-            onPressed: () {
+        : InkWell(
+            onTap: () {
               appbarMenuIconPressed();
             },
-            icon: Icon(
+            child: Icon(
               Icons.menu,
               size: mainShortSize(8),
             ),
@@ -103,16 +109,34 @@ AnimatedContainer appbarLeadingWidgets(bool newValue) {
 
 Widget appbarTitleWidget(String appbarTitle) {
   return Padding(
-    padding: const EdgeInsets.all(8.0),
-    child: Text(
-      appbarTitle,
-      style: GoogleFonts.dancingScript(
-          textStyle: TextStyle(
-              fontSize: mainShortSize(7),
-              fontWeight: FontWeight.w800,
-              letterSpacing: mainShortSize(0),
-              shadows: appBarTitleShadow,
-              color: kWhite)),
+    padding: const EdgeInsets.only(right: 8),
+    child:
+        //  appbarTitle == "" && !mainIsDeskTop()
+        //     ? SizedBox(
+        //         width: mainHeight(9),
+        //         height: mainHeight(9),
+        //         child: Transform.scale(
+        //           scaleX: -1,
+        //           child: appBarCircleImage(),
+        //         ),
+        //       )
+        //     :
+        InkWell(
+      onTap: () {
+        BlocProvider.of<HomePageBloc>(
+                NavigationService.navigatorKey.currentContext!)
+            .add(const GoToHomePage());
+      },
+      child: Text(
+        appbarTitle,
+        style: GoogleFonts.dancingScript(
+            textStyle: TextStyle(
+                fontSize: mainShortSize(7),
+                fontWeight: FontWeight.w800,
+                letterSpacing: mainShortSize(0),
+                shadows: appBarTitleShadow,
+                color: kWhite)),
+      ),
     ),
   );
 }
@@ -121,29 +145,33 @@ List<Widget> appBartextButtonList() {
   List<Widget> textButtonlist = [];
   for (int index = 0; index < buttonNameList.length; index++) {
     textButtonlist.add(
-      Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: TextButton(
-          onPressed: () {
-            if (index == 0) {
-              BlocProvider.of<HomePageBloc>(
-                      NavigationService.navigatorKey.currentContext!)
-                  .add(const GoToHomePage());
-              // toHomePage();
-            } else {
-              PageMain.itemScrollController.scrollTo(
-                  index: index, duration: const Duration(milliseconds: 700));
-              PageMain.itemPositionListner.itemPositions.addListener(() {});
-            }
-          },
-          child: Text(
-            buttonNameList[index],
-            style: GoogleFonts.varelaRound(
-                textStyle: TextStyle(color: kRed),
-                fontSize: mainShortSize(2.2)),
-          ),
-        ),
-      ),
+      buttonNameList[index] == "LinkedIn"
+          ? LinkedInLogo()
+          : Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: TextButton(
+                onPressed: () {
+                  if (index == 0) {
+                    BlocProvider.of<HomePageBloc>(
+                            NavigationService.navigatorKey.currentContext!)
+                        .add(const GoToHomePage());
+                    // toHomePage();
+                  } else {
+                    PageMain.itemScrollController.scrollTo(
+                        index: index,
+                        duration: const Duration(milliseconds: 700));
+                    PageMain.itemPositionListner.itemPositions
+                        .addListener(() {});
+                  }
+                },
+                child: Text(
+                  buttonNameList[index],
+                  style: GoogleFonts.varelaRound(
+                      textStyle: TextStyle(color: kRed),
+                      fontSize: mainShortSize(2.2)),
+                ),
+              ),
+            ),
     );
   }
   return textButtonlist;
@@ -186,6 +214,20 @@ InkWell appBarCircleImage() {
   );
 }
 
+Widget LinkedInLogo() {
+  return Padding(
+    padding: const EdgeInsets.all(5.0),
+    child: InkWell(
+      onTap: () {
+        launchURL();
+      },
+      child: const Image(
+        image: AssetImage("assets/linkedin.png"),
+      ),
+    ),
+  );
+}
+
 void appbarMenuIconPressed() {
   final drawerState = SliderMenuDrawer.sliderMenuDrawerKey.currentState;
   if (drawerState != null) {
@@ -211,3 +253,12 @@ void appbarMenuIconPressed() {
 //   }
 // }
 
+launchURL() async {
+  const url = 'https://www.linkedin.com/in/abdullac';
+  final uri = Uri.parse(url);
+  if (await canLaunchUrl(uri)) {
+    await launchUrl(uri);
+  } else {
+    throw 'Could not launch $url';
+  }
+}

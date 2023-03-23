@@ -64,6 +64,7 @@ homePageToMainpage() {
     BlocProvider.of<AppbarBloc>(NavigationService.navigatorKey.currentContext!)
         .add(const TransparentBackground());
     appBarImageCircle = null;
+    goToLinkedInLogo = null;
     // appBarTitle = "";
     // appBarBackgroundColor = kTransparent;
     // appBarNotifier.notifyListeners();

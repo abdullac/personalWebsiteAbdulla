@@ -2,12 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:personalwebsite/core/constents/colors.dart';
 import 'package:personalwebsite/core/constents/text_sizes.dart';
-import 'package:personalwebsite/section/page_main/core/main_dimonsions.dart';
 import 'package:personalwebsite/section/portfolio_page/core/dimonsions/portfolio_dimonsion.dart';
 import 'package:personalwebsite/section/portfolio_page/core/portfolio_constents.dart';
 import 'package:personalwebsite/section/portfolio_page/page_portfolio.dart';
 import 'package:personalwebsite/section/portfolio_page/widgets/portfolio_dot_list.dart';
 import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
+
+ValueNotifier<int> portFolioImagesItemNotifier = ValueNotifier(0);
 
 Flexible portfolioImagesArea() {
   return Flexible(
@@ -35,24 +36,34 @@ InkWell portfolioImagesListview() {
 }
 
 Widget portfolioImagesListViewItemBuilder(ctx, index) {
-  return Container(
-    color: kGrey05,
-    margin: EdgeInsets.symmetric(
-      horizontal: portfolioDimonsion(100 / 25),
-      vertical: 10,
-    ),
-    child: InkWell(
-      onTap: () {
-        portfolioImagesItemOnTap(index);
-      },
-      child: Column(
-        children: [
-          portfolioimagesListImagePortion(index),
-          portfolioimagesListTextPortion(index),
-        ],
-      ),
-    ),
-  );
+  return ValueListenableBuilder(
+      valueListenable: portFolioImagesItemNotifier,
+      builder: (context, newValue, _) {
+        return Container(
+          margin: EdgeInsets.symmetric(
+            horizontal: portfolioDimonsion(100 / 25),
+            vertical: 10,
+          ),
+          decoration: BoxDecoration(
+            color: kGrey05,
+            border: Border.all(
+              color: kGrey.withOpacity(
+                  newValue == index ? 0.5 : 0.0),
+            ),
+          ),
+          child: InkWell(
+            onTap: () {
+              portfolioImagesItemOnTap(index);
+            },
+            child: Column(
+              children: [
+                portfolioimagesListImagePortion(index),
+                portfolioimagesListTextPortion(index),
+              ],
+            ),
+          ),
+        );
+      });
 }
 
 Flexible portfolioimagesListImagePortion(index) {
@@ -102,7 +113,6 @@ portfolioImagesItemOnTap(int index) {
 }
 
 void portfolioImagesAreaLongPressed() async {
-
   if (stopPortfolioImageScroll == true) {
     stopPortfolioImageScroll = false;
     await portfolioImagesListAutoScrolling();
@@ -118,6 +128,7 @@ Future<void> portfolioImagesListAutoScrolling() async {
   for (index; index < portfolioImageList.length; index++) {
     portfolioDotPositionNotifier.value = index;
     subImagesAreaIndexNotifier.value = index;
+    portFolioImagesItemNotifier.value = index;
     PortfolioPage.itemScrollController.scrollTo(
       index: index,
       duration: const Duration(milliseconds: 2000),
@@ -128,6 +139,7 @@ Future<void> portfolioImagesListAutoScrolling() async {
       //
     }
     subImagesAreaIndexNotifier.notifyListeners();
+    portFolioImagesItemNotifier.notifyListeners();
     await Future.delayed(const Duration(seconds: 6), () {});
     if (stopPortfolioImageScroll == true) {
       break;

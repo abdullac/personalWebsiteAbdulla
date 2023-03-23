@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:personalwebsite/core/constents/colors.dart';
 import 'package:personalwebsite/core/responsive/screen.dart';
 import 'package:personalwebsite/section/page_main/widgets/section_heading.dart';
@@ -39,8 +40,10 @@ class PortfolioPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    WidgetsBinding.instance.addPostFrameCallback((_) async {
-      subImagesAreaIndexNotifier.notifyListeners();
+    // WidgetsBinding.instance.addPostFrameCallback((_) async {
+    //   await portfolioImagesListAutoScrolling();
+    // });
+    SchedulerBinding.instance.addPostFrameCallback((_) async {
       await portfolioImagesListAutoScrolling();
     });
     return ResponsiveBuilder(builder: (context, sizingInfo) {

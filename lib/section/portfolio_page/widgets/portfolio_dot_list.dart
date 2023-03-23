@@ -84,7 +84,9 @@ Future<void> portfolioDotButtonItemOnTap(int index) async {
   stopPortfolioImageScroll = true;
   portfolioDotPositionNotifier.value = (index);
   subImagesAreaIndexNotifier.value = index;
+  portFolioImagesItemNotifier.value = index;
   subImagesAreaIndexNotifier.notifyListeners();
+  portFolioImagesItemNotifier.notifyListeners();
   await Future.delayed(const Duration(seconds: 10), () {});
   stopPortfolioImageScroll = false;
   await portfolioImagesListAutoScrolling();

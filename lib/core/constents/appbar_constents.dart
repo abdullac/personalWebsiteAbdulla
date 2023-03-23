@@ -3,12 +3,13 @@ import 'package:personalwebsite/section/page_main/core/main_dimonsions.dart';
 
 /// button text List
 const List<String> buttonNameList = [
-  "Home",
+  // "Home",
   "About",
   "Portfolio",
   "Skills",
   "Work Ethics",
   "Contact",
+  "LinkedIn",
 ];
 
 ///  text shadow
